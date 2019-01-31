@@ -1,0 +1,10 @@
+[Unit]
+Description=Duplicacy backup job
+
+[Service]
+WorkingDirectory=/home/truls
+ExecStart=/home/truls/.bin/backup
+
+[Install]
+WantedBy=default.target
+

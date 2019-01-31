@@ -1,0 +1,39 @@
+[user]
+	name = Truls Asheim
+	email = truls@asheim.dk
+	signingkey = AF389129D71B2B90FAC34E81199047A147F6E48D
+[branch]
+	autoSetupMerge = always
+[commit]
+	gpgsign = true
+[color "diff"]
+	plain = normal
+	meta = bold
+	frag = cyan
+	old = red
+	new = green
+	commit = yellow
+	whitespace = normal red
+[color "branch"]
+	current = green
+	local = normal
+	remote = red
+	plain = normal
+[color "status"]
+	header = normal
+	added = red
+	updated = green
+	changed = red
+	untracked = red
+	nobranch = red
+[color "grep"]
+	match = normal
+[color "interactive"]
+	prompt = normal
+	header = normal
+	help = normal
+	error = normal
+[github]
+	user = truls
+[gpg]
+	program = gpg2

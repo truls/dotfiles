@@ -1,0 +1,5 @@
+#!/bin/sh
+
+msgid=$1
+
+exec neomutt -e "push /=i${msgid}<enter><enter>"

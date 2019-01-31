@@ -1,0 +1,21 @@
+
+GOPATH=$HOME/.local/go
+export GOPATH
+
+PATH=$PATH:$HOME/.local/bin:$HOME/.bin:$HOME/.yarn/bin:$GOPATH/bin:/usr/local/cuda-9.0/bin
+export PATH
+
+PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:$HOME/prefix/lib64/pkgconfig
+export PKG_CONFIG_PATH
+
+eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
+export SSH_AUTH_SOCK
+
+alias futharki="rlwrap futharki"
+
+export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+
+export PYTHONPATH=/usr/local/lib64/python3.6/site-packages:$PYTHONPATH
+
+export TEXMFHOME=~/.local/share/texmf
+

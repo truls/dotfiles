@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+f=$1
+
+prefix=`unzip -o -l $f | head -n -2 | tail -n +4 | awk '{ print $4 }' | cut -f1 -d'/' | grep -v MACOSX | uniq | wc -l`
+opwd="$PWD"
+dn=`dirname $f`
+bn=`basename $f`
+newdir="${dn}/${bn%.zip}"
+
+if [ $prefix -ne 1 ]; then
+    mkdir -p "$newdir"
+    pushd "$newdir" > /dev/null
+    unzip "${opwd}/$f"
+    popd > /dev/null
+else
+    pushd "$dn" > /dev/null
+    unzip "${opwd}/$f"
+    popd > /dev/null
+fi
