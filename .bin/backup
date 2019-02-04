@@ -1,0 +1,5 @@
+#!/bin/sh
+
+duplicacy backup
+duplicacy prune --keep 0:90 --keep 14:30 --keep 7:7
+
