@@ -270,7 +270,6 @@
   :ensure t
   :after solidity-mode)
 
-
 ;;
 ;; sass-mode
 ;;
@@ -349,8 +348,11 @@
   :diminish
   :config
   (setq flyspell-use-meta-tab nil)
-  ;; Turn on flyspell(-prog)-mode for all modes
+  (defun flyspell-buffer-after-pdict-save (&rest _)
+    (flyspell-buffer))
+  (advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
   :hook
+  ;; Turn on flyspell(-prog)-mode for all modes
   ((text-mode . flyspell-mode)
    (prog-mode . flyspell-prog-mode)
    (erlang-mode . flyspell-prog-mode)))
@@ -359,7 +361,7 @@
   :ensure t
   :bind (:map flyspell-mode-map
               ("C-;" . flyspell-correct-wrapper))
-  :commands flyspell-correct-popup
+  :commands flyspell-correct-wrapper
   :init
   (setq flyspell-correct-interface #'flyspell-correct-popup))
 
@@ -367,8 +369,8 @@
   :ensure t
   :mode ("\\.md\\'" "\\.mrk\\'")
   :config
+  (setq markdown-command "pandoc")
   (add-hook 'markdown-mode-hook 'text-auto-fill))
-
 
 (use-package magit
   :ensure t
@@ -671,6 +673,13 @@ Clock   In/out^
   ("q" org-agenda-clock-cancel)
   ("g" org-agenda-clock-goto))))
 
+(use-package org-ref
+  :ensure t
+  :config
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Nextcloud/bibliography/notes.org"
+        org-ref-default-bibliography '("~/Nextcloud/bibliography/references.bib")
+        org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/"))
 
 (use-package projectile
   :ensure t
@@ -720,6 +729,7 @@ Clock   In/out^
   (setq TeX-auto-save t) ; Enable parse on save.)
 
   ;; Turn on RefTeX
+  (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (defvar reftex-plug-into-AUCTeX t)
   (add-hook 'LaTeX-mode-hook 'text-auto-fill)
@@ -768,10 +778,9 @@ Clock   In/out^
   (set-face-background 'highlight-indentation-face "grey24")
   (set-face-background 'highlight-indentation-current-column-face "grey30"))
 
-(use-package python-mode
-  :ensure t)
-
-
+(use-package python
+  :config
+  (add-hook 'python-mode-hook #'lsp))
 
 (use-package yaml-mode
   :commands yaml-mode
@@ -793,6 +802,13 @@ Clock   In/out^
   :ensure t
   :config
   (global-smart-shift-mode 1))
+
+(use-package langtool
+  :ensure t
+  :config
+  ;; Run my-install.sh script in language-servers/languagetool to
+  ;; install languagetool
+  (setq langtool-language-tool-jar (expand-file-name "language-servers/languagetool/LanguageTool-4.4-stable/languagetool-commandline.jar" user-emacs-directory)))
 
 ;;
 ;; Misc functions
