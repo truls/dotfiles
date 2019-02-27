@@ -280,7 +280,9 @@
 ;;
 (use-package web-mode
   :ensure t
-  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.html?\\'"))
+  :config
+  (add-hook 'web-mode-hook #'lsp)
+  :mode ("\\.tsx\\'" "\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.html?\\'"))
 
 ;;
 ;; flycheck-mode
@@ -290,18 +292,18 @@
 
 (use-package company
   :ensure t
-  :defer t
-  :init (global-company-mode)
+  ;;:defer t
   :config
+  (global-company-mode)
   (progn
     ;; Use Company for completion
-    (bind-key [remap completion-at-point] #'company-complete company-mode-map)
+    (bind-key [remap completion-at-point] #'company-complete company-mode-map))
 
-    (setq company-tooltip-align-annotations t
-          ;; Easy navigation to candidates with M-<n>
-          company-show-numbers t
-          company-dabbrev-downcase nil
-          company-idle-delay 0.1))
+    ;; (setq company-tooltip-align-annotations t
+    ;;       ;; Easy navigation to candidates with M-<n>
+    ;;       company-show-numbers t
+    ;;       company-dabbrev-downcase nil
+    ;;       company-idle-delay 0.1))
   :diminish company-mode)
 
 ;;
@@ -315,6 +317,7 @@
   :commands lsp
   :init (require 'lsp-clients)
   :config
+  (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil))
 
 (use-package lsp-ui
@@ -343,6 +346,14 @@
             (lambda ()
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2))))
+
+(use-package typescript-mode
+  :ensure t
+  :mode ("\\.ts\\'" . typescript-mode)
+  :init
+  (add-hook 'typescript-mode-hook #'lsp)
+  (setq typescript-indent-level 2)
+  )
 
 (use-package flyspell
   :diminish
@@ -809,6 +820,10 @@ Clock   In/out^
   ;; Run my-install.sh script in language-servers/languagetool to
   ;; install languagetool
   (setq langtool-language-tool-jar (expand-file-name "language-servers/languagetool/LanguageTool-4.4-stable/languagetool-commandline.jar" user-emacs-directory)))
+
+(use-package ess
+  :ensure t
+  :mode ("\\.r\\'" "\\.R\\'"))
 
 ;;
 ;; Misc functions
