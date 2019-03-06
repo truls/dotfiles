@@ -5,8 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ess znc yaml-mode web-mode visual-regexp-steroids use-package-hydra typescript-mode ssass-mode solidity-mode solidity-flycheck smex smart-shift org-ref org-gcal org-bullets nlinum magit magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode highlight-indentation google-this flyspell-correct-popup flycheck diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex)))
- '(safe-local-variable-values (quote ((haskell-stylish-on-save)))))
+    (ivy-yasnippet yasnippet-snippets ivy-xref znc yaml-mode web-mode visual-regexp-steroids use-package-hydra typescript-mode ssass-mode solidity-mode solidity-flycheck smex smart-shift org-ref org-gcal org-bullets nlinum magit magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode highlight-indentation google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

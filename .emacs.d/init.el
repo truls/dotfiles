@@ -246,6 +246,11 @@
          ("C-s" . counsel-minibuffer-local-map))
   :after (ivy smex))
 
+(use-package ivy-xref
+  :ensure t
+  :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
+  :after ivy)
+
 ;;
 ;; solidity-mode
 ;;
@@ -315,7 +320,9 @@
   :ensure t
   :pin melpa
   :commands lsp
-  :init (require 'lsp-clients)
+  :init
+  ;(setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "\"/home/truls//tslog\"" "--tsserver-log-verbosity" "verbose"))
+  (require 'lsp-clients)
   :config
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil))
@@ -413,7 +420,7 @@
   :diminish
   :after seq
   :preface
-  ;;  (Inspired bym
+  ;;  (Inspired by
   ;; https://emacs.stackexchange.com/questions/38771/magit-status-does-not-open-when-using-global-whitespace-mode-1)
   ;; Whitespace mode blacklist
   (defconst my/whitespace-mode-blacklist '(magit-mode org-mode))
@@ -721,9 +728,21 @@ Clock   In/out^
   ;; Disable nlinum-mode when PDF-view mode is enabled
   (add-hook 'pdf-view-mode-hook 'my-inhibit-global-nlinum-mode))
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (use-package yasnippet-snippets
+    :ensure t)
+  (yas-reload-all)
+  (when yas-minor-mode
+    (ivy-yasnippet))
+  :hook (elisp-mode . yas-minor-mode)
+  :commands (yas-minior-mode yas-global-mode)
+  :diminish yas-minor-mode)
 
-;; (use-package yasnippet-snippets
-;;   :require t
+(use-package ivy-yasnippet
+  :ensure t
+  :commands ivy-yasnippet)
 
 (use-package tex
   :ensure auctex
@@ -898,3 +917,4 @@ point reaches the beginning or end of the buffer, stop there."
 
 (provide 'init)
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
