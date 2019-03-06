@@ -325,15 +325,19 @@
   (require 'lsp-clients)
   :config
   (setq lsp-restart 'ignore)
-  (setq lsp-prefer-flymake nil))
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-keep-workspace-alive nil))
 
 (use-package lsp-ui
   :ensure t
   :pin melpa
   :config
   (setq lsp-ui-sideline-show-code-actions nil)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   ;:hook lsp-mode
   :commands lsp-ui-mode)
+
 
 (use-package company-lsp
   :ensure t
