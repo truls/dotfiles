@@ -278,7 +278,9 @@
 ;;
 ;; sass-mode
 ;;
-(use-package ssass-mode :ensure t)
+(use-package ssass-mode
+  :ensure t
+  :mode ("\\.scss\\'" "\\.sass\\'"))
 
 ;;
 ;; web-mode
@@ -304,11 +306,11 @@
     ;; Use Company for completion
     (bind-key [remap completion-at-point] #'company-complete company-mode-map))
 
-    ;; (setq company-tooltip-align-annotations t
-    ;;       ;; Easy navigation to candidates with M-<n>
-    ;;       company-show-numbers t
-    ;;       company-dabbrev-downcase nil
-    ;;       company-idle-delay 0.1))
+  ;; (setq company-tooltip-align-annotations t
+  ;;       ;; Easy navigation to candidates with M-<n>
+  ;;       company-show-numbers t
+  ;;       company-dabbrev-downcase nil
+  ;;       company-idle-delay 0.1))
   :diminish company-mode)
 
 ;;
@@ -373,6 +375,7 @@
   (defun flyspell-buffer-after-pdict-save (&rest _)
     (flyspell-buffer))
   (advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
+  :commands (flyspell-mode flyspell-prog-mode)
   :hook
   ;; Turn on flyspell(-prog)-mode for all modes
   ((text-mode . flyspell-mode)
@@ -383,9 +386,10 @@
   :ensure t
   :bind (:map flyspell-mode-map
               ("C-;" . flyspell-correct-wrapper))
-  :commands flyspell-correct-wrapper
+  :commands (flyspell-correct-wrapper flyspell-correct-popup)
   :init
-  (setq flyspell-correct-interface #'flyspell-correct-popup))
+  (setq flyspell-correct-interface #'flyspell-correct-popup)
+  :after flyspell)
 
 (use-package markdown-mode
   :ensure t
