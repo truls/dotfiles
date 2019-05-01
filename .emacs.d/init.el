@@ -57,6 +57,10 @@
 ;; Save desktop (current state)
 (desktop-save-mode t)
 
+;; Enable commands
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 ;; Switch between buffers using M-<arrow key>
 (windmove-default-keybindings 'meta)
 
