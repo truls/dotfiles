@@ -370,11 +370,21 @@
 
 (use-package flyspell
   :diminish
+  :init
+  (setq ispell-program-name "hunspell")
   :config
   (setq flyspell-use-meta-tab nil)
   (defun flyspell-buffer-after-pdict-save (&rest _)
     (flyspell-buffer))
   (advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
+  ;; Work around for Hunspell 1.7.0
+  ;; From https://emacs.stackexchange.com/questions/47344/ispell-not-working-with-hunspell
+  (defun manage-hunspell-1.7 (old-function-ispell &rest arguments)
+    "Add null-device when calling \"hunspell -D\"."
+    (if  (equal "-D"  (nth 4 arguments))
+        (funcall old-function-ispell "hunspell" null-device t nil "-D" null-device)
+      (apply old-function-ispell  arguments)))
+  (advice-add 'ispell-call-process :around #'manage-hunspell-1.7)
   :commands (flyspell-mode flyspell-prog-mode)
   :hook
   ;; Turn on flyspell(-prog)-mode for all modes
