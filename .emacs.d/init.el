@@ -736,6 +736,13 @@ Clock   In/out^
   :config
   (counsel-projectile-mode))
 
+(use-package helm-projectile
+  :ensure t)
+
+(use-package helm-rg
+  :ensure t
+  :pin melpa)
+
 (use-package pdf-tools
   :ensure t
   :preface
