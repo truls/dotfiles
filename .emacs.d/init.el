@@ -823,8 +823,6 @@ Clock   In/out^
   :ensure t
   :config
   (add-hook 'c-mode-common-hook #'lsp)
-  (setq ccls-executable "~/.emacs.d/language-servers/ccls/Release/ccls")
-  ;; also: cuda-mode, objc-mode
   :after lsp-mode)
 
 

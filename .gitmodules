@@ -1,9 +1,6 @@
 [submodule ".emacs.d/language-servers/haskell-ide-engine"]
 	path = .emacs.d/language-servers/haskell-ide-engine
 	url = https://github.com/haskell/haskell-ide-engine
-[submodule ".emacs.d/language-servers/ccls"]
-	path = .emacs.d/language-servers/ccls
-	url = https://github.com/MaskRay/ccls
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
