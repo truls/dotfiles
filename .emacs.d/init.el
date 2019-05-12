@@ -1037,4 +1037,3 @@ point reaches the beginning or end of the buffer, stop there."
 
 (provide 'init)
 ;;; init.el ends here
-(put 'downcase-region 'disabled nil)
