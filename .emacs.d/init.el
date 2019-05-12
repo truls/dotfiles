@@ -961,6 +961,9 @@ This function should only apply when in a bibtex file."
   :ensure t
   :mode ("\\.r\\'" "\\.R\\'"))
 
+(use-package visual-fill-column
+  :ensure t)
+
 ;;
 ;; Misc functions
 ;;
