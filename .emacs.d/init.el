@@ -715,11 +715,99 @@ Clock   In/out^
 
 (use-package org-ref
   :ensure t
-  :config
+  :pin melpa
+  :init
   ;; see org-ref for use of these variables
   (setq org-ref-bibliography-notes "~/Nextcloud/bibliography/notes.org"
-        org-ref-default-bibliography '("~/Nextcloud/bibliography/references.bib")
-        org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/"))
+        org-ref-default-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
+        org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/"
+        bibtex-dialect 'biblatex
+        org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
+        bibtex-completion-bibliography
+        '("~/Nextcloud/bibliography/bibliography.bib"))
+
+  :config
+  ;; Insert the citation into the notes PDF as a \fullcite inside a blockquote
+  (setq org-ref-create-notes-hook
+        '((lambda ()
+            (org-narrow-to-subtree)
+            (insert (format "\n#+BEGIN_QUOTE\nfullcite:%s\n#+END_QUOTE\n"
+                            (org-entry-get (point) "Custom_ID"))))))
+
+  ;; Overrides of org-ref functions. Uses a better regex for matching DOIs
+  (setq org-ref-pdf-doi-regex
+        "10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+\\|10.1002/[^[:space:]]+")
+  (defun org-ref-extract-doi-from-pdf (pdf)
+    "Try to extract a doi from a PDF file.
+There may be more than one doi in the file. This function returns
+all the ones it finds based on two patterns: doi: up to a quote,
+bracket, space or end of line. dx.doi.org/up to a quote, bracket,
+space or end of line.
+
+If there is a trailing . we chomp it off. Returns a list of doi
+strings, or nil.
+
+"
+  (with-temp-buffer
+    (insert (shell-command-to-string (format "%s %s -"
+                                             pdftotext-executable
+                                             (shell-quote-argument (dnd-unescape-uri pdf)))))
+    (goto-char (point-min))
+    (let ((matches '()))
+      (while (re-search-forward org-ref-pdf-doi-regex nil t)
+        ;; I don't know how to avoid a trailing . on some dois with the
+        ;; expression above, so if it is there, I chomp it off here.
+        (let ((doi (match-string 0)))
+          (when (s-ends-with? "." doi)
+            (setq doi (substring doi 0 (- (length doi) 1))))
+          (cl-pushnew doi matches :test #'equal)))
+      matches)))
+
+(defun org-ref-pdf-dnd-protocol (uri action)
+  "Drag-n-drop protocol.
+PDF will be a string like file:path.
+ACTION is what to do. It is required for `dnd-protocol-alist'.
+This function should only apply when in a bibtex file."
+  (if (and (buffer-file-name)
+           (f-ext? (buffer-file-name) "bib"))
+      (let* ((path (substring uri 5))
+             dois)
+        (cond
+         ((f-ext? path "pdf")
+          (setq dois (org-ref-extract-doi-from-pdf
+                      path))
+          (cond
+           ((null dois)
+            (message "No doi found in %s" path)
+            nil)
+           ((= 1 (length dois))
+            ;; we do not need to get the pdf, since we have one.
+            (let ((doi-utils-download-pdf nil))
+              (doi-utils-add-bibtex-entry-from-doi
+               (car dois)
+               (buffer-file-name))
+              ;; we should copy the pdf to the pdf directory though
+              (let ((key (cdr (assoc "=key=" (bibtex-parse-entry)))))
+                (copy-file (dnd-unescape-uri path) (expand-file-name (format "%s.pdf" key) org-ref-pdf-directory))))
+            action)
+           ;; Multiple DOIs found
+           (t
+            (helm :sources `((name . "Select a DOI")
+                             (candidates . ,(org-ref-pdf-doi-candidates dois))
+                             (action . org-ref-pdf-add-dois)))
+            action)))
+         ;; drag a bib file on and add contents to the end of the file.
+         ((f-ext? path "bib")
+          (goto-char (point-max))
+          (insert "\n")
+          (insert-file-contents path))))
+    ;; ignoring. pass back to dnd. Copied from `org-download-dnd'. Apparently
+    ;; returning nil does not do this.
+    (let ((dnd-protocol-alist
+           (rassq-delete-all
+            'org-ref-pdf-dnd-protocol
+            (copy-alist dnd-protocol-alist))))
+      (dnd-handle-one-url nil action uri)))))
 
 (use-package projectile
   :ensure t
