@@ -755,7 +755,9 @@ Clock   In/out^
   :config
   (pdf-tools-install)
   ;; Disable nlinum-mode when PDF-view mode is enabled
-  (add-hook 'pdf-view-mode-hook 'my-inhibit-global-nlinum-mode))
+  (add-hook 'pdf-view-mode-hook #'my-inhibit-global-nlinum-mode)
+  (setq pdf-annot-activate-created-annotations t)
+  (define-key pdf-view-mode-map (kbd "C-s") #'isearch-forward))
 
 (use-package yasnippet
   :ensure t
