@@ -80,7 +80,8 @@ set ssl_force_tls=yes
 
 
 # Cache maildir headers
-set header_cache = "~/.config/neomutt/headers"
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt"
 # On my systems mutt is the only program which plays with my
 # emails, so there's no reason to spend a stat system call for
 # each mail
