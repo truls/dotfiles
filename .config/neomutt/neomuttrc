@@ -1,3 +1,4 @@
+# -*- mode: mutt -*-
 #   Gufo's Muttrc  (mutt 1.5.17)
 #   Version 0.13 2007/11/06
 #   http://gufo.dontexist.org/mutt.php
@@ -21,7 +22,7 @@ set editor = vim
 ## Crypto #
 #
 
-source ~/.mutt/crypto
+source crypto
 # GPG settings sourced from .mutt/muttrc
 # Use GPGME
 set crypt_use_gpgme = yes
@@ -76,37 +77,10 @@ set ssl_starttls=yes
  #   # always use SSL when connecting to a server
 set ssl_force_tls=yes
 
-set folder = imap://imap.terrifyinglytrue.eu/
 
-# Mail folder (default = $HOME/Mail)
-#U
-
-# Mbox type: mbox, MMDF, MH, Maildir
-#set mbox_type = Maildir
-#set mbox                = "~/Maildir/cur/"
-#set postponed           = "~/Maildir/postponed/"
-set imap_authenticators="gssapi"
-# Set various Mailboxes
-#mailboxes `cat $HOME/.mutt/mailboxes`
-#mailboxes `$HOME/.mutt/mailboxes.sh`
-set imap_list_subscribed="no"
-
-set spoolfile = imap://imap.terrifyinglytrue.eu/
-
-set record = imap://imap.terrifyinglytrue.eu/Sent
-#set record = imap://mx1.terrifyinglytrue.eu/INBOX
-
-# Postponed folder
-set postponed = imap://imap.terrifyinglytrue.eu/Draft
-
-## Sending mails
-set smtp_authenticators="gssapi"
-set smtp_url="smtp://truls@imap.terrifyinglytrue.eu:586"
-set from="truls@asheim.dk"
-set realname="Truls Asheim"
 
 # Cache maildir headers
-set header_cache = "~/.mutt/headers"
+set header_cache = "~/.config/neomutt/headers"
 # On my systems mutt is the only program which plays with my
 # emails, so there's no reason to spend a stat system call for
 # each mail
@@ -210,13 +184,13 @@ unset config_charset
 set sort_re
 unset strict_threads
 
-# Search method  -- default pattern (Fr|To|Cc|Subj) -- 
+# Search method  -- default pattern (Fr|To|Cc|Subj) --
 set simple_search = "~f %s | ~C %s | ~s %s"
 
 # Octet stream isn't treated according to mailcap but according to his extension
 # and what's found in:
-# 1) ${HOME}/.mime.types  
-# 2) the system mime.types file at /usr/local/share/mutt/mime.types 
+# 1) ${HOME}/.mime.types
+# 2) the system mime.types file at /usr/local/share/mutt/mime.types
 # 3) /etc/mime.types
 #
 mime_lookup application/octet-stream
@@ -316,8 +290,8 @@ set wrap = 120
 # Open URLs
 #macro index \cb |openurl\n
 #macro pager \cb |openurl\n
-macro index,pager \cb "<pipe-message> urlscan<Enter>' 'Follow links with urlview'
-macro attach,compose \cb "<pipe-entry> urlscan<Enter>' 'Follow links with urlview'
+macro index,pager \cb "<pipe-message> urlscan<Enter>" 'Follow links with urlview'
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" 'Follow links with urlview'
 
 # Org-mode remember email
 macro index \eR "|~/bin/remember-mail\n"
@@ -353,7 +327,7 @@ auto_view text/html text/richtext
 ## Colors ##
 #
 
-source ~/.mutt/colors-blackback
+source colors-blackback
 #source ~/.mutt/colors-whiteback
 #source ~/.mutt/colors-slrn-like
 
@@ -364,7 +338,6 @@ source ~/.mutt/colors-blackback
 
 #set sendmail            = "/usr/sbin/sendmail -oem -oi"
 
-source ~/.mutt/pass
 
 
 # set up the sidebar, default not visible
@@ -373,8 +346,21 @@ set sidebar_visible=yes
 #set sidebar_delim='|'
 #set sidebar_sort=yes
 
+account-hook imap://imap.terrifyinglytrue.eu 'source ~/.config/neomutt/account-asheim.dk'
+account-hook imap://trulsas@imap.ntnu.no 'source ~/.config/neomutt/account-ntnu.no'
+
+
 # which mailboxes to list in the sidebar
-mailboxes = =INBOX =Sent =facebook =spiltirsdag  =kantine =Draft =test =revy =dqbrew =topdatamat =pwnies =darktable-users =darktable-devel =reboot
+#source folders-asheim.dk
+#mailboxes = =INBOX =Sent =facebook =spiltirsdag  =kantine =Draft =test =revy =dqbrew =topdatamat =pwnies =darktable-users =darktable-devel =reboot
+  mailboxes imap://truls@imap.terrifyinglytrue.eu/INBOX imap://truls@imap.terrifyinglytrue.eu/Sent imap://truls@imap.terrifyinglytrue.eu/facebook imap://truls@imap.terrifyinglytrue.eu/spiltirsdag imap://truls@imap.terrifyinglytrue.eu/kantine imap://truls@imap.terrifyinglytrue.eu/Draft imap://truls@imap.terrifyinglytrue.eu/test imap://truls@imap.terrifyinglytrue.eu/revy imap://truls@imap.terrifyinglytrue.eu/dqbrew imap://truls@imap.terrifyinglytrue.eu/topdatamat imap://truls@imap.terrifyinglytrue.eu/pwnies imap://truls@imap.terrifyinglytrue.eu/darktable-users imap://truls@imap.terrifyinglytrue.eu/darktable-devel imap://truls@imap.terrifyinglytrue.eu/reboot
+folder-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/folders-asheim.dk ; source ~/.config/neomutt/account-asheim.dk'
+mailboxes imap://trulsas@mail.ntnu.no/INBOX "imap://trulsas@mail.ntnu.no/Sent Items" "imap://trulsas@mail.ntnu.no/Deleted Items" "imap://trulsas@mail.ntnu.no/Junk Email" "imap://trulsas@mail.ntnu.no/Outbox" "imap://trulsas@mail.ntnu.no/Drafts" "imap://trulsas@mail.ntnu.no/Working Set"
+folder-hook imap://trulsas@mail.ntnu.no 'source ~/.config/neomutt/folders-ntnu.no ; source ~/.config/neomutt/account-ntnu.no'
+
+# Use NTNU email by default
+source folders-ntnu.no
+source account-ntnu.no
 
 # color of folders with new mail
 color sidebar_new yellow default
