@@ -300,7 +300,7 @@ macro index \eR "|~/bin/remember-mail\n"
 #
 
 # Mailcap
-set mailcap_path = ~/.mutt/mailcap
+set mailcap_path = ~/.config/neomutt//mailcap
 
 # Visualization order
 alternative_order text/plain text/enriched text/html text image/*
