@@ -78,7 +78,6 @@ set ssl_starttls=yes
 set ssl_force_tls=yes
 
 
-
 # Cache maildir headers
 set header_cache = "~/.cache/neomutt/headers"
 set message_cachedir = "~/.cache/neomutt"
@@ -139,23 +138,23 @@ set collapse_unread
 # Alain Bench's slightly modified suggestion:
 set config_charset=utf-8
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Re[2]:	The Bat!
-# Re(2):	Microsoft Outlook IMO, Build 9.0.2416 (9.0.2911.0)
+# Re[2]:        The Bat!
+# Re(2):        Microsoft Outlook IMO, Build 9.0.2416 (9.0.2911.0)
 # Re^2:
-# AW:		Microsoft Outlook 8.5 Germany
-# SV:		Internet Mail Service (5.5.2448.0) Norway
-# Ad:		Lotus Notes Release 5.07a Norway
-# Odp:		Microsoft Outlook Express 5 Poland
-# Re&nbsp;:	eGroups-EW/0.82
-# Re :		eGroups-EW/0.82 \240
-# Antwort:	Lotus Notes Release 5.0.5 Germany
-# Antw:		Novell GroupWise 5.5.2 Germany
-# Réf. :	IncrediMail 2001
-# Rép. :	Groupwise 5.5.3.1
-# TR:		Microsoft Outlook 8.5
-# Trans. :	AOL 7.0 for Windows FR
+# AW:           Microsoft Outlook 8.5 Germany
+# SV:           Internet Mail Service (5.5.2448.0) Norway
+# Ad:           Lotus Notes Release 5.07a Norway
+# Odp:          Microsoft Outlook Express 5 Poland
+# Re&nbsp;:     eGroups-EW/0.82
+# Re :          eGroups-EW/0.82 \240
+# Antwort:      Lotus Notes Release 5.0.5 Germany
+# Antw:         Novell GroupWise 5.5.2 Germany
+# Réf. :        IncrediMail 2001
+# Rép. :        Groupwise 5.5.3.1
+# TR:           Microsoft Outlook 8.5
+# Trans. :      AOL 7.0 for Windows FR
 #
-# Autoreply:	some ch MTA on delivery problems
+# Autoreply:   some ch MTA on delivery problems
 
 set reply_regexp="^((\
 [Rr][Eeé]?[  ]?:[ \t ]*|\
@@ -175,8 +174,8 @@ R[eé]p\\.?:|\
 F[Ww][Dd]? ?:|\
 T[Rr] ?:|\
 Trans\\. :\
-)[ \t ]*)+"		# The ending range and the first condition contain 3 chars:
-			 # space, tab, and no-break space \240.
+)[ \t ]*)+"              # The ending range and the first condition contain 3 chars:
+                         # space, tab, and no-break space \240.
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 unset config_charset
 
