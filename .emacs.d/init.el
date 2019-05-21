@@ -327,6 +327,7 @@
   :ensure t
   :pin melpa
   :commands lsp
+  :after yasnippet
   :init
   ;(setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "\"/home/truls//tslog\"" "--tsserver-log-verbosity" "verbose"))
   (require 'lsp-clients)
@@ -857,7 +858,7 @@ This function should only apply when in a bibtex file."
   (when yas-minor-mode
     (ivy-yasnippet))
   :hook (elisp-mode . yas-minor-mode)
-  :commands (yas-minior-mode yas-global-mode)
+  :commands (yas-minior-mode yas-global-mode yas-expand-snippet)
   :diminish yas-minor-mode)
 
 (use-package ivy-yasnippet
