@@ -116,6 +116,7 @@
 ;; Store custom settings in separate file
 ;;
 (setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file)
 
 ;;
 ;; Fill mode config
