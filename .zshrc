@@ -98,7 +98,5 @@ alias vagrant="vagrant --no-color"
 # added by travis gem
 [ -f /home/truls/.travis/travis.sh ] && source /home/truls/.travis/travis.sh
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # add syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
