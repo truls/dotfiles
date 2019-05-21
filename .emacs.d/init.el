@@ -966,6 +966,9 @@ This function should only apply when in a bibtex file."
 (use-package visual-fill-column
   :ensure t)
 
+(use-package mutt-mode
+  :ensure t)
+
 ;;
 ;; Misc functions
 ;;
