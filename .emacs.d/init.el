@@ -284,6 +284,9 @@
 ;; sass-mode
 ;;
 (use-package ssass-mode
+  ;; https://github.com/AdamNiederer/ssass-mode/pull/4 was
+  ;; accepted. Waiting for a new release to be tagged.
+  :pin melpa
   :ensure t
   :mode ("\\.scss\\'" "\\.sass\\'"))
 
