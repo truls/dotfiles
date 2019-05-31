@@ -561,6 +561,16 @@
         org-startup-with-inline-images t
         org-support-shift-select t)
 
+  ;; Default to opening PDFs in evince
+  ;; We do this by removing the entry in org-file-apps mapping pdf
+  ;; files to the `default' handler. That handler, will eventually
+  ;; result in a lookup through the `mailcap' machinery which returns
+  ;; `pdf-view-mode' as the handler for PDF files.
+  (let* ((key "\\.pdf\\'")
+         (apps (assoc-delete-all key org-file-apps))
+         (newapps `((,key . "evince %s"))))
+    (setq org-file-apps (append newapps apps)))
+
   :bind (("\C-coc" . org-capture)
          ("\C-ca" . org-agenda))
   :custom-face
