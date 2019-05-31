@@ -972,6 +972,10 @@ This function should only apply when in a bibtex file."
 (use-package mutt-mode
   :ensure t)
 
+(use-package dockerfile-mode
+  :ensure t
+  :mode ("Dockerfile"))
+
 ;;
 ;; Misc functions
 ;;
