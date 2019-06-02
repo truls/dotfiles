@@ -986,6 +986,13 @@ This function should only apply when in a bibtex file."
   :ensure t
   :mode ("Dockerfile"))
 
+(use-package ace-window
+  :ensure t
+  :bind (("C-x o" . ace-window)
+         ("C-x C-o" . ace-window))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\; ?w ?e ?r ?u ?i ?o ?q ?t ?y ?p)))
+
 ;;
 ;; Misc functions
 ;;
