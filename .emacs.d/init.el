@@ -1002,6 +1002,10 @@ This function should only apply when in a bibtex file."
   :config
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\; ?w ?e ?r ?u ?i ?o ?q ?t ?y ?p)))
 
+(use-package avy
+  :ensure t
+  :bind (("C-:" . avy-goto-char)))
+
 ;;
 ;; Misc functions
 ;;
