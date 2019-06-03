@@ -208,7 +208,6 @@
 ;;
 ;; ivy-mode
 ;;
-
 (use-package ivy
   :ensure t
   :pin melpa
