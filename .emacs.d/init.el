@@ -219,7 +219,16 @@
 (use-package swiper
   :ensure t
   :pin melpa
-  :defer t)
+  :defer t
+  :config
+  (defun my/swiper-symbol-at-point ()
+    (interactive)
+    (let ((bounds (find-tag-default-bounds)))
+      (cond
+       (bounds
+        (swiper (buffer-substring-no-properties
+                 (car bounds) (cdr bounds))))
+       (t (user-error "No symbol at point"))))))
 
 ;; Install smex to show the most used commands first in M-x list
 (use-package smex
@@ -232,6 +241,7 @@
   :ensure t
   :pin melpa
   :bind (("C-s" . swiper)
+         ("C-S-s" . my/swiper-symbol-at-point)
          ("C-c C-r" . ivy-resume)
          ("<f6>" . ivy-resume)
          ("M-x" . counsel-M-x)
