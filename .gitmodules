@@ -7,3 +7,6 @@
 [submodule ".emacs.d/lisp/replace-colorthemes"]
 	path = .emacs.d/lisp/replace-colorthemes
 	url = https://github.com/emacs-jp/replace-colorthemes.git
+[submodule "misc/config-deps/beamerthementnu"]
+	path = misc/config-deps/beamerthementnu
+	url = git@github.com:martstr/beamerthementnu.git
