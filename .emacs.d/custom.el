@@ -11,7 +11,10 @@
     (ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yasnippet-snippets yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex)))
  '(safe-local-variable-values
    (quote
-    ((lexical-scoping . t)
+    ((TeX-command-extra-options . "-enable-write18")
+     (sh-indent-for-case-alt . +)
+     (sh-indent-for-case-label . 0)
+     (lexical-scoping . t)
      (nameless-current-name . "biblio")
      (haskell-stylish-on-save)
      (eval bibtex-set-dialect
