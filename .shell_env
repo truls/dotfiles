@@ -2,7 +2,7 @@
 GOPATH=$HOME/.local/go
 export GOPATH
 
-PATH=$PATH:$HOME/.local/bin:$HOME/.bin:$HOME/.yarn/bin:$GOPATH/bin:/usr/local/cuda-9.0/bin
+PATH=$HOME/.local/bin:$HOME/.bin:$HOME/.yarn/bin:$GOPATH/bin:/usr/local/cuda-9.0/bin:$PATH
 export PATH
 
 PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig:$HOME/prefix/lib64/pkgconfig
