@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Force xdg-open as the browser
+BROWSER=xdg-open /usr/bin/urlscan $@
