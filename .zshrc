@@ -98,5 +98,9 @@ alias vagrant="vagrant --no-color"
 # added by travis gem
 [ -f /home/truls/.travis/travis.sh ] && source /home/truls/.travis/travis.sh
 
+
+alias urldecode='python3 -c "import sys, urllib.parse as p; print(p.unquote_plus(\"\n\".join(sys.stdin.readlines()).rstrip() if len(sys.argv) < 2 else \" \".join(sys.argv[1:])))"'
+alias urlencode='python3 -c "import sys, urllib.parse as p; print(p.quote_plus(\"\n\".join(sys.stdin.readlines()).rstrip() if len(sys.argv) < 2 else \" \".join(sys.argv[1:])))"'
+
 # add syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
