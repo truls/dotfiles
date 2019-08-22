@@ -82,7 +82,7 @@
 
 ;; Set default font
 (setq default-frame-alist '((font-backend . "xft")
-                            (font . "DejaVu Sans Mono-9")
+                            (font . "DejaVu Sans Mono-10")
                             (cursor-color . "white")
                             (tool-bar-lines . 0)
                             (menu-bar-lines . 0)))
@@ -362,7 +362,7 @@
 (use-package company-lsp
   :ensure t
   :pin melpa
-  ;:hook lsp-mode
+  ;;:hook lsp-mode
   :commands company-lsp)
 
 
@@ -433,7 +433,9 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
 
+;; TODO: Figure out why these are broken
 ;; (use-package forge
+;;   :pin melpa
 ;;   :ensure t
 ;;   :after magit)
 
@@ -748,19 +750,42 @@ Clock   In/out^
         bibtex-dialect 'biblatex
         org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
         bibtex-completion-bibliography
-        '("~/Nextcloud/bibliography/bibliography.bib"))
+        '("~/Nextcloud/bibliography/bibliography.bib")
+        bibtex-completion-pdf-open-function 'org-open-file-with-system)
 
   :config
+  ;; If bibtex-note-storage is not set, then set it to
+  ;; org-ref-bibliography-notes as adding the note entry will
+  ;; otherwise fail
+  (setq doi-utils-make-notes-function
+        (lambda ()
+          (let ((key (cdr (assoc "=key=" (bibtex-parse-entry)))))
+            (bibtex-find-entry key)
+            (org-ref-open-bibtex-notes))))
+  ;; (setq doi-utils-make-notes-function
+  ;;       (lambda ()
+  ;;         (bibtex-beginning-of-entry)
+  ;;         (let ((bibtex-completion-notes-path
+  ;;                (or bibtex-completion-notes-path
+  ;;                    org-ref-bibliography-notes)))
+  ;;           (if bibtex-completion-notes-path
+  ;;               (bibtex-completion-edit-notes (list (cdr (assoc "=key=" (bibtex-parse-entry)))))
+  ;;             (message "Neither `bibtex-completion-notes-path` or `org-ref-bibliography-notes` are set. Not adding bibliography note entry")))))
+
+
   ;; Insert the citation into the notes PDF as a \fullcite inside a blockquote
   (setq org-ref-create-notes-hook
         '((lambda ()
             (org-narrow-to-subtree)
             (insert (format "\n#+BEGIN_QUOTE\nfullcite:%s\n#+END_QUOTE\n"
-                            (org-entry-get (point) "Custom_ID"))))))
+                            (org-entry-get (point) "Custom_ID")))
+            (goto-char (point-max)))))
 
   ;; Overrides of org-ref functions. Uses a better regex for matching DOIs
   (setq org-ref-pdf-doi-regex
-        "10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+\\|10.1002/[^[:space:]]+")
+                                        ;"10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+\\|10.1002/[^[:space:]]+")
+                "10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+")
+
   (defun org-ref-extract-doi-from-pdf (pdf)
     "Try to extract a doi from a PDF file.
 There may be more than one doi in the file. This function returns
@@ -787,6 +812,11 @@ strings, or nil.
           (cl-pushnew doi matches :test #'equal)))
       matches)))
 
+  (defun org-ref-get-pdf-title (uri)
+    (let ((title (shell-command-to-string
+                  (format "pdftitle"
+                          (shell-quote-argument (dnd-unescape-uri pdf))))))))
+
 (defun org-ref-pdf-dnd-protocol (uri action)
   "Drag-n-drop protocol.
 PDF will be a string like file:path.
@@ -807,12 +837,16 @@ This function should only apply when in a bibtex file."
            ((= 1 (length dois))
             ;; we do not need to get the pdf, since we have one.
             (let ((doi-utils-download-pdf nil))
-              (doi-utils-add-bibtex-entry-from-doi
-               (car dois)
-               (buffer-file-name))
-              ;; we should copy the pdf to the pdf directory though
-              (let ((key (cdr (assoc "=key=" (bibtex-parse-entry)))))
-                (copy-file (dnd-unescape-uri path) (expand-file-name (format "%s.pdf" key) org-ref-pdf-directory))))
+              ;; doi-utils-add-biblatex-entry-from-doi returns nil on
+              ;; success and a string on failure
+              (unless (doi-utils-add-bibtex-entry-from-doi
+                       (car dois)
+                       (buffer-file-name))
+                ;; we should copy the pdf to the pdf directory though
+                ;; TODO: Add custom variable here for deciding if file
+                ;; should be moved or copied
+                (let ((key (cdr (assoc "=key=" (bibtex-parse-entry)))))
+                  (copy-file (dnd-unescape-uri path)(expand-file-name (format "%s.pdf" key) org-ref-pdf-directory)))))
             action)
            ;; Multiple DOIs found
            (t
@@ -832,6 +866,13 @@ This function should only apply when in a bibtex file."
             'org-ref-pdf-dnd-protocol
             (copy-alist dnd-protocol-alist))))
       (dnd-handle-one-url nil action uri)))))
+
+(use-package company-bibtex
+  :ensure t
+  :after org-ref
+  :config
+  (add-to-list 'company-backends 'company-bibtex)
+  (setq company-bibtex-bibliography org-ref-default-bibliography))
 
 (use-package projectile
   :ensure t
@@ -875,6 +916,7 @@ This function should only apply when in a bibtex file."
   :ensure t
   :config
   (use-package yasnippet-snippets
+    :pin melpa
     :ensure t)
   (yas-reload-all)
   (when yas-minor-mode
@@ -1005,6 +1047,16 @@ This function should only apply when in a bibtex file."
 (use-package avy
   :ensure t
   :bind (("C-:" . avy-goto-char)))
+
+(use-package julia-mode
+  :ensure t)
+
+(use-package package-lint
+  :ensure t
+  :commands (package-lint-buffer
+             package-lint-current-buffer
+             pacakge-lint-batch-and-exit
+             package-lint-looks-like-a-package-p))
 
 ;;
 ;; Misc functions
