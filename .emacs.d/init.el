@@ -61,6 +61,10 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; Disable lockfile creation as this works poorly with frequently
+;; changing DHCP-derived hostnames
+(setq create-lockfiles nil)
+
 ;; Switch between buffers using M-<arrow key>
 (windmove-default-keybindings 'meta)
 
