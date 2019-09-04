@@ -37,3 +37,5 @@
 	user = truls
 [gpg]
 	program = gpg2
+[pull]
+	rebase = true
