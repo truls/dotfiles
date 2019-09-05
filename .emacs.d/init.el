@@ -1133,5 +1133,39 @@ point reaches the beginning or end of the buffer, stop there."
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+;; Add command for duplicating a line and duplicating and commenting a
+;; line
+
+(defun comment-duplicate-line ()
+  (interactive)
+  (duplicate-line t))
+
+(defun line-commented-p ()
+  (save-excursion
+    (beginning-of-line)
+    (skip-chars-forward " \t")
+    (looking-at-p comment-start-skip)))
+
+(defun duplicate-line (&optional comment)
+  (interactive)
+  (let ((begin)
+        (end))
+    (beginning-of-line)
+    (setq begin (point))
+    (end-of-line)
+    (setq end (point))
+    ;; Set last-command to nill as we don't want it to append to
+    ;; previous kill ring entry if previous command was kill-region
+    (let ((last-command nil))
+          (copy-region-as-kill begin end))
+    (open-line 1)
+    (if (and comment
+             (not (line-commented-p)))
+        (comment-line 1)
+      (next-line))
+    (yank)))
+
+(global-set-key (kbd "C-S-d") #'comment-duplicate-line)
+
 (provide 'init)
 ;;; init.el ends here
