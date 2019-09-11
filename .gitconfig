@@ -4,6 +4,7 @@
 	signingkey = AF389129D71B2B90FAC34E81199047A147F6E48D
 [branch]
 	autoSetupMerge = always
+	autosetuprebase = always
 [commit]
 	gpgsign = true
 [color "diff"]
@@ -39,3 +40,5 @@
 	program = gpg2
 [pull]
 	rebase = true
+[credential "https://git.overleaf.com"]
+	username = truls.asheim@ntnu.no
