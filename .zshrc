@@ -57,8 +57,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-alias vagrant="vagrant --no-color"
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
@@ -104,3 +102,5 @@ alias urlencode='python3 -c "import sys, urllib.parse as p; print(p.quote_plus(\
 
 # add syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+alias localssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no localhost -p "
