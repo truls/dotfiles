@@ -1189,7 +1189,7 @@ point reaches the beginning or end of the buffer, stop there."
       (setq begin (point))
       (end-of-line)
       (setq end (point))
-      ;; Set last-command to nill as we don't want it to append to
+      ;; Set last-command to nil as we don't want it to append to
       ;; previous kill ring entry if previous command was kill-region
       (let ((last-command nil))
         (copy-region-as-kill begin end))
