@@ -1088,6 +1088,9 @@ This function should only apply when in a bibtex file."
              pacakge-lint-batch-and-exit
              package-lint-looks-like-a-package-p))
 
+(use-package json-navigator
+  :ensure t)
+
 ;;
 ;; Misc functions
 ;;
