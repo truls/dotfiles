@@ -568,8 +568,8 @@
                                     ("#eggsml" "dansk")
                                     ("#gallopsled" "dansk")
                                     ("#zomg_pwnies" "dansk")
-
-                                    ("#dikuhost" "dansk")))
+                                    ("#dikuhost" "dansk")
+                                    ("irc.gitter.im" "english")))
   (erc-spelling-mode 1))
 
 (use-package erc-pcomplete
@@ -591,7 +591,10 @@
   :config
   (require 'my-secrets)
   (setq znc-servers `(("bastion.terrifyinglytrue.eu" 6667 t
-                       ((irc\.freenode\.org ,znc-username ,znc-password))))))
+                       ((irc\.freenode\.org ,znc-username ,znc-password)))
+                      ;; ("irc.gitter.im" 6667 t
+                      ;;  ((irc\.gitter\.im ,gitter-username ,gitter-password)))
+                      )))
 
 
 ;;
