@@ -45,9 +45,10 @@
 
 (package-initialize)
 
-(let ((lisp-dir "~/.emacs.d/lisp"))
+(let ((lisp-dir "/home/truls/.emacs.d/lisp")
+      (normal-top-level-add-subdirs-inode-list nil))
   (add-to-list 'load-path lisp-dir)
-  (let ((default-directory  lisp-dir))
+  (let ((default-directory lisp-dir))
     (normal-top-level-add-subdirs-to-load-path)))
 
 ;;
