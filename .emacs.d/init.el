@@ -1091,6 +1091,11 @@ This function should only apply when in a bibtex file."
 (use-package json-navigator
   :ensure t)
 
+(use-package sh-script
+  :no-require t
+  :config
+  (add-hook 'sh-mode-hook #'flycheck-mode))
+
 ;;
 ;; Misc functions
 ;;
