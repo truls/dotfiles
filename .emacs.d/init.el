@@ -475,10 +475,10 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq magit-diff-refine-hunk 'all)
-  (add-hook 'magit-diff-mode-hook (lambda ()
-                                    (setq truncate-lines t)))
   (add-hook 'magit-status-mode-hook (lambda ()
-                                      (toggle-truncate-lines 1))))
+                                      (toggle-truncate-lines -1)
+                                      (visual-line-mode 1)))
+)
 
 ;; TODO: Figure out why these are broken
 ;; (use-package forge
