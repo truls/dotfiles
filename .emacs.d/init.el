@@ -340,7 +340,28 @@
   :diminish company-mode)
 
 ;;
-:; lsp-mode
+;; yasnippet
+;;
+(use-package yasnippet
+  :ensure t
+  :config
+  (use-package yasnippet-snippets
+    :pin melpa
+    :ensure t)
+  (yas-reload-all)
+  (when yas-minor-mode
+    (ivy-yasnippet))
+  :hook (elisp-mode . yas-minor-mode)
+  :commands (yas-minior-mode yas-global-mode yas-expand-snippet)
+  :diminish yas-minor-mode
+  :before lsp-mode)
+
+(use-package ivy-yasnippet
+  :ensure t
+  :commands ivy-yasnippet)
+
+;;
+;; lsp-mode
 ;;
 (use-package dash :pin melpa)
 (use-package dash-functional :pin melpa)
