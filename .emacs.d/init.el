@@ -1015,8 +1015,7 @@ This function should only apply when in a bibtex file."
 
 (use-package highlight-indentation
   :ensure t
-  :hook ((yaml-mode . highlight-indentation-mode)
-         (python-mode . highlight-indentation-mode))
+  :hook ((yaml-mode . highlight-indentation-mode))
   :config
   (setq highlight-indentation-blank-lines t)
   (set-face-background 'highlight-indentation-face "grey24")
