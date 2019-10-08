@@ -377,7 +377,7 @@
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
   (setq lsp-keep-workspace-alive nil)
-  (setq lsp-file-watch-threshold 10000))
+  (setq lsp-file-watch-threshold 40000))
 
 (use-package lsp-ui
   :ensure t
