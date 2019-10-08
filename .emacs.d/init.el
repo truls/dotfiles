@@ -1201,7 +1201,8 @@ point reaches the beginning or end of the buffer, stop there."
       (yank))
     (next-line)))
 
-(global-set-key (kbd "C-S-d") #'comment-duplicate-line)
+(global-set-key (kbd "C-S-c") #'comment-duplicate-line)
+(global-set-key (kbd "C-S-d") #'duplicate-line)
 
 (provide 'init)
 ;;; init.el ends here
