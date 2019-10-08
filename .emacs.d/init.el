@@ -155,6 +155,9 @@
   ;(add-to-list 'load-path "~/.emacs.d/lisp/use-package")
   (require 'use-package))
 
+(use-package gnu-elpa-keyring-update
+  :ensure t)
+
 (use-package diminish :ensure t)
 (use-package use-package-hydra :ensure t)
 
