@@ -417,6 +417,15 @@
   (setq typescript-indent-level 2)
   )
 
+;; (use-package lsp-python-ms
+;;   :ensure t
+;;   :init
+;;   (setq lsp-python-ms-executable "/home/truls/.emacs.d/language-servers/python-language-server/output/bin/Release/linux-x64/publish/Microsoft.Python.LanguageServer"
+;;         lsp-python-executable-cmd "python3")
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-python-ms)
+;;                          (lsp))))  ; or lsp-deferred
+
 (use-package flyspell
   :diminish
   :init
