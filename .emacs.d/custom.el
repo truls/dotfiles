@@ -8,10 +8,16 @@
     ("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org")))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex)))
+    (lsp-python-ms json-navigator package-lint aio company-bibtex yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex)))
  '(safe-local-variable-values
    (quote
-    ((TeX-command-extra-options . "-enable-write18")
+    ((lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+     (lsp-python-ms-extra-paths vector "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+     (lsp-python-ms-extra-paths quote
+                                ("/home/truls/uni/teaching/algdat-tdt4120/inginious-installed"))
+     (lsp-python-ms-extra-paths . "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+     (lsp-python-ms-dir . "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+     (TeX-command-extra-options . "-enable-write18")
      (sh-indent-for-case-alt . +)
      (sh-indent-for-case-label . 0)
      (lexical-scoping . t)
