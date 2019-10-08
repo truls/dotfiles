@@ -356,8 +356,7 @@
     (ivy-yasnippet))
   :hook (elisp-mode . yas-minor-mode)
   :commands (yas-minior-mode yas-global-mode yas-expand-snippet)
-  :diminish yas-minor-mode
-  :before lsp-mode)
+  :diminish yas-minor-mode)
 
 (use-package ivy-yasnippet
   :ensure t
