@@ -960,23 +960,6 @@ This function should only apply when in a bibtex file."
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") #'isearch-forward))
 
-(use-package yasnippet
-  :ensure t
-  :config
-  (use-package yasnippet-snippets
-    :pin melpa
-    :ensure t)
-  (yas-reload-all)
-  (when yas-minor-mode
-    (ivy-yasnippet))
-  :hook (elisp-mode . yas-minor-mode)
-  :commands (yas-minior-mode yas-global-mode yas-expand-snippet)
-  :diminish yas-minor-mode)
-
-(use-package ivy-yasnippet
-  :ensure t
-  :commands ivy-yasnippet)
-
 (use-package tex
   :ensure auctex
   :mode ("\\.tex\\'" . latex-mode)
