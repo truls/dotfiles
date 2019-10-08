@@ -33,6 +33,7 @@
 ;; http://emacs.stackexchange.com/questions/5828/why-do-i-have-to-add-each-package-to-load-path-or-problem-with-require-packag
 (setq load-prefer-newer t)
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;; Set package.el reposotories
 (setq package-archives '(("gnu"          . "https://elpa.gnu.org/packages/")
                          ("melpa"        . "https://melpa.org/packages/")
