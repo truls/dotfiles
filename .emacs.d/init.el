@@ -87,12 +87,15 @@
 (column-number-mode t)
 
 ;; Set default font
+(use-package fira-code
+  :config
+  (add-hook 'prog-mode-hook #'fira-code-mode))
+
 (setq default-frame-alist '((font-backend . "xft")
-                            (font . "DejaVu Sans Mono-10")
+                            (font . "Fira code-10")
                             (cursor-color . "white")
                             (tool-bar-lines . 0)
                             (menu-bar-lines . 0)))
-
 
 ;; Keep auto-save files and backup files out of the way
 (setq backup-directory-alist
