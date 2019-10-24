@@ -833,6 +833,164 @@ Clock   In/out^
           (let ((key (cdr (assoc "=key=" (bibtex-parse-entry)))))
             (bibtex-find-entry key)
             (org-ref-open-bibtex-notes))))
+  (defun my/bibtex-get-entry-key ()
+        (save-excursion
+          (bibtex-beginning-of-entry)
+          (let ((bibtex-expand-strings t)
+                 (entry (bibtex-parse-entry t)))
+            (reftex-get-bib-field "=key=" entry))))
+  (defun my/gen-bibtex-key ()
+    "Generate bibtex entry autokey. Copied from org-ref `orcb-key' function."
+    (let ((key (funcall org-ref-clean-bibtex-key-function
+                        (bibtex-generate-autokey))))
+      (replace-regexp-in-string "\\\\" "" key)))
+  (defun my/rename-bibtex-pdf ()
+    "Rename PDF associated with entry or print message if no PDF is found."
+    (interactive)
+    (let* ((key (my/bibtex-get-entry-key))
+           (newkey (my/gen-bibtex-key))
+           (pdf (funcall org-ref-get-pdf-filename-function key))
+           (newpdf (funcall org-ref-get-pdf-filename-function newkey)))
+      (if (file-exists-p pdf)
+          (unless (string= pdf newpdf)
+              (rename-file pdf newpdf))
+            (message (format "Entry %s is missing associated PDF file" key)))))
+
+  (defun my/rename-org-notes-key ()
+    "Rename strings in note file matching FROM to TO."
+    (let ((from (my/bibtex-get-entry-key))
+          (to (my/gen-bibtex-key)))
+      (unless (string= from to)
+        (save-restriction
+          (save-window-excursion
+            (when org-ref-bibliography-notes
+              (find-file-other-window org-ref-bibliography-notes)
+              (widen)
+              (goto-char (point-min))
+              (org-save-outline-visibility t
+                (ignore-errors
+                  ;; FIXME: There must be a better way to reveal the
+                  ;; whole file
+                  (while (outline-next-heading)
+                    (org-show-subtree))
+                  (goto-char (point-min))
+                  (while (search-forward from)
+                    (replace-match to t))))))))))
+
+        ;; FIXME: There must be a better way of 0
+
+  (defun my/orcb-& ()
+  "Replace naked & with \& in a bibtex entry."
+  (save-restriction
+    (bibtex-narrow-to-entry)
+    (bibtex-beginning-of-entry)
+    (while (re-search-forward " & " nil t)
+      (save-excursion
+        (goto-char (- (point) 2))
+        (unless (looking-at-p "\\\\")
+          (replace-match " \\\\& "))))))
+
+  (defun my/orcb-% ()
+    "Replace naked % with \% in a bibtex entry."
+    (save-restriction
+      (bibtex-narrow-to-entry)
+      (bibtex-beginning-of-entry)
+      (while (re-search-forward "%" nil t)
+        (save-excursion
+          (goto-char (- (point) 2))
+          (unless (looking-at-p "\\\\")
+            (replace-match " \\\\%"))))))
+
+  (setq my/bibtex-field-replace-list '(("journal" . "journaltitle")))
+
+  (defun my/bibtex-entry-article-to-inproceedings ()
+    "Change miscategorized @article bibtex entry to @inproceedings."
+    (interactive)
+    (bibtex-beginning-of-entry)
+    (save-restriction
+      (bibtex-narrow-to-entry)
+      (search-forward "@article")
+      (replace-match "@inproceedings")
+      (let ((replacemap
+             '(("journal" . "booktitle")
+               ("journaltitle" . "booktitle"))))
+        (my/org-ref-fixup-downcase-fields replacemap)))
+    )
+
+(defun my/org-ref-fixup-downcase-fields (&optional replacemap)
+  "Downcase the entry type and fields.
+Optionally override `my/bibtex-field-replace-list' with REPLACEMAP."
+  (unless replacemap
+    (setq replacemap my/bibtex-field-replace-list))
+  (bibtex-beginning-of-entry)
+  (let* ((entry (bibtex-parse-entry))
+         (entry-fields)
+         (type (cdr (assoc "=type=" entry)))
+         (key (cdr (assoc "=key=" entry))))
+
+    (setq entry-fields (mapcar (lambda (x) (car x)) entry))
+    ;; we do not want to reenter these fields
+    (setq entry-fields (remove "=key=" entry-fields))
+    (setq entry-fields (remove "=type=" entry-fields))
+    (unless (and
+             (let ((replacables (-map #'car replacemap)))
+                    (-all? (lambda (x) (not (-contains? replacables (downcase x)))) entry-fields))
+             (-all? (lambda (x) (string= x (downcase x))) (cons type entry-fields)))
+      (bibtex-kill-entry)
+      (insert
+       (concat "@" (downcase type) "{" key ",\n"
+               (mapconcat
+                (lambda (field)
+                  (format "%s = %s,"
+                          (let ((field- (downcase field)))
+                            (alist-get field- replacemap field- nil #'string=))
+                          (cdr (assoc field entry))))
+                entry-fields "\n")
+               "\n}"))
+      (bibtex-find-entry key))
+    (bibtex-fill-entry)
+    (unwind-protect
+        (bibtex-clean-entry)
+      (message "bibtex-clean-entry failed for entry %s" key))))
+
+(defun my/orcb-check-journal ()
+  "Check entry at point to see if journal exists in `org-ref-bibtex-journal-abbreviations'.
+If not, issue a warning."
+  (interactive)
+  (when
+      (string= "article"
+               (downcase
+                (cdr (assoc "=type=" (bibtex-parse-entry)))))
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (let* ((entry (bibtex-parse-entry t))
+             (journal (reftex-get-bib-field "journaltitle" entry)))
+        (when (null journal)
+          (error "Unable to get journal for this entry."))
+        (unless (member journal (-flatten org-ref-bibtex-journal-abbreviations))
+          (message "Journal \"%s\" not found in org-ref-bibtex-journal-abbreviations." journal))))))
+
+
+  ;;(add-hook #'my/rename-bibtex-pdf org-ref-clean-bibtex-entry-hook)
+  ;; TODO: Why doesn't add-hook work?
+  (setq org-ref-clean-bibtex-entry-hook
+        '(my/org-ref-fixup-downcase-fields
+          org-ref-bibtex-format-url-if-doi
+          orcb-key-comma
+          org-ref-replace-nonascii
+          my/orcb-&
+          my/orcb-%
+          org-ref-title-case-article
+          orcb-clean-year
+          my/rename-bibtex-pdf
+          my/rename-org-notes-key
+          orcb-key
+          orcb-clean-doi
+          orcb-clean-pages
+          my/orcb-check-journal
+          org-ref-sort-bibtex-entry
+          orcb-fix-spacing))
+
   ;; (setq doi-utils-make-notes-function
   ;;       (lambda ()
   ;;         (bibtex-beginning-of-entry)
