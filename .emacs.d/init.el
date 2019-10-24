@@ -547,7 +547,10 @@
   :init
   (setq erc-max-buffer-size 300000
         erc-modules (quote
-                     (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp spelling track truncate notifications))
+                     (autojoin button completion fill irccontrols
+                      list match menu move-to-prompt netsplit networks
+                      noncommands notifications readonly ring stamp spelling
+                      track truncate notifications))
         erc-notifications-mode t
         erc-track-exclude-types (quote ("JOIN" "NICK" "QUIT" "333" "353")))
   :config
