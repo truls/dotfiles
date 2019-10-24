@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -l trulsas stallo.uit.no "squeue $(printf '%q ' "$@")"

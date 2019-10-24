@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -l trulsas stallo.uit.no "scontrol $(printf '%q ' "$@")"

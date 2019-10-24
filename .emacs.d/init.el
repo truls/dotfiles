@@ -1098,6 +1098,14 @@ This function should only apply when in a bibtex file."
   :config
   (add-hook 'sh-mode-hook #'flycheck-mode))
 
+(use-package slurm-mode
+  :load-path "~/.emacs.d/lisp/slurm.el"
+  :config
+  (setq slurm-filter-user-at-start "trulsas")
+
+(use-package slurm-script-mode
+  :load-path "~/.emacs.d/lisp/slurm.el")
+
 ;;
 ;; Misc functions
 ;;
