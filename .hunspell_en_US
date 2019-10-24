@@ -180,3 +180,5 @@ microservice
 microservices
 archicecture
 RPC
+allocator
+hypervisor
