@@ -86,6 +86,9 @@
 ;; Show column number
 (column-number-mode t)
 
+;; Delete selection when typing
+(pending-delete-mode 1)
+
 ;; Set default font
 (use-package fira-code
   :config
@@ -1105,6 +1108,11 @@ This function should only apply when in a bibtex file."
 
 (use-package slurm-script-mode
   :load-path "~/.emacs.d/lisp/slurm.el")
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region)
+  :commands er/expand-region)
 
 ;;
 ;; Misc functions
