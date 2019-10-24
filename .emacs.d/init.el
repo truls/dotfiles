@@ -643,7 +643,18 @@
     (setq org-file-apps (append newapps apps)))
 
   :bind (("\C-coc" . org-capture)
-         ("\C-ca" . org-agenda))
+         ("\C-ca" . org-agenda)
+         :map org-mode-map
+         ;; Allow M-<arrow keys> to be used for changing windows
+         ("M-s-<down>" . org-metadown)
+         ("M-s-<up>" . org-metaup)
+         ("M-s-<right>" . org-metaright)
+         ("M-s-<left>" . org-metaleft)
+         ("M-<down>" . nil)
+         ("M-<up>" . nil)
+         ("M-<right>" . nil)
+         ("M-<left>" . nil))
+
   :custom-face
   (org-document-info ((t (:foreground "pale turquoise" :height 1.5))))
   (org-document-title ((t (:foreground "pale turquoise" :weight bold :height 2.0))))
