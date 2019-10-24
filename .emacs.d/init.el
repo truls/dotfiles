@@ -1290,6 +1290,15 @@ This function should only apply when in a bibtex file."
   :bind ("C-=" . er/expand-region)
   :commands er/expand-region)
 
+(use-package scihub
+  :commands (scihub-get-from-publisher-url
+             scihub-get-from-doi
+             scihub-get-from-scihub-url))
+
+(use-package citations
+  :config
+  (setq citations-download-fallback #'scihub-get-from-publisher-url))
+
 ;;
 ;; Misc functions
 ;;
