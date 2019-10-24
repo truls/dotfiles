@@ -1,4 +1,4 @@
-;;; pacakge --- init.el
+;;; pacakge --- init.el -*- lexical-binding: t -*-
 ;;;
 ;;; Author:
 ;;; Truls Asheim <truls@asheim.dk>
