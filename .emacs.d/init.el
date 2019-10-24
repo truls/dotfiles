@@ -479,6 +479,9 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq magit-diff-refine-hunk 'all)
+  (add-hook 'magit-diff-mode-hook (lambda ()
+                                    (toggle-truncate-lines -1)
+                                    (visual-line-mode 1)))
   (add-hook 'magit-status-mode-hook (lambda ()
                                       (toggle-truncate-lines -1)
                                       (visual-line-mode 1)))
