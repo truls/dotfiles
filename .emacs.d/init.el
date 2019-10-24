@@ -331,6 +331,7 @@
 
 (use-package company
   :ensure t
+  :pin melpa-stable
   ;;:defer t
   :config
   (global-company-mode)
