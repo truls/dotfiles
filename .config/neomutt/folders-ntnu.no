@@ -1,0 +1,7 @@
+# -*- mode: mutt -*-
+
+set folder = imap://trulsas@mail.ntnu.no/
+set spoolfile = imap://trulsas@mail.ntnu.no/
+set record = "imap://trulsas@mail.ntnu.no/Sent Items"
+# Postponed folder
+set postponed = imap://trulsas@mail.ntnu.no/Drafts
