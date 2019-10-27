@@ -70,7 +70,6 @@ color quoted5	red		default
 color quoted6	red		default
 color quoted7	red		default
 color quoted8	red		default
-color quoted9	red		default
 #color body       brightgreen    default  "((ftp|http|https)://|(file|mailto|news):|www\\.)[-a-zA-Z0-9_.:]\
 #*[a-zA-Z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:!])?/?"
 
