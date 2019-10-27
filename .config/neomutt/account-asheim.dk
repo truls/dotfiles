@@ -1,19 +1,9 @@
 # -*- mode: mutt -*-
 
-# Mail folder (default = $HOME/Mail)
-#U
-
-# Mbox type: mbox, MMDF, MH, Maildir
-#set mbox_type = Maildir
-#set mbox                = "~/Maildir/cur/"
-#set postponed           = "~/Maildir/postponed/"
 set imap_authenticators="gssapi"
-# Set various Mailboxes
-#mailboxes `cat $HOME/.mutt/mailboxes`
-#mailboxes `$HOME/.mutt/mailboxes.sh`
+
 set imap_list_subscribed="no"
 
-#set record = imap://mx1.terrifyinglytrue.eu/INBOX
 set imap_user="truls"
 set imap_pass=""
 

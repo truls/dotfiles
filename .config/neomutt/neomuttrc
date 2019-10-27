@@ -346,17 +346,15 @@ set sidebar_visible=yes
 #set sidebar_delim='|'
 #set sidebar_sort=yes
 
-account-hook imap://imap.terrifyinglytrue.eu 'source ~/.config/neomutt/account-asheim.dk'
-account-hook imap://trulsas@imap.ntnu.no 'source ~/.config/neomutt/account-ntnu.no'
-
+account-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/account-asheim.dk'
+account-hook imap://trulsas@mail.ntnu.no 'source ~/.config/neomutt/account-ntnu.no'
 
 # which mailboxes to list in the sidebar
-#source folders-asheim.dk
-#mailboxes = =INBOX =Sent =facebook =spiltirsdag  =kantine =Draft =test =revy =dqbrew =topdatamat =pwnies =darktable-users =darktable-devel =reboot
-  mailboxes imap://truls@imap.terrifyinglytrue.eu/INBOX imap://truls@imap.terrifyinglytrue.eu/Sent imap://truls@imap.terrifyinglytrue.eu/facebook imap://truls@imap.terrifyinglytrue.eu/spiltirsdag imap://truls@imap.terrifyinglytrue.eu/kantine imap://truls@imap.terrifyinglytrue.eu/Draft imap://truls@imap.terrifyinglytrue.eu/test imap://truls@imap.terrifyinglytrue.eu/revy imap://truls@imap.terrifyinglytrue.eu/dqbrew imap://truls@imap.terrifyinglytrue.eu/topdatamat imap://truls@imap.terrifyinglytrue.eu/pwnies imap://truls@imap.terrifyinglytrue.eu/darktable-users imap://truls@imap.terrifyinglytrue.eu/darktable-devel imap://truls@imap.terrifyinglytrue.eu/reboot
-folder-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/folders-asheim.dk ; source ~/.config/neomutt/account-asheim.dk'
+mailboxes imap://truls@imap.terrifyinglytrue.eu/INBOX imap://truls@imap.terrifyinglytrue.eu/Sent imap://truls@imap.terrifyinglytrue.eu/facebook imap://truls@imap.terrifyinglytrue.eu/spiltirsdag imap://truls@imap.terrifyinglytrue.eu/kantine imap://truls@imap.terrifyinglytrue.eu/Draft imap://truls@imap.terrifyinglytrue.eu/test imap://truls@imap.terrifyinglytrue.eu/revy imap://truls@imap.terrifyinglytrue.eu/dqbrew imap://truls@imap.terrifyinglytrue.eu/topdatamat imap://truls@imap.terrifyinglytrue.eu/pwnies imap://truls@imap.terrifyinglytrue.eu/darktable-users imap://truls@imap.terrifyinglytrue.eu/darktable-devel imap://truls@imap.terrifyinglytrue.eu/reboot
+folder-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/folders-asheim.dk'
+
 mailboxes imap://trulsas@mail.ntnu.no/INBOX "imap://trulsas@mail.ntnu.no/Sent Items" "imap://trulsas@mail.ntnu.no/Deleted Items" "imap://trulsas@mail.ntnu.no/Junk Email" "imap://trulsas@mail.ntnu.no/Outbox" "imap://trulsas@mail.ntnu.no/Drafts"
-folder-hook imap://trulsas@mail.ntnu.no 'source ~/.config/neomutt/folders-ntnu.no ; source ~/.config/neomutt/account-ntnu.no'
+folder-hook imap://trulsas@mail.ntnu.no 'source ~/.config/neomutt/folders-ntnu.no'
 
 # Use NTNU email by default
 source folders-ntnu.no
