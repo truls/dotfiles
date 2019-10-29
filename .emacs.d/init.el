@@ -1246,6 +1246,8 @@ This function should only apply when in a bibtex file."
   :ensure t)
 
 (use-package mutt-mode
+  ;; TODO pending https://gitlab.com/flexw/mutt-mode/merge_requests/1
+  :load-path "~/misc/projects/mutt-mode"
   :ensure t)
 
 (use-package dockerfile-mode
