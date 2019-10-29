@@ -1147,7 +1147,7 @@ This function should only apply when in a bibtex file."
   :mode ("\\.tex\\'" . latex-mode)
   :config
   ;; Enter correlate mode automatically
-  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  (add-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode)
 
   ;; AucTeX query for master file
   (setq-default TeX-master nil)
@@ -1158,13 +1158,16 @@ This function should only apply when in a bibtex file."
 
   ;; Turn on RefTeX
   (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
   (defvar reftex-plug-into-AUCTeX t)
-  (add-hook 'LaTeX-mode-hook 'text-auto-fill)
+  (add-hook 'LaTeX-mode-hook #'text-auto-fill)
 
   ;; Preview mode settings
   (setq preview-auto-cache-preamble t
-        preview-scale-function 1.2))
+        preview-scale-function 1.2)
+
+  ;; Use yasnippet
+  (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on))
 
 (use-package magic-latex-buffer
   :ensure t
