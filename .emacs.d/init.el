@@ -621,16 +621,17 @@
     (concat "~/Nextcloud/org/" file))
   :mode ("\\.org\\'" . org-mode)
   :config
-  (defvar org-todo-keywords
-    '((sequence "TODO" "WAITING" "STARTED" "DONE")))
-  (setq org-default-notes-file (my-org-prefix "todo.org")
+  (setq org-todo-keywords
+        '((sequence "TODO" "WAITING" "STARTED" "DONE"))
+        org-default-notes-file (my-org-prefix "todo.org")
         ;;set priority range from A to C with default A
         org-highest-priority ?A
         org-lowest-priority ?C
         org-default-priority ?A
         org-babel-load-languages (quote ((emacs-lisp . t) (latex . t)))
         org-startup-with-inline-images t
-        org-support-shift-select t)
+        org-support-shift-select t
+        org-log-done 'time)
 
   ;; Default to opening PDFs in evince
   ;; We do this by removing the entry in org-file-apps mapping pdf
