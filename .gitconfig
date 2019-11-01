@@ -44,3 +44,5 @@
 	username = truls.asheim@ntnu.no
 [credential]
 	helper = libsecret
+[rebase]
+	autoStash = true
