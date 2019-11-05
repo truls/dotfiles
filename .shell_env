@@ -13,9 +13,10 @@ export SSH_AUTH_SOCK
 
 alias futharki="rlwrap futharki"
 
-export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/cuda/lib64"
 
 export PYTHONPATH=/usr/local/lib64/python3.6/site-packages:$PYTHONPATH
 
 export TEXMFHOME=~/.local/share/texmf
 
+export OPENSSL_CONF=/etc/ssl
