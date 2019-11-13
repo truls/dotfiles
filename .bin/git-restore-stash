@@ -1,0 +1,38 @@
+#!/bin/bash
+
+usage() {
+    cat << EOF
+Usage:
+   git restore-stash <commit hash> [ -m "<name of restored stash>" ]
+
+   If -m option is not provided, name defaults to "Recovered stash: <hash>"
+EOF
+}
+
+if [ $# -lt 1 ]; then
+    usage
+   exit 1
+fi
+
+commit="$1"
+name="Recovered stash: $commit"
+
+shift
+if [ "$1" == "-m" ]; then
+    if [ -z "$2" ]; then
+        echo "No stash name given to -m parameter"
+        echo
+        usage
+        exit 1;
+    fi
+    name="$2"
+    shift
+fi
+shift
+
+if [ -n "$1" ]; then
+    usage
+    exit 1
+fi
+
+echo git update-ref --create-reflog refs/stash "$commit" -m "$name"
