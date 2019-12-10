@@ -325,7 +325,9 @@
 ;; flycheck-mode
 ;;
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'flycheck-error-list-mode-hook (lambda () (toggle-truncate-lines +1))))
 
 (use-package company
   :ensure t
