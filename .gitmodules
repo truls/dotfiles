@@ -19,3 +19,6 @@
 [submodule "/home/truls/.local/usr/local/lib/gdb-pretty-frame-cpp"]
 	path = /home/truls/.local/usr/local/lib/gdb-pretty-frame-cpp
 	url = https://github.com/philtweir/gdb-pretty-frame-cpp
+[submodule "misc/config-deps/emacs"]
+	path = misc/config-deps/emacs
+	url = git://git.savannah.gnu.org/emacs.git

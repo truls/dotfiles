@@ -1361,6 +1361,7 @@ This function should only apply when in a bibtex file."
 ;; is in use and decrease it after Emacs has been idel for a while.
 (use-package gcmh
   :ensure t
+  :diminish
   :config
   (setq gcmh-high-cons-threshold #x60000000
         gcmh-verbose t)
