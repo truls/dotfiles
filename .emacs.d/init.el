@@ -1315,6 +1315,11 @@ This function should only apply when in a bibtex file."
   (add-hook 'lisp-mode-hook 'easy-escape-minor-mode)
   (add-hook 'emacs-lisp-mode-hook 'easy-escape-minor-mode))
 
+(use-package windmove
+  :no-require t
+  :config
+  (setq windmove-wrap-around t))
+
 ;; Prevent frequent garbage collections from interfering with Emacs
 ;; performance by increasing the GC threshold high threshold when Emacs
 ;; is in use and decrease it after Emacs has been idel for a while.
