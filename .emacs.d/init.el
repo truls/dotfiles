@@ -320,7 +320,7 @@
 (use-package web-mode
   :ensure t
   :config
-  (add-hook 'web-mode-hook #'lsp)
+  (add-hook 'web-mode-hook #'lsp-deferred)
   :mode ("\\.tsx\\'" "\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.html?\\'"))
 
 ;;
@@ -374,7 +374,7 @@
 (use-package lsp-mode
   :ensure t
   :pin melpa
-  :commands lsp
+  :commands (lsp lsp-deferred)
   :after yasnippet
   :init
   ;(setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "\"/home/truls//tslog\"" "--tsserver-log-verbosity" "verbose"))
@@ -409,7 +409,7 @@
   :mode ("\\.js\\'" . js2-mode)
   :init
   (setq js2-strict-trailing-comma-warning nil)
-  (add-hook 'js2-mode-hook #'lsp)
+  (add-hook 'js2-mode-hook #'lsp-deferred)
   (add-hook 'js2-mode-hook
             (lambda ()
               (make-local-variable 'js-indent-level)
@@ -419,9 +419,8 @@
   :ensure t
   :mode ("\\.ts\\'" . typescript-mode)
   :init
-  (add-hook 'typescript-mode-hook #'lsp)
-  (setq typescript-indent-level 2)
-  )
+  (add-hook 'typescript-mode-hook #'lsp-deferred)
+  (setq typescript-indent-level 2))
 
 ;; (use-package lsp-python-ms
 ;;   :ensure t
@@ -1194,7 +1193,7 @@ This function should only apply when in a bibtex file."
 (use-package ccls
   :ensure t
   :config
-  (add-hook 'c-mode-common-hook #'lsp)
+  (add-hook 'c-mode-common-hook #'lsp-deferred)
   :after lsp-mode)
 
 
@@ -1208,7 +1207,7 @@ This function should only apply when in a bibtex file."
 
 (use-package python
   :config
-  (add-hook 'python-mode-hook #'lsp))
+  (add-hook 'python-mode-hook #'lsp-deferred))
 
 (use-package yaml-mode
   :commands yaml-mode
@@ -1223,7 +1222,7 @@ This function should only apply when in a bibtex file."
   :bind (:map haskell-mode-map
               ("C-c h" . haskell-hoogle))
   :config
-  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-mode-hook #'lsp-deferred)
   :after lsp-haskell)
 
 (use-package smart-shift

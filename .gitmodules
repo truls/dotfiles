@@ -16,3 +16,6 @@
 [submodule ".emacs.d/lisp/emacs-scihub"]
 	path = .emacs.d/lisp/emacs-scihub
 	url = https://github.com/truls/emacs-scihub
+[submodule "/home/truls/.local/usr/local/lib/gdb-pretty-frame-cpp"]
+	path = /home/truls/.local/usr/local/lib/gdb-pretty-frame-cpp
+	url = https://github.com/philtweir/gdb-pretty-frame-cpp
