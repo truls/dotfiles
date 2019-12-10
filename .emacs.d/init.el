@@ -41,8 +41,6 @@
         ("gnu"     . 5)
         ("melpa"        . 0)))
 
-(package-initialize)
-
 (let ((lisp-dir "/home/truls/.emacs.d/lisp")
       (normal-top-level-add-subdirs-inode-list nil))
   (add-to-list 'load-path lisp-dir)
