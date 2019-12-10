@@ -17,8 +17,6 @@
 (setq package-enable-at-startup nil
       file-name-handler-alist nil
       message-log-max 16384
-      gc-cons-threshold 402653184
-      gc-cons-percentage 0.6
       auto-window-vscroll nil)
 
 (add-hook 'after-init-hook
@@ -1309,6 +1307,16 @@ This function should only apply when in a bibtex file."
   :config
   (setq citations-download-fallback #'scihub-get-from-publisher-url)
   (setq citations-bibtex-entry-formatter #'org-ref-clean-bibtex-entry))
+
+;; Prevent frequent garbage collections from interfering with Emacs
+;; performance by increasing the GC threshold high threshold when Emacs
+;; is in use and decrease it after Emacs has been idel for a while.
+(use-package gcmh
+  :ensure t
+  :config
+  (setq gcmh-high-cons-threshold #x60000000
+        gcmh-verbose t)
+  (gcmh-mode +1))
 
 ;;
 ;; Misc functions
