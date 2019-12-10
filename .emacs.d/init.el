@@ -1298,12 +1298,13 @@ This function should only apply when in a bibtex file."
   (add-hook 'sh-mode-hook #'flycheck-mode))
 
 (use-package slurm-mode
-  :load-path "~/.emacs.d/lisp/slurm.el"
+  :load-path "~/misc/projects/slurm.el"
   :config
-  (setq slurm-filter-user-at-start "trulsas")
+  (setq slurm-remote-username "trulsas")
+  (setq slurm-remote-host "stallo.uit.no"))
 
 (use-package slurm-script-mode
-  :load-path "~/.emacs.d/lisp/slurm.el")
+  :load-path "~/misc/projects/slurm.el")
 
 (use-package expand-region
   :ensure t
