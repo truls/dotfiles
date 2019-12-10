@@ -487,6 +487,10 @@
 
 (use-package magit
   :ensure t
+  ;; Stable melpa exhibits highlighting issues with Emacs 27
+  ;; https://github.com/magit/magit/issues/3986
+  ;; Unstable version of git-commit and with-editor was also installed
+  :pin melpa
   :commands magit-status
   :bind ("C-x g" . magit-status)
   :config
@@ -497,8 +501,7 @@
                                     (visual-line-mode 1)))
   (add-hook 'magit-status-mode-hook (lambda ()
                                       (toggle-truncate-lines -1)
-                                      (visual-line-mode 1)))
-)
+                                      (visual-line-mode 1))))
 
 ;; TODO: Figure out why these are broken
 ;; (use-package forge
