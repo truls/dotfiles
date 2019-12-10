@@ -1320,6 +1320,12 @@ This function should only apply when in a bibtex file."
   :config
   (setq windmove-wrap-around t))
 
+(use-package cc-mode
+  :no-require t
+  :config
+  (add-hook 'c++-mode-hook (lambda ()
+                            (c-set-offset 'innamespace 0))))
+
 ;; Prevent frequent garbage collections from interfering with Emacs
 ;; performance by increasing the GC threshold high threshold when Emacs
 ;; is in use and decrease it after Emacs has been idel for a while.
