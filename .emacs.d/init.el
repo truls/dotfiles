@@ -1301,8 +1301,14 @@ This function should only apply when in a bibtex file."
              scihub-get-from-scihub-url))
 
 (use-package citations
+  :load-path "~/misc/projects/acm-citations/"
+  :commands (citations-bibtex-entry-pdf
+             citations-crossref-lookup
+             citations-get-citation
+             citations-download)
   :config
-  (setq citations-download-fallback #'scihub-get-from-publisher-url))
+  (setq citations-download-fallback #'scihub-get-from-publisher-url)
+  (setq citations-bibtex-entry-formatter #'org-ref-clean-bibtex-entry))
 
 ;;
 ;; Misc functions
