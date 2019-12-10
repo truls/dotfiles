@@ -1308,6 +1308,13 @@ This function should only apply when in a bibtex file."
   (setq citations-download-fallback #'scihub-get-from-publisher-url)
   (setq citations-bibtex-entry-formatter #'org-ref-clean-bibtex-entry))
 
+(use-package easy-escape
+  :ensure t
+  :commands easy-escape-minor-mode
+  :config
+  (add-hook 'lisp-mode-hook 'easy-escape-minor-mode)
+  (add-hook 'emacs-lisp-mode-hook 'easy-escape-minor-mode))
+
 ;; Prevent frequent garbage collections from interfering with Emacs
 ;; performance by increasing the GC threshold high threshold when Emacs
 ;; is in use and decrease it after Emacs has been idel for a while.
