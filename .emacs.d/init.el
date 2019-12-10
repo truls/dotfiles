@@ -1337,6 +1337,16 @@ This function should only apply when in a bibtex file."
   :config
   (setq windmove-wrap-around t))
 
+(use-package lsp-latex
+  :load-path "~/.emacs.d/lisp/lsp-latex"
+  :config
+  (add-hook 'LaTeX-mode-hook 'lsp-deferred)
+  ;; Sideline conflicts with line wrapping mode since the diagnostics
+  ;; cannot use the outer margins.
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (setq-local lsp-ui-sideline-enable nil))))
+
 (use-package cc-mode
   :no-require t
   :config
