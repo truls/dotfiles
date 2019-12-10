@@ -1435,7 +1435,8 @@ point reaches the beginning or end of the buffer, stop there."
   (save-excursion
     (beginning-of-line)
     (skip-chars-forward " \t")
-    (looking-at-p comment-start-skip)))
+    (when comment-start-skip
+      (looking-at-p comment-start-skip))))
 
 (defun duplicate-line (&optional comment)
   (interactive)
