@@ -498,10 +498,10 @@
 ;;   (magithub-feature-autoinject t)
 ;;   (setq magithub-clone-default-directory "~/github"))
 
-(use-package nlinum
-  :ensure t
+(use-package display-line-numbers
+  :no-require t
   :config
-  (global-nlinum-mode))
+  (global-display-line-numbers-mode))
 
 (use-package seq :ensure t)
 (use-package whitespace
@@ -1129,7 +1129,7 @@ This function should only apply when in a bibtex file."
   (defun my-inhibit-global-nlinum-mode ()
     "Prevent nlinum mode from being enabled."
     (add-hook 'after-change-major-mode-hook
-              (lambda () (nlinum-mode 0))
+              (lambda () (display-line-numbers-mode 0))
               :append :local))
   :magic ("%PDF" . pdf-view-mode)
   :config
