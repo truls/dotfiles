@@ -22,3 +22,6 @@
 [submodule "misc/config-deps/emacs"]
 	path = misc/config-deps/emacs
 	url = git://git.savannah.gnu.org/emacs.git
+[submodule "/home/truls/misc/config-deps/clang-format-hooks"]
+	path = /home/truls/misc/config-deps/clang-format-hooks
+	url = git@github.com:barisione/clang-format-hooks.git
