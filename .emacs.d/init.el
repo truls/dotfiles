@@ -47,6 +47,17 @@
   (let ((default-directory lisp-dir))
     (normal-top-level-add-subdirs-to-load-path)))
 
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  ;(add-to-list 'load-path "~/.emacs.d/lisp/use-package")
+  (require 'use-package))
+
 ;;
 ;; General emacs config
 ;;
@@ -142,17 +153,6 @@
 
 (add-hook 'text-mode-hook 'text-auto-fill)
 (add-hook 'prog-mode-hook 'comment-auto-fill)
-
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;; This is only needed once, near the top of the file
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  ;(add-to-list 'load-path "~/.emacs.d/lisp/use-package")
-  (require 'use-package))
 
 (use-package gnu-elpa-keyring-update
   :ensure t)
