@@ -25,3 +25,6 @@
 [submodule "/home/truls/misc/config-deps/clang-format-hooks"]
 	path = /home/truls/misc/config-deps/clang-format-hooks
 	url = git@github.com:barisione/clang-format-hooks.git
+[submodule "/home/truls/.emacs.d/lisp/lsp-latex"]
+	path = /home/truls/.emacs.d/lisp/lsp-latex
+	url = https://github.com/ROCKTAKEY/lsp-latex
