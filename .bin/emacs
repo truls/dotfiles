@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec ~/misc/config-deps/emacs/src/emacs $@
