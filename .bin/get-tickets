@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pass keys/pass | ssh-add-pass - && pass krb/truls | kinit truls@TERRIFYINGLYTRUE.EU
+
