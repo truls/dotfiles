@@ -1142,6 +1142,9 @@ This function should only apply when in a bibtex file."
   :ensure t
   :pin melpa)
 
+(use-package helm-ag
+  :ensure t)
+
 (use-package pdf-tools
   :ensure t
   :preface

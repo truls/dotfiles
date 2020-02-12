@@ -4,14 +4,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   (quote
-    ("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org")))
+   '("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org"))
  '(package-selected-packages
-   (quote
-    (lsp-python-ms json-navigator package-lint aio company-bibtex yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex)))
+   '(helm-ag lsp-python-ms json-navigator package-lint aio company-bibtex yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex))
  '(safe-local-variable-values
-   (quote
-    ((lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+   '((lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths vector "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths quote
                                 ("/home/truls/uni/teaching/algdat-tdt4120/inginious-installed"))
@@ -23,8 +20,7 @@
      (lexical-scoping . t)
      (nameless-current-name . "biblio")
      (haskell-stylish-on-save)
-     (eval bibtex-set-dialect
-           (quote biblatex))))))
+     (eval bibtex-set-dialect 'biblatex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
