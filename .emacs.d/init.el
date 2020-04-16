@@ -1259,7 +1259,7 @@ This function should only apply when in a bibtex file."
 
 (use-package ess
   :ensure t
-  :mode ("\\.r\\'" "\\.R\\'"))
+  :init (require 'ess-site))
 
 (use-package visual-fill-column
   :ensure t)
