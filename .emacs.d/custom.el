@@ -3,12 +3,47 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-line-numbers-width 1)
  '(org-agenda-files
    '("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org"))
  '(package-selected-packages
-   '(helm-ag lsp-python-ms json-navigator package-lint aio company-bibtex yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile magit ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets nlinum mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup flycheck ess diminish counsel-projectile company-solidity company-lsp color-theme-modern ccls auto-package-update auto-compile auctex))
+   '(diff-hl hl-mode helm-ag nix-mode nlinum magit gcmh flyspell-lazy easy-escape company-solidity expand-region expand-region\.el company-bibtex company-lsp gnu-elpa-keyring-update lsp-python-ms json-navigator package-lint aio yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
  '(safe-local-variable-values
-   '((lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
+   '((TeX-master . main)
+     (eval when
+           (and
+            (buffer-file-name)
+            (not
+             (file-directory-p
+              (buffer-file-name)))
+            (string-match-p "^[^.]"
+                            (buffer-file-name)))
+           (unless
+               (featurep 'package-build)
+             (let
+                 ((load-path
+                   (cons "../package-build" load-path)))
+               (require 'package-build)))
+           (unless
+               (derived-mode-p 'emacs-lisp-mode)
+             (emacs-lisp-mode))
+           (package-build-minor-mode)
+           (setq-local flycheck-checkers nil)
+           (set
+            (make-local-variable 'package-build-working-dir)
+            (expand-file-name "../working/"))
+           (set
+            (make-local-variable 'package-build-archive-dir)
+            (expand-file-name "../packages/"))
+           (set
+            (make-local-variable 'package-build-recipes-dir)
+            default-directory))
+     (eval progn
+           (visual-line-mode 1)
+           (visual-fill-column-mode 1)
+           (auto-fill-mode -1)
+           (nlinum-mode -1))
+     (lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths vector "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths quote
                                 ("/home/truls/uni/teaching/algdat-tdt4120/inginious-installed"))
