@@ -358,7 +358,7 @@ account-hook imaps://trulsas@mail.ntnu.no 'source ~/.config/neomutt/account-ntnu
 mailboxes imap://truls@imap.terrifyinglytrue.eu/INBOX imap://truls@imap.terrifyinglytrue.eu/Sent imap://truls@imap.terrifyinglytrue.eu/facebook imap://truls@imap.terrifyinglytrue.eu/spiltirsdag imap://truls@imap.terrifyinglytrue.eu/kantine imap://truls@imap.terrifyinglytrue.eu/Draft imap://truls@imap.terrifyinglytrue.eu/test imap://truls@imap.terrifyinglytrue.eu/revy imap://truls@imap.terrifyinglytrue.eu/dqbrew imap://truls@imap.terrifyinglytrue.eu/topdatamat imap://truls@imap.terrifyinglytrue.eu/pwnies imap://truls@imap.terrifyinglytrue.eu/darktable-users imap://truls@imap.terrifyinglytrue.eu/darktable-devel imap://truls@imap.terrifyinglytrue.eu/reboot
 folder-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/folders-asheim.dk'
 
-mailboxes imaps://trulsas@mail.ntnu.no/INBOX "imaps://trulsas@mail.ntnu.no/Sent Items" "imaps://trulsas@mail.ntnu.no/Deleted Items" "imaps://trulsas@mail.ntnu.no/Junk Email" "imaps://trulsas@mail.ntnu.no/Outbox" "imaps://trulsas@mail.ntnu.no/Drafts"
+mailboxes imaps://trulsas@mail.ntnu.no/INBOX "imaps://trulsas@mail.ntnu.no/Sent Items" "imaps://trulsas@mail.ntnu.no/Deleted Items" "imaps://trulsas@mail.ntnu.no/Junk Email" "imaps://trulsas@mail.ntnu.no/Outbox" "imaps://trulsas@mail.ntnu.no/Drafts" "imaps://trulsas@mail.ntnu.no/SLURM"
 folder-hook imaps://trulsas@mail.ntnu.no 'source ~/.config/neomutt/folders-ntnu.no'
 
 # Use NTNU email by default
