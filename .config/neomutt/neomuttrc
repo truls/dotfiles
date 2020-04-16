@@ -303,8 +303,9 @@ macro index \eR "|~/bin/remember-mail\n"
 set mailcap_path = ~/.config/neomutt//mailcap
 
 # Visualization order
-alternative_order text/plain text/enriched text/html text image/*
+alternative_order text/calendar text/plain text/enriched text/html text image/*
 auto_view text/html text/richtext
+auto_view text/calendar application/ics
 
 ## Mailing lists ##
 #
