@@ -375,9 +375,6 @@
   :pin melpa
   :commands (lsp lsp-deferred)
   :after yasnippet
-  :init
-  ;(setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "\"/home/truls//tslog\"" "--tsserver-log-verbosity" "verbose"))
-  (require 'lsp-clients)
   :config
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
@@ -389,6 +386,7 @@
   :pin melpa
   :config
   (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-ui-doc-position 'top)
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   ;:hook lsp-mode
