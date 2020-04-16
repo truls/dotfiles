@@ -842,6 +842,10 @@ Clock   In/out^
         bibtex-completion-pdf-open-function 'org-open-file-with-system)
 
   :config
+  ;; Journal definitions
+  ;; (concat org-ref-bibtex-journal-abbreviations
+  ;;         '(("sigarch" "acm sigarch computer architecture news" "acm sigarch comp. arch. new.")
+  ;;           ("sigplan" "acm sigplan notices" "acm sigarch not")))
   ;; If bibtex-note-storage is not set, then set it to
   ;; org-ref-bibliography-notes as adding the note entry will
   ;; otherwise fail
@@ -1328,7 +1332,8 @@ This function should only apply when in a bibtex file."
   :commands (citations-bibtex-entry-pdf
              citations-crossref-lookup
              citations-get-citation
-             citations-download)
+             citations-download
+             citations-dwim)
   :config
   (setq citations-download-fallback #'scihub-get-from-publisher-url)
   (setq citations-bibtex-entry-formatter #'org-ref-clean-bibtex-entry))
