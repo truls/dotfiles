@@ -174,16 +174,10 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
-;; Setup color themes with the replace-colortheme package
-(use-package color-theme-modern
+(use-package immaterial-theme
   :ensure t
-  :no-require t
-  :init
-  (add-to-list 'custom-theme-load-path
-               (file-name-as-directory "~/.emacs.d/lisp/replace-colorthemes"))
   :config
-  (load-theme 'kingsajz t t)
-  (enable-theme 'kingsajz))
+  (load-theme 'immaterial t))
 
 (use-package auto-fill-mode
   :no-require t
