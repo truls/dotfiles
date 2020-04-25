@@ -422,10 +422,6 @@
 ;;                          (require 'lsp-python-ms)
 ;;                          (lsp))))  ; or lsp-deferred
 
-(use-package flyspell-lazy
-  :ensure t
-  :diminish)
-
 (use-package flyspell
   :diminish
   :init
@@ -444,22 +440,15 @@
       (apply old-function-ispell  arguments)))
   (advice-add 'ispell-call-process :around #'manage-hunspell-1.7)
   (defun my/run-flyspell-hook ()
-    (flyspell-lazy-mode 1)
     (flyspell-mode 1))
   (defun my/run-flyspell-prog-hook ()
-    (flyspell-lazy-mode 1)
     (flyspell-prog-mode))
   :commands (flyspell-mode flyspell-prog-mode)
-  :after flyspell-lazy
   :hook
   ;; Turn on flyspell(-prog)-mode for all modes
   ((text-mode . my/run-flyspell-hook)
    (prog-mode . my/run-flyspell-prog-hook)
    (erlang-mode . my/flyspell-prog-hook)))
-
-  ;; ((text-mode . flyspell-mode)
-  ;;  (prog-mode . flyspell-prog-mode)
-  ;;  (erlang-mode . flyspell-prog-mode)))
 
 (use-package flyspell-correct-popup
   :ensure t
