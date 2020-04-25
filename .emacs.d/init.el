@@ -1359,6 +1359,16 @@ This function should only apply when in a bibtex file."
   (gcmh-mode +1))
 
 ;;
+;; Use undo-tree
+;;
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode)
+  :config
+  (define-key undo-tree-map (kbd "C-+") #'undo-tree-redo))
+
+;;
 ;; Misc functions
 ;;
 (defun my/recompile-all-packages ()
