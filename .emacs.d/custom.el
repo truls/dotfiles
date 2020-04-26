@@ -9,7 +9,7 @@
  '(package-selected-packages
    '(undo-tree immaterial-theme diff-hl hl-mode helm-ag nix-mode nlinum magit gcmh easy-escape company-solidity expand-region expand-region\.el company-bibtex company-lsp gnu-elpa-keyring-update lsp-python-ms json-navigator package-lint aio yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
  '(safe-local-variable-values
-   '((TeX-command-extra-options . -shell-escape)
+   '((TeX-command-extra-options . "-shell-escape")
      (TeX-master . main)
      (eval when
            (and
