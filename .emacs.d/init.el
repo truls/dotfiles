@@ -373,7 +373,13 @@
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
   (setq lsp-keep-workspace-alive nil)
-  (setq lsp-file-watch-threshold 40000))
+  (setq lsp-file-watch-threshold 40000)
+  (add-hook 'lsp-mode-hook
+            (lambda ()
+              (define-key lsp-mode-map (kbd "M-q")
+                #'lsp-format-region)
+              (define-key lsp-mode-map (kbd "M-S-q")
+                #'lsp-format-buffer))))
 
 (use-package lsp-ui
   :ensure t
