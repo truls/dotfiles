@@ -48,6 +48,7 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 ;; Bootstrap `use-package'
+(require 'package)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
