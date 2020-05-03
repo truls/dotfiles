@@ -28,3 +28,6 @@
 [submodule "/home/truls/.emacs.d/lisp/lsp-latex"]
 	path = /home/truls/.emacs.d/lisp/lsp-latex
 	url = https://github.com/ROCKTAKEY/lsp-latex
+[submodule ".emacs.d/lisp/fira-code"]
+	path = .emacs.d/lisp/fira-code
+	url = git@github.com:johnw42/fira-code-emacs.git
