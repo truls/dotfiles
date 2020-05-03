@@ -98,7 +98,10 @@
 (pending-delete-mode 1)
 
 ;; Set default font
+(unless (file-exists-p "~/.fonts/FiraEmacs-Regular.otf")
+ (user-error "Modified Fira fonts not found. Run make in the fira-code folder"))
 (use-package fira-code
+  :load-path "~/.emacs.d/lisp/fira-code"
   :config
   (add-hook 'prog-mode-hook #'fira-code-mode))
 
@@ -1339,7 +1342,7 @@ This function should only apply when in a bibtex file."
   (setq windmove-wrap-around t))
 
 (use-package lsp-latex
-  :load-path "~/.emacs.d/lisp/lsp-latex"
+  :ensure t
   :config
   (add-hook 'LaTeX-mode-hook 'lsp-deferred)
   ;; Sideline conflicts with line wrapping mode since the diagnostics
