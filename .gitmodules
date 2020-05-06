@@ -31,3 +31,6 @@
 [submodule ".emacs.d/lisp/fira-code"]
 	path = .emacs.d/lisp/fira-code
 	url = git@github.com:johnw42/fira-code-emacs.git
+[submodule ".config/config-deps/gnome-pass-search-provider"]
+	path = .config/config-deps/gnome-pass-search-provider
+	url = git@github.com:jle64/gnome-pass-search-provider.git
