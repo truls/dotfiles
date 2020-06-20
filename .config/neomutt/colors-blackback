@@ -61,7 +61,7 @@ color underline	yellow		default				# underlined
 color attachment color5		default				# attachments
 color signature	red		default				# signature
 color tilde	blue		default				# ~ at the end of messages
-color quoted	red		default				# quoted text 1st level
+color quoted	cyan		default				# quoted text 1st level
 color quoted1	green		default				# quoted text 2nd level
 color quoted2	magenta		default				# quoted text 3rd level
 color quoted3	yellow		default
