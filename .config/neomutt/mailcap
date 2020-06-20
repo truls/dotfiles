@@ -2,6 +2,7 @@ text/plain; less '%s'; needsterminal
 application/x-troff-man; /usr/bin/nroff -mandoc -Tlatin1; copiousoutput; print=/usr/bin/nroff -mandoc -Tlatin1 | print text/plain:-
 application/pdf; evince '%s'
 application/zip; file-roller '%s'
+application/x-zip-compressed; file-roller '%s'
 application/vnd.oasis.opendocument.text; libreoffice '%s'
 application/msword; libreoffice '%s'
 application/vnd.ms-excel; libreoffice '%s'
