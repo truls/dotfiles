@@ -5,3 +5,11 @@ set spoolfile = imaps://trulsas@mail.ntnu.no/
 set record = "imaps://trulsas@mail.ntnu.no/Sent Items"
 # Postponed folder
 set postponed = imaps://trulsas@mail.ntnu.no/Drafts
+
+## Sending mails
+set smtp_pass="`secret-tool lookup ntnu password`"
+set smtp_authenticators="plain"
+set smtp_url="smtp://trulsas@smtp.ansatt.ntnu.no:587"
+set from="truls.asheim@ntnu.no"
+set realname="Truls Asheim"
+

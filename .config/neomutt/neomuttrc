@@ -351,8 +351,8 @@ set sidebar_indent_string=" "
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
 
-account-hook imap://truls@imap.terrifyinglytrue.eu 'source ~/.config/neomutt/account-asheim.dk'
-account-hook imaps://trulsas@mail.ntnu.no 'source ~/.config/neomutt/account-ntnu.no'
+account-hook imap://truls@imap.terrifyinglytrue.eu/ "source ~/.config/neomutt/account-asheim.dk"
+account-hook imaps://trulsas@mail.ntnu.no/ "source ~/.config/neomutt/account-ntnu.no"
 
 # which mailboxes to list in the sidebar
 mailboxes imap://truls@imap.terrifyinglytrue.eu/INBOX imap://truls@imap.terrifyinglytrue.eu/Sent imap://truls@imap.terrifyinglytrue.eu/facebook imap://truls@imap.terrifyinglytrue.eu/spiltirsdag imap://truls@imap.terrifyinglytrue.eu/kantine imap://truls@imap.terrifyinglytrue.eu/Draft imap://truls@imap.terrifyinglytrue.eu/test imap://truls@imap.terrifyinglytrue.eu/revy imap://truls@imap.terrifyinglytrue.eu/dqbrew imap://truls@imap.terrifyinglytrue.eu/topdatamat imap://truls@imap.terrifyinglytrue.eu/pwnies imap://truls@imap.terrifyinglytrue.eu/darktable-users imap://truls@imap.terrifyinglytrue.eu/darktable-devel imap://truls@imap.terrifyinglytrue.eu/reboot
@@ -396,6 +396,6 @@ macro index <Esc>m "T~N<enter>;WNT~O<enter>;WO\CT~A<enter>" "mark all messages r
 
 # Addressbook
 set alias_file=~/.mutt-alias
-source ~/.mutt-alias
+#source ~/.mutt-alias
 set query_command= "abook --mutt-query '%s'"
 macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"

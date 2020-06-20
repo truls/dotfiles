@@ -5,10 +5,3 @@ set imap_list_subscribed="no"
 
 set imap_user="trulsas"
 set imap_pass="`secret-tool lookup ntnu password`"
-
-## Sending mails
-set smtp_pass="`secret-tool lookup ntnu password`"
-set smtp_authenticators="plain"
-set smtp_url="smtp://trulsas@smtp.ansatt.ntnu.no:587"
-set from="truls.asheim@ntnu.no"
-set realname="Truls Asheim"

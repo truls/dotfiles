@@ -5,3 +5,9 @@ set spoolfile = imap://truls@imap.terrifyinglytrue.eu/
 set record = imap://truls@imap.terrifyinglytrue.eu/Sent
 # Postponed folder
 set postponed = imap://truls@imap.terrifyinglytrue.eu/Draft
+
+## Sending mails
+set smtp_authenticators="gssapi"
+set smtp_url="smtp://truls@imap.terrifyinglytrue.eu:586"
+set from="truls@asheim.dk"
+set realname="Truls Asheim"

@@ -6,9 +6,3 @@ set imap_list_subscribed="no"
 
 set imap_user="truls"
 set imap_pass=""
-
-## Sending mails
-set smtp_authenticators="gssapi"
-set smtp_url="smtp://truls@imap.terrifyinglytrue.eu:586"
-set from="truls@asheim.dk"
-set realname="Truls Asheim"
