@@ -1,0 +1,8 @@
+# -*- mode: mutt -*-
+
+set imap_authenticators="plain"
+
+set imap_list_subscribed="no"
+
+set imap_user="trulsa@protonmail.com"
+set imap_pass="`secret-tool lookup protonmail imap`"
