@@ -383,22 +383,29 @@
 ;;
 (use-package dash :pin melpa)
 (use-package dash-functional :pin melpa)
+
+(setq lsp-keymap-prefix "C-c l")
+
 (use-package lsp-mode
   :ensure t
   :pin melpa
   :commands (lsp lsp-deferred)
   :after yasnippet
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-file-watch-threshold 40000)
+  ;; Recommended by lsp performance guidelines
+  (setq read-process-output-max (* 1024 1024))
   (add-hook 'lsp-mode-hook
             (lambda ()
-              (define-key lsp-mode-map (kbd "M-q")
-                #'lsp-format-region)
-              (define-key lsp-mode-map (kbd "M-S-q")
-                #'lsp-format-buffer))))
+              (if (member major-mode '("c++-mode" "c-mode"))
+                  (define-key lsp-mode-map (kbd "M-q")
+                    (lambda () (if (inside-comment-p) lsp-format-region)))
+                (define-key lsp-mode-map (kbd "M-S-q")
+                  #'lsp-format-buffer)))))
 
 (use-package lsp-ui
   :ensure t
@@ -411,13 +418,19 @@
   ;:hook lsp-mode
   :commands lsp-ui-mode)
 
-
-(use-package company-lsp
+(use-package lsp-treemacs
   :ensure t
   :pin melpa
-  ;;:hook lsp-mode
-  :commands company-lsp)
+  :commands lsp-treemacs-errors-list)
 
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 
 ;; `javascript' mode
 (use-package js2-mode
@@ -1526,6 +1539,24 @@ With argument, do this that many times."
 
 (global-set-key (read-kbd-macro "<M-DEL>") 'backward-delete-word)
 (global-set-key (read-kbd-macro "<C-Backspace>") 'backward-delete-word)
+
+;;
+;; Check if we are currently inside a comment (probably a hack)
+;; FIXME: This isn't perfect and fails if on first char of a
+;;
+(defun inside-comment-p ()
+  (let ((p (point)))
+    (save-excursion
+      (comment-only-p (comment-search-backward) p))))
+
+;;
+;; Pull and push in sequence
+;;
+(defun git-pull-push ()
+  (interactive)
+  (magit-pull-from-pushremote)
+  (magit-push-current-to-pushremote))
+
 
 (provide 'init)
 ;;; init.el ends here
