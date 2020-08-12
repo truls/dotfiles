@@ -181,10 +181,23 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;;
+;; Dark/light theme toggeling
+;;
+(use-package toggle-theme
+  :config
+  (setq toggle-theme-light-theme 'immaterial-light
+        toggle-theme-dark-theme 'immaterial-dark))
+
+;;
+;; Use immaterial theme
+;;
 (use-package immaterial-theme
   :ensure t
+  :after
+  toggle-theme
   :config
-  (load-theme 'immaterial t))
+  (toggle-theme-restore-theme))
 
 (use-package auto-fill-mode
   :no-require t
