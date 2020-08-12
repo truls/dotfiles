@@ -1121,6 +1121,7 @@ Clock   In/out^
 (use-package projectile
   :ensure t
   :pin melpa-stable
+  :diminish
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -1376,6 +1377,7 @@ Clock   In/out^
 ;;
 (use-package undo-tree
   :ensure t
+  :diminish
   :init
   (global-undo-tree-mode)
   :config
