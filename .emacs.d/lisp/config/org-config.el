@@ -1,0 +1,210 @@
+;; package -- org-config.el -*- lexical-binding:t -*-
+
+;;
+;; Org configuration
+;;
+(use-package org
+  :ensure t
+  :defer t
+  :preface
+  (defun my-org-prefix (file)
+    "Prepend local org prefix to FILE."
+    (concat "~/Nextcloud/gtd/" file))
+
+  :mode ("\\.org\\'" . org-mode)
+  :config
+  (setq org-todo-keywords
+        '((sequence "TODO" "WAITING" "STARTED" "DONE"))
+        org-default-notes-file (my-org-prefix "todo.org")
+        ;;set priority range from A to C with default A
+        org-highest-priority ?A
+        org-lowest-priority ?C
+        org-default-priority ?A
+        org-babel-load-languages (quote ((emacs-lisp . t) (latex . t)))
+        org-startup-with-inline-images t
+        org-support-shift-select t
+        org-log-done 'time)
+
+  ;; Default to opening PDFs in evince
+  ;; We do this by removing the entry in org-file-apps mapping pdf
+  ;; files to the `default' handler. That handler, will eventually
+  ;; result in a lookup through the `mailcap' machinery which returns
+  ;; `pdf-view-mode' as the handler for PDF files.
+  (let* ((key "\\.pdf\\'")
+         (apps (assoc-delete-all key org-file-apps))
+         (newapps `((,key . "evince %s"))))
+    (setq org-file-apps (append newapps apps)))
+
+  :bind (("\C-coc" . org-capture)
+         ("\C-ca" . org-agenda)
+         :map org-mode-map
+         ;; Allow M-<arrow keys> to be used for changing windows
+         ("M-s-<down>" . org-metadown)
+         ("M-s-<up>" . org-metaup)
+         ("M-s-<right>" . org-metaright)
+         ("M-s-<left>" . org-metaleft)
+         ("M-<down>" . nil)
+         ("M-<up>" . nil)
+         ("M-<right>" . nil)
+         ("M-<left>" . nil))
+
+  :custom-face
+  (org-document-info ((t (:foreground "pale turquoise" :height 1.5))))
+  (org-document-title ((t (:foreground "pale turquoise" :weight bold :height 2.0))))
+  (org-level-1 ((t (:inherit outline-1 :height 1.6))))
+  (org-level-2 ((t (:inherit outline-2 :height 1.4))))
+  (org-level-3 ((t (:inherit outline-3 :height 1.3))))
+  (org-level-4 ((t (:inherit outline-4 :height 1.2))))
+  (org-level-5 ((t (:inherit outline-5 :height 1.1))))
+  (org-todo ((t (:foreground "Pink" :weight bold)))))
+
+(use-package org-agenda
+  :config
+  (setq org-agenda-window-setup (quote current-window))
+  (setq org-agenda-files (mapcar #'my-org-prefix (list "todo.org" "gcal.org")))
+  :after org)
+
+(use-package org-capture
+  :commands org-capture
+  :config
+  ;; from https://github.com/sprig/org-capture-extension
+  (defun my/square-to-round-brackets(string-to-transform)
+    "Transforms STRING-TO-TRANSFORM by turning [ into ( and ] into ).  Other cars are unchanged."
+    (concat
+     (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
+    )
+  ;; We use ` instead of ' here as it enables evaluation of expressions by
+  ;; prefixing them with ,
+  (setq org-capture-templates
+        ;; `(("a" "Appointment" entry (file ,(my-org-prefix "gcal.org"))
+        ;;    "* %?\n\n%^T\n\n")
+        '(("t" "todo" entry (file+headline ,(my-org-prefix "inbox.org") "Tasks")
+           "* TODO %i%?")
+          ("T" "Tickler" entry
+           (file+headline ,(my-org-prefix "tickler.org") "Tickler")
+           "* %i%? \n %U")
+          ("m" "Mail" entry (file+headline ,(my-org-prefix "inbox.org") "Emails")
+           "* TODO %^{Title}\n\n  Source: %u, %:link\n\n  %i"
+           :empty-lines 1)
+          ("p" "Protocol" entry (file+headline ,(my-org-prefix "inbox.org") "Websites")
+           "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+          ("L" "Protocol Link" entry (file+headline ,(my-org-prefix "inbox.org") "Websites")
+           "* %? [[%:link][%(my/square-to-round-brackets \"%:description\")]] \nCaptured On: %U")))
+  :bind ("C-c c" . org-capture)
+  :after org)
+
+(use-package org-bullets
+  :ensure t
+  :commands org-bullets-mode
+  :hook (org-mode . org-bullets-mode)
+  :after org)
+
+(use-package org-gcal
+  :ensure t
+  :commands (org-gcal-sync org-gcal-fetch)
+  :config
+  (require 'my-secrets)
+  (setq org-gcal-client-id my/org-gcal-client-id
+        org-gcal-client-secret my/org-gcal-client-secret
+        org-gcal-file-alist `(("trulsa@gmail.com" .  ,(my-org-prefix "gcal.org"))))
+  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+  :after org)
+
+;; Mutt <-> org integration
+;; Configuration and scripts based on https://upsilon.cc/~zack/blog/posts/2010/02/integrating_Mutt_with_Org-mode/
+;; standard org <-> remember stuff, RTFM
+
+(use-package org-protocol
+  :config
+  ;; ensure that emacsclient will show just the note to be edited when invoked
+  ;; from Mutt, and that it will shut down emacsclient once finished;
+  ;; fallback to legacy behavior when not invoked via org-protocol.
+  (add-hook 'org-capture-mode-hook 'delete-other-windows)
+  (defvar my-org-protocol-flag nil)
+  (defadvice org-capture-finalize (after delete-frame-at-end activate)
+    "Delete frame at remember finalization."
+    (progn (if my-org-protocol-flag (delete-frame))
+           (setq my-org-protocol-flag nil)))
+  (defadvice org-capture-kill (after delete-frame-at-end activate)
+    "Delete frame at remember abort."
+    (progn (if my-org-protocol-flag (delete-frame))
+           (setq my-org-protocol-flag nil)))
+  (defadvice org-protocol-capture (before set-org-protocol-flag activate)
+    (setq my-org-protocol-flag t))
+
+  (defun open-mail-in-mutt (message)
+    "Open a mail MESSAGE in Mutt, using an external terminal.
+
+Message can be specified either by a path pointing inside a
+Maildir, or by Message-ID."
+    (interactive "MPath or Message-ID: ")
+    (start-process "mutt-client" nil "gnome-terminal" "--"
+                   (substitute-in-file-name "$HOME/.bin/mutt-open") message))
+
+  ;; add support for "mutt:ID" links
+  (org-link-set-parameters "mutt" :follow 'open-mail-in-mutt))
+
+;;
+;; Configuration for org clock
+;;
+(use-package org-clock
+  :bind (("C-c w" . hydra-org-clock/body)
+         :map org-agenda-mode-map
+         ("C-c w" . hydra-org-agenda-clock/body))
+  :after org-agenda
+  :config
+  (setq org-log-done 'time
+        org-clock-idle-time nil
+        org-clock-continuously nil
+        org-clock-persist t
+        org-clock-in-switch-to-state "STARTED"
+        org-clock-in-resume nil
+        org-clock-report-include-clocking-task t
+        org-clock-out-remove-zero-time-clocks t
+        ;; Too many clock entries clutter up a heading
+        org-log-into-drawer t
+        org-clock-into-drawer 1)
+
+  (defun bh/remove-empty-drawer-on-clock-out ()
+    (interactive)
+    (save-excursion
+      (beginning-of-line 0)
+      (org-remove-empty-drawer-at (point))))
+
+  (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
+
+  :hydra ((hydra-org-clock (:color blue :hint nil)
+  "
+Clock   In/out^     ^Edit^   ^Summary     (_?_)
+-----------------------------------------
+        _i_n         _e_dit   _g_oto entry
+        _c_ontinue   _q_uit   _d_isplay
+        _o_ut        ^ ^      _r_eport
+      "
+  ("i" org-clock-in)
+  ("o" org-clock-out)
+  ("c" org-clock-in-last)
+  ("e" org-clock-modify-effort-estimate)
+  ("q" org-clock-cancel)
+  ("g" org-clock-goto)
+  ("d" org-clock-display)
+  ("r" org-clock-report)
+  ("?" (org-info "Clocking commands")))
+
+          (hydra-org-agenda-clock (:color blue :hint nil)
+  "
+Clock   In/out^
+-----------------------------------------
+        _i_n
+        _g_oto entry
+        _o_ut
+        _q_uit
+      "
+  ("i" org-agenda-clock-in)
+  ("o" org-agenda-clock-out)
+  ("q" org-agenda-clock-cancel)
+  ("g" org-agenda-clock-goto))))
+
+(provide 'org-config)
+;;; org-config ends here
