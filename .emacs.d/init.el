@@ -427,6 +427,18 @@
   :ensure t
   :commands lsp-ivy-workspace-symbol)
 
+(use-package origami
+  :ensure t
+  :pin melpa)
+
+(use-package lsp-origami
+  :ensure t
+  :pin melpa
+  :after origami
+  :config
+  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
+
+
 (use-package which-key
   :ensure t
   :config
@@ -592,6 +604,10 @@
   :config
   (counsel-projectile-mode))
 
+(use-package helm
+  :ensure t
+  :pin melpa)
+
 (use-package helm-projectile
   :ensure t)
 
@@ -673,6 +689,11 @@
   (add-hook 'c-mode-common-hook #'lsp-deferred)
   :after lsp-mode)
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))
 
 (use-package highlight-indentation
   :ensure t
@@ -804,9 +825,11 @@
   (setq windmove-wrap-around t))
 
 (use-package lsp-latex
+  :pin melpa
   :ensure t
   :config
   (add-hook 'LaTeX-mode-hook 'lsp-deferred)
+  (add-hook 'bibtex-mode-hook 'lsp-deferred)
   ;; Sideline conflicts with line wrapping mode since the diagnostics
   ;; cannot use the outer margins.
   (add-hook 'LaTeX-mode-hook

@@ -3,13 +3,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(debug-on-error t)
  '(display-line-numbers-width 1)
  '(org-agenda-files
    '("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org"))
  '(package-selected-packages
-   '(undo-tree immaterial-theme diff-hl hl-mode helm-ag nix-mode nlinum magit gcmh easy-escape company-solidity expand-region expand-region\.el company-bibtex company-lsp gnu-elpa-keyring-update lsp-python-ms json-navigator package-lint aio yasnippet-snippets ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
+   '(lsp-pyright lsp-origami origami yasnippet-snippets helm-ag excorporate treemacs lsp-ivy which-key lsp-treemacs company-capf projectile lsp-mode yasnippet counsel swiper ivy undo-tree immaterial-theme diff-hl hl-mode nix-mode nlinum magit gcmh easy-escape company-solidity expand-region expand-region\.el company-bibtex gnu-elpa-keyring-update lsp-python-ms json-navigator package-lint aio ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
  '(safe-local-variable-values
-   '((TeX-command-extra-options . "-shell-escape")
+   '((TeX-master \` `main)
+     (TeX-command-extra-options . "-shell-escape")
      (TeX-master . main)
      (eval when
            (and

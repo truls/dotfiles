@@ -14,7 +14,7 @@
   :mode ("\\.org\\'" . org-mode)
   :config
   (setq org-todo-keywords
-        '((sequence "TODO" "WAITING" "STARTED" "DONE"))
+        '((sequence "TODO(t)" "WAITING(w)" "STARTED(s)" "|" "DONE(d)" "CANCELLED(c)"))
         org-default-notes-file (my-org-prefix "todo.org")
         ;;set priority range from A to C with default A
         org-highest-priority ?A
@@ -25,6 +25,11 @@
         org-support-shift-select t
         org-log-done 'time)
 
+  (setq org-refile-targets
+        `((,(my-org-prefix "gtd.org") :maxlevel . 3)
+          (,(my-org-prefix "someday.org") :maxlevel . 1)
+          (,(my-org-prefix "tickler.org") :maxlevel . 2)))
+
   ;; Default to opening PDFs in evince
   ;; We do this by removing the entry in org-file-apps mapping pdf
   ;; files to the `default' handler. That handler, will eventually
@@ -32,7 +37,7 @@
   ;; `pdf-view-mode' as the handler for PDF files.
   (let* ((key "\\.pdf\\'")
          (apps (assoc-delete-all key org-file-apps))
-         (newapps `((,key . "evince %s"))))
+         (newapps `((,key . "exec nohup evince %s"))))
     (setq org-file-apps (append newapps apps)))
 
   :bind (("\C-coc" . org-capture)
@@ -61,24 +66,36 @@
 (use-package org-agenda
   :config
   (setq org-agenda-window-setup (quote current-window))
-  (setq org-agenda-files (mapcar #'my-org-prefix (list "todo.org" "gcal.org")))
+  (setq org-agenda-files (mapcar #'my-org-prefix (list "tickler.org" "gtd.org" "inbox.org")))
+
+  (setq org-agenda-custom-commands
+        '(("f" "All first TODOs" todo "TODO|STARTED|WAITING"
+           ((org-agenda-overriding-header "All first items")
+            (org-agenda-skip-function #'org-config-agenda-skip-all-siblings-but-first)))
+          ("w" "Weekly review"
+           agenda ""
+           ((org-agenda-start-day "-14d")
+            (org-agenda-span 14)
+            (org-agenda-start-on-weekday 1)
+            (org-agenda-start-with-log-mode '(closed))
+            (org-agenda-archives-mode t)
+            (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp "^\\*\\* DONE "))))))
   :after org)
 
 (use-package org-capture
   :commands org-capture
   :config
   ;; from https://github.com/sprig/org-capture-extension
-  (defun my/square-to-round-brackets(string-to-transform)
+  (defun my/square-to-round-brackets (string-to-transform)
     "Transforms STRING-TO-TRANSFORM by turning [ into ( and ] into ).  Other cars are unchanged."
     (concat
-     (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
-    )
+     (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform)))
   ;; We use ` instead of ' here as it enables evaluation of expressions by
   ;; prefixing them with ,
   (setq org-capture-templates
         ;; `(("a" "Appointment" entry (file ,(my-org-prefix "gcal.org"))
         ;;    "* %?\n\n%^T\n\n")
-        '(("t" "todo" entry (file+headline ,(my-org-prefix "inbox.org") "Tasks")
+        `(("t" "todo" entry (file+headline ,(my-org-prefix "inbox.org") "Tasks")
            "* TODO %i%?")
           ("T" "Tickler" entry
            (file+headline ,(my-org-prefix "tickler.org") "Tickler")
@@ -205,6 +222,25 @@ Clock   In/out^
   ("o" org-agenda-clock-out)
   ("q" org-agenda-clock-cancel)
   ("g" org-agenda-clock-goto))))
+
+(defun org-config-agenda-skip-all-siblings-but-first ()
+  "Skip all but the first non-done entry."
+  (let (should-skip-entry)
+    (unless (org-config-current-is-todo)
+      (setq should-skip-entry t))
+    (save-excursion
+      (while (and (not should-skip-entry) (org-goto-sibling t))
+        (when (org-config-current-is-todo)
+          (setq should-skip-entry t))))
+    (when should-skip-entry
+      (or (outline-next-heading)
+          (goto-char (point-max))))))
+
+(defun org-config-current-is-todo ()
+  (or
+   (string= "TODO" (org-get-todo-state))
+   (string= "STARTED" (org-get-todo-state))
+   (string= "WAITING" (org-get-todo-state))))
 
 (provide 'org-config)
 ;;; org-config ends here
