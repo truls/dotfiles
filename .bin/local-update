@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+DIR="/home/truls/.bin/local-update.d"
+
+find "$DIR" -type f -executable -print | while read f; do
+     echo "Executing $f"
+     $f
+     echo ""
+done

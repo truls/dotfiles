@@ -1,0 +1,10 @@
+#!/bin/sh
+
+count="`pip3 list --user --outdated --format=freeze | wc -l`"
+
+if [ "$count" -eq 0 ]; then
+    echo "Nothing to do"
+    exit 0
+fi
+
+pip3 list --user --outdated --format=freeze | cut -d'=' -f1 | xargs -n1 pip3  install --user  -U

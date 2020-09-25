@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Update to or install the newest version of duplicacy
+
+set -euo pipefail
+
+TARGET=/home/truls/.bin
+
+BIN=${TARGET}/duplicacy
+
+cur=""
+    if [ -e "$BIN" ]; then
+        cur="`readlink $BIN`"
+    fi
+
+
+most_recent="`git ls-remote https://github.com/gilbertchen/duplicacy | grep tags | awk '{print $2}' | awk -F'/' '{print $3}' | sort --version-sort | tail -1 | tr -d 'v'`"
+
+new_bin="duplicacy_linux_x64_$most_recent"
+
+cur_bin="`basename "$cur"`"
+
+if [ "$cur_bin" != "$new_bin" ]; then
+    if [ -n "$cur" ]; then
+        cur_ver="`echo $cur_bin | awk -F'_' '{print $4}'`"
+        echo "New version available. Upgrading from $cur_ver to $most_recent"
+    else
+        echo "Duplicacy not installed. Installing"
+    fi
+    wget "https://github.com/gilbertchen/duplicacy/releases/download/v$most_recent/$new_bin" -O "$TARGET/$new_bin"
+else
+    echo "Most recent version $most_recent installed. Not updating"
+    exit 0
+fi
+
+chmod +x "$TARGET/$new_bin"
+
+if [ -n "$cur" ]; then
+    rm "$BIN"
+    rm "$TARGET/$cur_bin"
+fi
+
+ln -s "$TARGET/$new_bin" "$BIN"

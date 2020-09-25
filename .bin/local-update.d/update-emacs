@@ -1,0 +1,6 @@
+#!/bin/sh
+
+pushd ~/.config/config-deps/emacs
+git pull
+make -j8 NATIVE_FAST_BOOT=1
+popd
