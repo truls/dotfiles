@@ -1,6 +1,14 @@
 #!/bin/sh
 
-pushd ~/.config/config-deps/emacs
-git pull
+set -euo pipefail
+
+pushd ~/.config/config-deps/emacs > /dev/null
+
+if `git pull | grep -q "is up to date"`; then
+    echo "Nothing to do"
+    exit 0
+    popd
+fi
+
 make -j8 NATIVE_FAST_BOOT=1
 popd
