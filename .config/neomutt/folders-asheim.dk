@@ -1,13 +1,14 @@
 # -*- mode: mutt -*-
 
-set folder = imap://truls@imap.terrifyinglytrue.eu/
-set spoolfile = imap://truls@imap.terrifyinglytrue.eu/
-set record = imap://truls@imap.terrifyinglytrue.eu/Sent
+set folder = imap://trulsa@protonmail.com@127.0.0.1:1143/
+set spoolfile = imap://trulsa@protonmail.com@127.0.0.1:1143/
+set record = imap://trulsa@protonmail.com@127.0.0.1:1143/Sent
 # Postponed folder
-set postponed = imap://truls@imap.terrifyinglytrue.eu/Draft
+set postponed = imap://trulsa@protonmail.com@127.0.0.1:1143/Drafts
 
 ## Sending mails
-set smtp_authenticators="gssapi"
-set smtp_url="smtp://truls@imap.terrifyinglytrue.eu:586"
+set smtp_pass="`secret-tool lookup protonmail imap`"
+set smtp_authenticators="plain"
+set smtp_url="smtp://trulsa@protonmail.com@127.0.0.1:1025"
 set from="truls@asheim.dk"
 set realname="Truls Asheim"

@@ -12,4 +12,3 @@ set smtp_authenticators="plain"
 set smtp_url="smtp://trulsas@smtp.ansatt.ntnu.no:587"
 set from="truls.asheim@ntnu.no"
 set realname="Truls Asheim"
-

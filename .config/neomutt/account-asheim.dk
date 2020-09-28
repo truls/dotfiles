@@ -1,8 +1,8 @@
 # -*- mode: mutt -*-
 
-set imap_authenticators="gssapi"
+set imap_authenticators="plain"
 
 set imap_list_subscribed="no"
 
-set imap_user="truls"
-set imap_pass=""
+set imap_user="trulsa@protonmail.com"
+set imap_pass="`secret-tool lookup protonmail imap`"
