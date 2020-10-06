@@ -357,7 +357,7 @@ account-hook imap://trulsa@protonmail.com@127.0.0.1:1143/ "source ~/.config/neom
 # which mailboxes to list in the sidebar
 mailboxes ~/misc/old-imap//INBOX ~/misc/old-imap//Sent ~/misc/old-imap//facebook ~/misc/old-imap//spiltirsdag ~/misc/old-imap//kantine ~/misc/old-imap//Draft ~/misc/old-imap//test ~/misc/old-imap//revy ~/misc/old-imap//dqbrew ~/misc/old-imap//topdatamat ~/misc/old-imap//pwnies ~/misc/old-imap//darktable-users ~/misc/old-imap//darktable-devel ~/misc/old-imap//reboot
 
-mailboxes imap://trulsa@protonmail.com@127.0.0.1:1143/INBOX imap://trulsa@protonmail.com@127.0.0.1:1143/kantine imap://trulsa@protonmail.com@127.0.0.1:1143/pwnies imap://trulsa@protonmail.com@127.0.0.1:1143/darktable-users imap://trulsa@protonmail.com@127.0.0.1:1143/darktable-dev
+mailboxes imap://trulsa@protonmail.com@127.0.0.1:1143/INBOX imap://trulsa@protonmail.com@127.0.0.1:1143/Folders/kantine imap://trulsa@protonmail.com@127.0.0.1:1143/Folders/pwnies imap://trulsa@protonmail.com@127.0.0.1:1143/Folders/darktable-users imap://trulsa@protonmail.com@127.0.0.1:1143/Folders/darktable-dev imap://trulsa@protonmail.com@127.0.0.1:1143/Folders/dmarc
 folder-hook imap://trulsa@protonmail.com@127.0.0.1:1143 'source ~/.config/neomutt/folders-asheim.dk'
 
 
