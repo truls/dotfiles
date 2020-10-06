@@ -1,5 +1,19 @@
-#!/bin/sh
+#!/usr/bin/expect -f
 
-duplicacy backup
-duplicacy prune --keep 0:90 --keep 14:30 --keep 7:7
+spawn duplicacy -v backup -stats
+interact -o nobuffer -re "Enter SSH password:" return
+send -- "[exec secret-tool lookup storagebox-password ssh]"
+send -- "\n"
+interact -o -nobuffer -re "Enter storage password:" return
+send -- "[exec secret-tool lookup duplicacy-backup key]\r\n"
+send -- "\n"
+interact
 
+spawn duplicacy -v prune --keep 0:90 --keep 14:30 --keep 7:7
+interact -o nobuffer -re "Enter SSH password:" return
+send -- "[exec secret-tool lookup storagebox-password ssh]"
+send -- "\n"
+interact -o -nobuffer -re "Enter storage password:" return
+send -- "[exec secret-tool lookup duplicacy-backup key]\r\n"
+send -- "\n"
+interact
