@@ -40,6 +40,19 @@
          (newapps `((,key . "exec nohup evince %s"))))
     (setq org-file-apps (append newapps apps)))
 
+  (setq org-latex-classes
+        (let ((entry '("ta-article"
+                       "\\documentclass[]{ta-article}"
+                       ("\\section{%s}" . "\\section*{%s}")
+                       ("\\subsection{%s}" . "\\subsection*{%s}")
+                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+          (if (--any? (string= (car it) "ta-article") org-latex-classes)
+              (-map-first (lambda (x) (string= (car x) "ta-article"))
+                          (lambda (_) entry) org-latex-classes)
+              (add-to-list 'org-latex-classes entry))))
+
   :bind (("\C-coc" . org-capture)
          ("\C-ca" . org-agenda)
          :map org-mode-map
