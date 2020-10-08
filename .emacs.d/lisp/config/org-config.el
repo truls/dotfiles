@@ -40,18 +40,36 @@
          (newapps `((,key . "exec nohup evince %s"))))
     (setq org-file-apps (append newapps apps)))
 
-  (setq org-latex-classes
-        (let ((entry '("ta-article"
-                       "\\documentclass[]{ta-article}"
-                       ("\\section{%s}" . "\\section*{%s}")
-                       ("\\subsection{%s}" . "\\subsection*{%s}")
-                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-          (if (--any? (string= (car it) "ta-article") org-latex-classes)
-              (-map-first (lambda (x) (string= (car x) "ta-article"))
-                          (lambda (_) entry) org-latex-classes)
-              (add-to-list 'org-latex-classes entry))))
+  (with-eval-after-load 'ox-latex
+    (setq org-latex-classes
+          (let ((entry '("ta-article"
+                         "\\documentclass[]{ta-article}"
+                         ("\\section{%s}" . "\\section*{%s}")
+                         ("\\subsection{%s}" . "\\subsection*{%s}")
+                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+            (if (--any? (string= (car it) "ta-article") org-latex-classes)
+                (-map-first (lambda (x) (string= (car x) "ta-article"))
+                            (lambda (_) entry) org-latex-classes)
+              (add-to-list 'org-latex-classes entry)))))
+
+  (setq org-latex-default-packages-alist
+        '(("AUTO" "inputenc" t
+           ("pdflatex"))
+          ("T1" "fontenc" t
+           ("pdflatex"))
+          (#1="" "graphicx" t)
+          (#1# "grffile" t)
+         (#1# "longtable" nil)
+          (#1# "wrapfig" nil)
+          (#1# "rotating" nil)
+          ("normalem" "ulem" t)
+          (#1# "amsmath" t)
+          (#1# "textcomp" t)
+          (#1# "capt-of" nil)
+          (#1# "hyperref" nil)))
+
 
   :bind (("\C-coc" . org-capture)
          ("\C-ca" . org-agenda)
