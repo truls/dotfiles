@@ -34,3 +34,6 @@
 [submodule ".config/config-deps/gnome-pass-search-provider"]
 	path = .config/config-deps/gnome-pass-search-provider
 	url = git@github.com:jle64/gnome-pass-search-provider.git
+[submodule ".local/share/texmf/tex/latex/ta-article"]
+	path = .local/share/texmf/tex/latex/ta-article
+	url = git@github.com:truls/ta-article.git
