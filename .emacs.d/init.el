@@ -56,6 +56,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+
 ;; This is only needed once, near the top of the file
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
@@ -581,12 +582,12 @@
 
 
 
-(use-package company-bibtex
-  :ensure t
-  :after org-ref
-  :config
-  (add-to-list 'company-backends 'company-bibtex)
-  (setq company-bibtex-bibliography org-ref-default-bibliography))
+;; (use-package company-bibtex
+;;   :ensure t
+;;   :after org-ref
+;;   :config
+;;   (add-to-list 'company-backends 'company-bibtex)
+;;   (setq company-bibtex-bibliography org-ref-default-bibliography))
 
 (use-package projectile
   :ensure t
@@ -634,45 +635,6 @@
   (setq pdf-annot-activate-created-annotations t)
   (define-key pdf-view-mode-map (kbd "C-s") #'isearch-forward))
 
-(use-package tex
-  :ensure auctex
-  :mode ("\\.tex\\'" . latex-mode)
-  :config
-  ;; Enter correlate mode automatically
-  (add-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode)
-
-  ;; AucTeX query for master file
-  (setq-default TeX-master nil)
-
-  ;; Make AUCTeX build bibtex
-  (setq TeX-parse-self t) ; Enable parse on load.
-  (setq TeX-auto-save t) ; Enable parse on save.)
-
-  ;; Turn on RefTeX
-  (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
-  (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
-  (defvar reftex-plug-into-AUCTeX t)
-  (add-hook 'LaTeX-mode-hook #'text-auto-fill)
-
-  ;; Preview mode settings
-  (setq preview-auto-cache-preamble t
-        preview-scale-function 1.2)
-
-  ;; Use yasnippet
-  (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on))
-
-(use-package magic-latex-buffer
-  :ensure t
-  :commands magic-latex-buffer
-  ;; :init
-  ;; (setq magic-latex-enable-block-highlight nil
-  ;;       magic-latex-enable-suscript        t
-  ;;       magic-latex-enable-pretty-symbols  t
-  ;;       magic-latex-enable-block-align     nil
-  ;;       magic-latex-enable-inline-image    nil
-  ;;       magic-latex-enable-minibuffer-echo nil)
-  :config
-  (add-hook 'LaTeX-mode-hook #'magic-latex-buffer))
 
 
 (use-package c-mode
@@ -824,17 +786,17 @@
   :config
   (setq windmove-wrap-around t))
 
-(use-package lsp-latex
-  :pin melpa
-  :ensure t
-  :config
-  (add-hook 'LaTeX-mode-hook 'lsp-deferred)
-  (add-hook 'bibtex-mode-hook 'lsp-deferred)
-  ;; Sideline conflicts with line wrapping mode since the diagnostics
-  ;; cannot use the outer margins.
-  (add-hook 'LaTeX-mode-hook
-            (lambda ()
-              (setq-local lsp-ui-sideline-enable nil))))
+;; (use-package lsp-latex
+;;   :pin melpa
+;;   :ensure t
+;;   :config
+;;   (add-hook 'LaTeX-mode-hook 'lsp-deferred)
+;;   (add-hook 'bibtex-mode-hook 'lsp-deferred)
+;;   ;; Sideline conflicts with line wrapping mode since the diagnostics
+;;   ;; cannot use the outer margins.
+;;   (add-hook 'LaTeX-mode-hook
+;;             (lambda ()
+;;               (setq-local lsp-ui-sideline-enable nil))))
 
 (use-package cc-mode
   :no-require t
@@ -942,6 +904,7 @@ With argument, do this that many times."
 (require 'org-config)
 (require 'org-ref-config)
 (require 'erc-config)
+(require 'latex-config)
 
 (provide 'init)
 ;;; init.el ends here
