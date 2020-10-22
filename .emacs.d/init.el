@@ -827,6 +827,23 @@
   (define-key undo-tree-map (kbd "C-+") #'undo-tree-redo))
 
 ;;
+;; gitignore-mode
+;;
+(use-package gitignore-mode
+  :ensure t
+  :pin melpa
+  :mode "\\.gitignore\\'")
+
+;;
+;; gitignore-templates
+;;
+(use-package gitignore-templates
+  :ensure t
+  :pin melpa
+  :commands (gitignore-templates-insert
+             gitignore-templates-new-file))
+
+;;
 ;; Misc functions
 ;;
 (defun my/recompile-all-packages ()
