@@ -7,6 +7,8 @@
 (use-package tex
   :ensure auctex
   :mode ("\\.tex\\'" . latex-mode)
+  :bind (:map TeX-mode-map
+              ("M-s M-s" . git-fast-sync))
   :config
   ;; Enter correlate mode automatically
   (add-hook 'LaTeX-mode-hook #'TeX-source-correlate-mode)
