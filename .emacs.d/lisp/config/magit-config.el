@@ -79,8 +79,7 @@ pull resulted in no conflicts and nil otherwise."
    if there are no files with conflicts in the repository.
 
   A function like this is an EXTREMELY BAD IDEA in almost all cases. It is,
-  however, quite useful fro interacting with overleaf documents via git.
-"
+  however, quite useful fro interacting with overleaf documents via git."
 
   (interactive)
   (if (git-fast-sync--has-conflicts-p)
