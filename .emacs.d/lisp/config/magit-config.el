@@ -1,3 +1,4 @@
+;; magit-config.el -*- lexical-binding: t -*-
 ;;
 ;; Magit config
 ;;

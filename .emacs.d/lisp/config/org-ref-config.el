@@ -1,3 +1,5 @@
+;; org-ref-config.el -*- lexical-binding:t -*-
+
 (use-package helm-bibtex
   :ensure t
   :pin melpa)

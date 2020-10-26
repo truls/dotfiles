@@ -1,3 +1,4 @@
+;; erc-config.el -*- lexical-binding: t -*-
 ;;
 ;; IRC configuration
 ;;

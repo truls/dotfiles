@@ -1,3 +1,4 @@
+;; lang-mode-config.el -*- lexical-binding: t -*-
 ;;
 ;; Miscellaneous languages
 ;;

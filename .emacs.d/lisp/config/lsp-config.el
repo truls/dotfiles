@@ -1,3 +1,5 @@
+;; lsp-config.el -*- lexical-binding:t -*-
+
 ;;
 ;; LSP configuration. Both lsp-mode and language servers
 ;;

@@ -1,4 +1,4 @@
-;; package -- katex-config.el -*- lexical-binding:t -*-
+;; package -- latex-config.el -*- lexical-binding:t -*-
 
 ;;
 ;; LaTeX configuration
