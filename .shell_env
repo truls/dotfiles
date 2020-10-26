@@ -20,3 +20,5 @@ export PYTHONPATH=/usr/local/lib64/python3.6/site-packages:$PYTHONPATH
 export TEXMFHOME=~/.local/share/texmf
 
 export OPENSSL_CONF=/etc/ssl
+
+export PATH="/home/truls/.cask/bin:$PATH"

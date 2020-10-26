@@ -517,37 +517,6 @@
   (setq markdown-command "pandoc")
   (add-hook 'markdown-mode-hook 'text-auto-fill))
 
-(use-package magit
-  :ensure t
-  ;; Stable melpa exhibits highlighting issues with Emacs 27
-  ;; https://github.com/magit/magit/issues/3986
-  ;; Unstable version of git-commit and with-editor was also installed
-  :pin melpa
-  :commands magit-status
-  :bind ("C-x g" . magit-status)
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read)
-  (setq magit-diff-refine-hunk 'all)
-  (add-hook 'magit-diff-mode-hook (lambda ()
-                                    (toggle-truncate-lines -1)
-                                    (visual-line-mode 1)))
-  (add-hook 'magit-status-mode-hook (lambda ()
-                                      (toggle-truncate-lines -1)
-                                      (visual-line-mode 1))))
-
-;; TODO: Figure out why these are broken
-;; (use-package forge
-;;   :pin melpa
-;;   :ensure t
-;;   :after magit)
-
-;; (use-package magithub
-;;   :ensure t
-;;   :after magit
-;;   :pin melpa
-;;   :config
-;;   (magithub-feature-autoinject t)
-;;   (setq magithub-clone-default-directory "~/github"))
 
 (use-package display-line-numbers
   :no-require t
@@ -907,13 +876,6 @@ With argument, do this that many times."
     (save-excursion
       (comment-only-p (comment-search-backward) p))))
 
-;;
-;; Pull and push in sequence
-;;
-(defun git-pull-push ()
-  (interactive)
-  (magit-pull-from-pushremote)
-  (magit-push-current-to-pushremote))
 
 ;;
 ;; Config includes
@@ -922,6 +884,7 @@ With argument, do this that many times."
 (require 'org-ref-config)
 (require 'erc-config)
 (require 'latex-config)
+(require 'magit-config)
 
 (provide 'init)
 ;;; init.el ends here
