@@ -222,11 +222,6 @@
          ("C-s" . vr/isearch-forward)))
 
 
-(use-package ess
-  :disabled t
-  :config
-  (ess-toggle-underscore nil))
-
 (use-package hydra
   :ensure t
   :commands defhydra)
@@ -291,18 +286,6 @@
   :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
   :after ivy)
 
-;;
-;; solidity-mode
-;;
-(use-package solidity-mode
-  :ensure t
-  :mode "\\.sol\\'"
-  :init
-  :config
-  (add-hook 'solidity-mode-hook
-            (lambda ()
-              (c-set-offset 'arglist-intro '+)
-              (c-set-offset 'arglist-close 0))))
 
 (use-package solidity-flycheck
   :ensure t
@@ -315,24 +298,6 @@
   :ensure t
   :after solidity-mode)
 
-;;
-;; sass-mode
-;;
-(use-package ssass-mode
-  ;; https://github.com/AdamNiederer/ssass-mode/pull/4 was
-  ;; accepted. Waiting for a new release to be tagged.
-  :pin melpa
-  :ensure t
-  :mode ("\\.scss\\'" "\\.sass\\'"))
-
-;;
-;; web-mode
-;;
-(use-package web-mode
-  :ensure t
-  :config
-  (add-hook 'web-mode-hook #'lsp-deferred)
-  :mode ("\\.tsx\\'" "\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.html?\\'"))
 
 ;;
 ;; flycheck-mode
@@ -383,69 +348,6 @@
   :ensure t
   :config
   (which-key-mode))
-
-;; `javascript' mode
-(use-package js2-mode
-  :ensure t
-  :mode ("\\.js\\'" . js2-mode)
-  :init
-  (setq js2-strict-trailing-comma-warning nil)
-  (add-hook 'js2-mode-hook #'lsp-deferred)
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (make-local-variable 'js-indent-level)
-              (setq js-indent-level 2))))
-
-(use-package typescript-mode
-  :ensure t
-  :mode ("\\.ts\\'" . typescript-mode)
-  :init
-  (add-hook 'typescript-mode-hook #'lsp-deferred)
-  (setq typescript-indent-level 2))
-
-(use-package flyspell
-  :diminish
-  :init
-  (setq ispell-program-name "hunspell")
-  :config
-  (setq flyspell-use-meta-tab nil)
-  (defun flyspell-buffer-after-pdict-save (&rest _)
-    (flyspell-buffer))
-  (advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
-  ;; Work around for Hunspell 1.7.0
-  ;; From https://emacs.stackexchange.com/questions/47344/ispell-not-working-with-hunspell
-  (defun manage-hunspell-1.7 (old-function-ispell &rest arguments)
-    "Add null-device when calling \"hunspell -D\"."
-    (if  (equal "-D"  (nth 4 arguments))
-        (funcall old-function-ispell "hunspell" null-device t nil "-D" null-device)
-      (apply old-function-ispell  arguments)))
-  (advice-add 'ispell-call-process :around #'manage-hunspell-1.7)
-  (defun my/run-flyspell-hook ()
-    (flyspell-mode 1))
-  (defun my/run-flyspell-prog-hook ()
-    (flyspell-prog-mode))
-  :commands (flyspell-mode flyspell-prog-mode)
-  :hook
-  ;; Turn on flyspell(-prog)-mode for all modes
-  ((text-mode . my/run-flyspell-hook)
-   (prog-mode . my/run-flyspell-prog-hook)
-   (erlang-mode . my/flyspell-prog-hook)))
-
-(use-package flyspell-correct-popup
-  :ensure t
-  :bind (:map flyspell-mode-map
-              ("C-;" . flyspell-correct-wrapper))
-  :commands (flyspell-correct-wrapper flyspell-correct-popup)
-  :init
-  (setq flyspell-correct-interface #'flyspell-correct-popup)
-  :after flyspell)
-
-(use-package markdown-mode
-  :ensure t
-  :mode ("\\.md\\'" "\\.mrk\\'")
-  :config
-  (setq markdown-command "pandoc")
-  (add-hook 'markdown-mode-hook 'text-auto-fill))
 
 
 (use-package display-line-numbers
@@ -536,14 +438,6 @@
 
 
 
-(use-package c-mode
-  :no-require t
-  :config
-  ;; C-mode hook to avoid indenting after extern "C"
-  (add-hook 'c-mode-common-hook
-            (lambda()
-              (c-set-offset 'inextern-lang 0))))
-
 (use-package highlight-indentation
   :ensure t
   :hook ((yaml-mode . highlight-indentation-mode))
@@ -551,19 +445,6 @@
   (setq highlight-indentation-blank-lines t)
   (set-face-background 'highlight-indentation-face "grey24")
   (set-face-background 'highlight-indentation-current-column-face "grey30"))
-
-(use-package yaml-mode
-  :commands yaml-mode
-  :mode ("\\.yml\\'" "\\.yaml\\'")
-  :ensure t)
-
-(use-package haskell-mode
-  :ensure t
-  :bind (:map haskell-mode-map
-              ("C-c h" . haskell-hoogle))
-  :config
-  (add-hook 'haskell-mode-hook #'lsp-deferred)
-  :after lsp-haskell)
 
 (use-package smart-shift
   :ensure t
@@ -577,23 +458,9 @@
   ;; install languagetool
   (setq langtool-language-tool-jar (expand-file-name "language-servers/languagetool/LanguageTool-4.4-stable/languagetool-commandline.jar" user-emacs-directory)))
 
-(use-package ess
-  :ensure t
-  :init (require 'ess-site))
-
 (use-package visual-fill-column
   :ensure t)
 
-(use-package mutt-mode
-  :ensure t
-  :mode ("\\.muttrc\\'"
-         "\\.neomuttrc\\'"
-         "\\neomuttrc\\'")
-  :commands mutt-mode)
-
-(use-package dockerfile-mode
-  :ensure t
-  :mode ("Dockerfile"))
 
 (use-package ace-window
   :ensure t
@@ -606,9 +473,6 @@
   :ensure t
   :bind (("C-:" . avy-goto-char)))
 
-(use-package julia-mode
-  :ensure t)
-
 (use-package package-lint
   :ensure t
   :commands (package-lint-buffer
@@ -619,19 +483,11 @@
 (use-package json-navigator
   :ensure t)
 
-(use-package sh-script
-  :no-require t
-  :config
-  (add-hook 'sh-mode-hook #'flycheck-mode))
-
 (use-package slurm-mode
   :load-path "~/misc/projects/slurm.el"
   :config
   (setq slurm-remote-username "trulsas")
   (setq slurm-remote-host "stallo.uit.no"))
-
-(use-package slurm-script-mode
-  :load-path "~/misc/projects/slurm.el")
 
 (use-package expand-region
   :ensure t
@@ -666,11 +522,6 @@
   :config
   (setq windmove-wrap-around t))
 
-(use-package cc-mode
-  :no-require t
-  :config
-  (add-hook 'c++-mode-hook (lambda ()
-                            (c-set-offset 'innamespace 0))))
 
 ;; Prevent frequent garbage collections from interfering with Emacs
 ;; performance by increasing the GC threshold high threshold when Emacs
@@ -694,13 +545,6 @@
   :config
   (define-key undo-tree-map (kbd "C-+") #'undo-tree-redo))
 
-;;
-;; gitignore-mode
-;;
-(use-package gitignore-mode
-  :ensure t
-  :pin melpa
-  :mode "\\.gitignore\\'")
 
 ;;
 ;; gitignore-templates
@@ -785,6 +629,8 @@ With argument, do this that many times."
 (require 'erc-config)
 (require 'latex-config)
 (require 'magit-config)
+(require 'flyspell-config)
+(require 'lang-mode-config)
 
 (provide 'init)
 ;;; init.el ends here
