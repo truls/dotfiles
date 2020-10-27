@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+echo "TODO: Fix cask upgrade"
+exit 0
+
 if [ ! -x "`which cask`" ]; then
     echo "Cask not found. Installing"
     curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
