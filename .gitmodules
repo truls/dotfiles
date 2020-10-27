@@ -37,3 +37,6 @@
 [submodule ".local/share/texmf/tex/latex/ta-article"]
 	path = .local/share/texmf/tex/latex/ta-article
 	url = git@github.com:truls/ta-article.git
+[submodule "toggle-theme"]
+	path = .emacs.d/lisp/toggle-theme
+	url = git@github.com:truls/toggle-theme
