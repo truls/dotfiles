@@ -1,21 +1,24 @@
+# Files
 .emacs.desktop
-backups/
-auto-saves/
-elpa/
-eln-cache/
 lisp/my-secrets.el
 smex-items
 theme-state
 .last-package-update-day
 .lsp-session-v1
-auto-save-list/
-.cask/
-.cache/
-bookmarks
-url/
-transient/
 network-security.data
 projectile-bookmarks.eld
 recentf
 session.*
 .emacs.desktop.lock
+bookmarks
+
+# Folders
+backups/
+auto-saves/
+elpa/
+eln-cache/
+auto-save-list/
+.cask/
+.cache/
+url/
+transient/

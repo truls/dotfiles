@@ -3,6 +3,7 @@
 !.gitignore
 !.profile
 !.gdbinit
+!.gitconfig
 !.gitmodules
 !.hunspell*
 !.profile
@@ -10,15 +11,25 @@
 !.shell_env
 !.zprofile
 !.zshrc
-!.cache/neomitt/.keep
+!.cache/neomutt/.keep
 !.local/share/applications/org-protocol.desktop
 
 
 !.github
 !.emacs.d
 !.bin
-!.local/share/texmf/tex
+!.oh-my-zsh
+
+# Include .local/share/texmf
+!.local
+.local/*
+!.local/share
+.local/share/*
+!.local/share/texmf
+
+
+!.stack
+!.config
+.config/*
 !.config/config-deps
 !.config/neomutt
-!.config/systemd/user
-!.stack
