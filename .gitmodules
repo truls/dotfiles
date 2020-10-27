@@ -40,3 +40,6 @@
 [submodule "toggle-theme"]
 	path = .emacs.d/lisp/toggle-theme
 	url = git@github.com:truls/toggle-theme
+[submodule ".config/config-deps/digestif"]
+	path = .config/config-deps/digestif
+	url = https://github.com/astoff/digestif
