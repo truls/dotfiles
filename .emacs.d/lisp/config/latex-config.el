@@ -34,6 +34,7 @@
   ;; Use yasnippet
   (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on))
 
+
 (use-package magic-latex-buffer
   :ensure t
   :commands magic-latex-buffer

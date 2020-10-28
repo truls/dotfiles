@@ -79,7 +79,6 @@
   :mode ("\\.js\\'" . js2-mode)
   :init
   (setq js2-strict-trailing-comma-warning nil)
-  (add-hook 'js2-mode-hook #'lsp-deferred)
   (add-hook 'js2-mode-hook
             (lambda ()
               (make-local-variable 'js-indent-level)
@@ -89,7 +88,6 @@
   :ensure t
   :mode ("\\.ts\\'" . typescript-mode)
   :init
-  (add-hook 'typescript-mode-hook #'lsp-deferred)
   (setq typescript-indent-level 2))
 
 (use-package markdown-mode
@@ -113,8 +111,6 @@
   :ensure t
   :bind (:map haskell-mode-map
               ("C-c h" . haskell-hoogle))
-  :config
-  (add-hook 'haskell-mode-hook #'lsp-deferred)
   :after lsp-haskell)
 
 (use-package slurm-script-mode

@@ -20,9 +20,23 @@
         org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
         bibtex-completion-bibliography
         '("~/Nextcloud/bibliography/bibliography.bib")
-        bibtex-completion-pdf-open-function 'org-open-file-with-system))
+        bibtex-completion-pdf-open-function 'org-open-file-with-system)
 
-;;   :config
+   :config
+   ;; Insert the citation into the notes PDF as a \fullcite inside a blockquote
+   (setq org-ref-create-notes-hook
+         '((lambda ()
+             (org-narrow-to-subtree)
+             (insert (format "\n#+BEGIN_QUOTE\nfullcite:%s\n#+END_QUOTE\n"
+                             (org-entry-get (point) "Custom_ID")))
+             (goto-char (point-max)))))
+
+   ;; Overrides of org-ref functions. Uses a better regex for matching DOIs
+   (setq org-ref-pdf-doi-regex
+         ;;"10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+\\|10.1002/[^[:space:]]+")
+         "10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+"))
+
+
 ;;   ;; Journal definitions
 ;;   ;; (concat org-ref-bibtex-journal-abbreviations
 ;;   ;;         '(("sigarch" "acm sigarch computer architecture news" "acm sigarch comp. arch. new.")
@@ -203,19 +217,6 @@
 ;;   ;;               (bibtex-completion-edit-notes (list (cdr (assoc "=key=" (bibtex-parse-entry)))))
 ;;   ;;             (message "Neither `bibtex-completion-notes-path` or `org-ref-bibliography-notes` are set. Not adding bibliography note entry")))))
 
-
-;;   ;; Insert the citation into the notes PDF as a \fullcite inside a blockquote
-;;   (setq org-ref-create-notes-hook
-;;         '((lambda ()
-;;             (org-narrow-to-subtree)
-;;             (insert (format "\n#+BEGIN_QUOTE\nfullcite:%s\n#+END_QUOTE\n"
-;;                             (org-entry-get (point) "Custom_ID")))
-;;             (goto-char (point-max)))))
-
-;;   ;; Overrides of org-ref functions. Uses a better regex for matching DOIs
-;;   (setq org-ref-pdf-doi-regex
-;;                                         ;"10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+\\|10.1002/[^[:space:]]+")
-;;                 "10\\.[0-9]\\{4,9\\}/[-._;()/:A-Z0-9]+")
 
 ;;   (defun org-ref-extract-doi-from-pdf (pdf)
 ;;     "Try to extract a doi from a PDF file.

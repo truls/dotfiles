@@ -15,7 +15,14 @@
   :pin melpa
   :commands (lsp lsp-deferred)
   :after yasnippet
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :hook ((lsp-mode        . lsp-enable-which-key-integration)
+         (LaTeX-mode      . lsp-deferred)
+         (js2-mode        . lsp-deferred)
+         (typescript-mode . lsp-deferred)
+         (haskell-mode    . lsp-deferred)
+         (c-mode-common   . lsp-deferred)
+         (python-mode     . lsp-deferred))
+
   :config
   (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
@@ -65,7 +72,6 @@
 (use-package ccls
   :ensure t
   :config
-  (add-hook 'c-mode-common-hook #'lsp-deferred)
   :after lsp-mode)
 
 (use-package lsp-pyright
@@ -74,10 +80,6 @@
                           (require 'lsp-pyright)
                           (lsp-deferred))))
 
-
-(use-package python
-  :config
-  (add-hook 'python-mode-hook #'lsp-deferred))
 
 (use-package lsp-haskell
   :ensure t)
