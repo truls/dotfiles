@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Neomutt
+Icon=email
+Exec=/usr/bin/gnome-terminal -- neomutt %u
+Terminal=true
+StartupNotify=true
+Categories=Internet;
