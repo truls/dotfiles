@@ -12,8 +12,6 @@
 !.zprofile
 !.zshrc
 !.cache/neomutt/.keep
-!.local/share/applications/org-protocol.desktop
-
 
 !.github
 !.emacs.d
@@ -26,6 +24,7 @@
 !.local/share
 .local/share/*
 !.local/share/texmf
+!.local/share/applications
 
 
 !.stack

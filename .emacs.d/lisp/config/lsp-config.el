@@ -24,7 +24,8 @@
          (python-mode     . lsp-deferred))
 
   :config
-  (setq lsp-restart 'ignore)
+  ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
+  ;; (setq lsp-restart 'ignore)
   (setq lsp-prefer-flymake nil)
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-file-watch-threshold 40000)

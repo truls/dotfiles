@@ -18,8 +18,7 @@
         org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/"
         bibtex-dialect 'biblatex
         org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
-        bibtex-completion-bibliography
-        '("~/Nextcloud/bibliography/bibliography.bib")
+        bibtex-completion-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
         bibtex-completion-pdf-open-function 'org-open-file-with-system)
 
    :config
