@@ -556,6 +556,14 @@
              gitignore-templates-new-file))
 
 ;;
+;; editorconfig
+;;
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
+;;
 ;; Misc functions
 ;;
 (defun my/recompile-all-packages ()
