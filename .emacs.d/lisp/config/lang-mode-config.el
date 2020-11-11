@@ -124,4 +124,9 @@
   :config
   (ess-toggle-underscore nil))
 
+(use-package groovy-mode
+  :ensure t
+  :pin melpa
+  :mode ("\\.groovy\\'" "\\.gradle\\'"))
+
 (provide 'lang-mode-config)

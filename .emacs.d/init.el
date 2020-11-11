@@ -639,6 +639,7 @@ With argument, do this that many times."
 (require 'magit-config)
 (require 'flyspell-config)
 (require 'lang-mode-config)
+(require 'scala-config)
 
 (provide 'init)
 ;;; init.el ends here
