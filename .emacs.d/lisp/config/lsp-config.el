@@ -16,12 +16,14 @@
   :commands (lsp lsp-deferred)
   :after yasnippet
   :hook ((lsp-mode        . lsp-enable-which-key-integration)
+         (lsp-mode        . lsp-lens-mode)
          (LaTeX-mode      . lsp-deferred)
          (js2-mode        . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (haskell-mode    . lsp-deferred)
          (c-mode-common   . lsp-deferred)
-         (python-mode     . lsp-deferred))
+         (python-mode     . lsp-deferred)
+         (scala-mode      . lsp-deferred))
 
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
@@ -84,6 +86,21 @@
 
 (use-package lsp-haskell
   :ensure t)
+
+;; Use the Debug Adapter Protocol for running tests and debugging
+(use-package posframe
+  ;; Posframe is a pop-up tool that must be manually installed for
+  ;; dap-mode
+  :ensure t
+  :pin melpa)
+
+(use-package dap-mode
+  :ensure t
+  :pin melpa
+  :hook
+  (lsp-mode . dap-mode)
+  (lsp-mode . dap-ui-mode))
+
 
 ;; (use-package lsp-latex
 ;;   :pin melpa
