@@ -79,10 +79,11 @@
 
 (use-package lsp-pyright
   :ensure t
+  :config
+  (setq lsp-pyright-diagnostic-mode "workspace")
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
                           (lsp-deferred))))
-
 
 (use-package lsp-haskell
   :ensure t)
