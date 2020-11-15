@@ -11,6 +11,7 @@
 !.shell_env
 !.zprofile
 !.zshrc
+!.Renviron
 !.cache/neomutt/.keep
 
 !.github
