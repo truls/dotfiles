@@ -11,6 +11,8 @@ recentf
 session.*
 .emacs.desktop.lock
 bookmarks
+tramp
+.dap-breakpoints
 
 # Folders
 backups/
