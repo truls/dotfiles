@@ -1,16 +1,13 @@
 ;; org-ref-config.el -*- lexical-binding:t -*-
 
 (use-package helm-bibtex
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package bibtex-completion
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package org-ref
   :ensure t
-  :pin melpa
   :init
   ;; see org-ref for use of these variables
   (setq org-ref-bibliography-notes "~/Nextcloud/bibliography/notes.org"

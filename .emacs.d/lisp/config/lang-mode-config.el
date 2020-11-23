@@ -38,7 +38,6 @@
 ;;
 (use-package gitignore-mode
   :ensure t
-  :pin melpa
   :mode "\\.gitignore\\'")
 
 ;;
@@ -60,7 +59,6 @@
 (use-package ssass-mode
   ;; https://github.com/AdamNiederer/ssass-mode/pull/4 was
   ;; accepted. Waiting for a new release to be tagged.
-  :pin melpa
   :ensure t
   :mode ("\\.scss\\'" "\\.sass\\'"))
 
@@ -126,7 +124,20 @@
 
 (use-package groovy-mode
   :ensure t
-  :pin melpa
   :mode ("\\.groovy\\'" "\\.gradle\\'"))
+
+;;
+;; Ansible config
+;;
+(use-package ansible
+  :ensure t
+  :commands ansible)
+
+(use-package ansible-doc
+  :ensure t
+  :commands ansible-doc ansible-doc-mode)
+
+(use-package ansible-vault
+  :ensure t)
 
 (provide 'lang-mode-config)

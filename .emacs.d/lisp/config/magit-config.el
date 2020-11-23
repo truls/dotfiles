@@ -5,10 +5,6 @@
 
 (use-package magit
   :ensure t
-  ;; Stable melpa exhibits highlighting issues with Emacs 27
-  ;; https://github.com/magit/magit/issues/3986
-  ;; Unstable version of git-commit and with-editor was also installed
-  :pin melpa
   ;; magit-toplevel is listed here because it is the first function
   ;; invoked by the git-fast-sync function below
   :commands (magit-status magit-toplevel)
@@ -25,14 +21,12 @@
 
 ;; TODO: Figure out why these are broken
 ;; (use-package forge
-;;   :pin melpa
 ;;   :ensure t
 ;;   :after magit)
 
 ;; (use-package magithub
 ;;   :ensure t
 ;;   :after magit
-;;   :pin melpa
 ;;   :config
 ;;   (magithub-feature-autoinject t)
 ;;   (setq magithub-clone-default-directory "~/github"))

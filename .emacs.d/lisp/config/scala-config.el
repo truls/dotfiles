@@ -9,7 +9,6 @@
 ;; Enable scala-mode for highlighting, indentation and motion commands
 (use-package scala-mode
   :ensure t
-  :pin melpa
   :interpreter
   ("scala" . scala-mode))
 
@@ -17,7 +16,6 @@
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
   :ensure t
-  :pin melpa
   :commands sbt-start sbt-command
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
@@ -32,7 +30,6 @@
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals
   :ensure t
-  :pin melpa
   :config
   (setq lsp-metals-treeview-show-when-views-received t))
 

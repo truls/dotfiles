@@ -40,9 +40,9 @@
                          ("melpa"        . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/"))
       package-archive-priorities
-      '(("melpa-stable" . 10)
+      '(("melpa-stable" .  0)
         ("gnu"          .  5)
-        ("melpa"        .  0)))
+        ("melpa"        .  10)))
 
 (let ((lisp-dir "/home/truls/.emacs.d/lisp")
       (normal-top-level-add-subdirs-inode-list nil))
@@ -231,7 +231,6 @@
 ;;
 (use-package ivy
   :ensure t
-  :pin melpa
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
@@ -239,7 +238,6 @@
 
 (use-package swiper
   :ensure t
-  :pin melpa
   :defer t
   :config
   (defun my/swiper-symbol-at-point ()
@@ -260,7 +258,6 @@
 
 (use-package counsel
   :ensure t
-  :pin melpa
   :bind (("C-s" . swiper)
          ("C-S-s" . my/swiper-symbol-at-point)
          ("C-c C-r" . ivy-resume)
@@ -331,7 +328,6 @@
   :ensure t
   :config
   (use-package yasnippet-snippets
-    :pin melpa
     :ensure t)
   (yas-reload-all)
   (when yas-minor-mode
@@ -392,7 +388,6 @@
 
 (use-package projectile
   :ensure t
-  :pin melpa-stable
   :diminish
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
@@ -402,20 +397,17 @@
 
 (use-package counsel-projectile
   :ensure t
-  :pin melpa
   :config
   (counsel-projectile-mode))
 
 (use-package helm
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package helm-projectile
   :ensure t)
 
 (use-package helm-rg
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package helm-ag
   :ensure t)
@@ -551,7 +543,6 @@
 ;;
 (use-package gitignore-templates
   :ensure t
-  :pin melpa
   :commands (gitignore-templates-insert
              gitignore-templates-new-file))
 
@@ -563,6 +554,20 @@
   :diminish
   :config
   (editorconfig-mode 1))
+
+;;
+;; dash-docs
+;;
+(use-package dash-docs
+  :ensure t
+  :init
+  (setq dash-docs-docsets-path (expand-file-name "~/.config/docsets")))
+
+;;
+;; counsel-dash
+;;
+(use-package counsel-dash
+  :ensure t)
 
 ;;
 ;; Misc functions

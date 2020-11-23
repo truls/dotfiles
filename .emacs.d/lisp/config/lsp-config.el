@@ -4,15 +4,10 @@
 ;; LSP configuration. Both lsp-mode and language servers
 ;;
 
-;; TODO: Do we still need these?
-(use-package dash :pin melpa)
-(use-package dash-functional :pin melpa)
-
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-mode
   :ensure t
-  :pin melpa
   :commands (lsp lsp-deferred)
   :after yasnippet
   :hook ((lsp-mode        . lsp-enable-which-key-integration)
@@ -43,7 +38,6 @@
 
 (use-package lsp-ui
   :ensure t
-  :pin melpa
   :config
   (setq lsp-ui-sideline-show-code-actions nil)
   (setq lsp-ui-doc-position 'top)
@@ -54,7 +48,6 @@
 
 (use-package lsp-treemacs
   :ensure t
-  :pin melpa
   :commands lsp-treemacs-errors-list)
 
 (use-package lsp-ivy
@@ -62,12 +55,10 @@
   :commands lsp-ivy-workspace-symbol)
 
 (use-package origami
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package lsp-origami
   :ensure t
-  :pin melpa
   :after origami
   :config
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
@@ -78,7 +69,8 @@
   :after lsp-mode)
 
 (use-package lsp-pyright
-  :ensure t
+  :load-path "/home/truls/foo/lsp-pyright"
+  ;;:ensure t
   :config
   (setq lsp-pyright-diagnostic-mode "workspace")
   :hook (python-mode . (lambda ()
@@ -92,19 +84,16 @@
 (use-package posframe
   ;; Posframe is a pop-up tool that must be manually installed for
   ;; dap-mode
-  :ensure t
-  :pin melpa)
+  :ensure t)
 
 (use-package dap-mode
   :ensure t
-  :pin melpa
   :hook
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode))
 
 
 ;; (use-package lsp-latex
-;;   :pin melpa
 ;;   :ensure t
 ;;   :config
 ;;   (add-hook 'LaTeX-mode-hook 'lsp-deferred)
