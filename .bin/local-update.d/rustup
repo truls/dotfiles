@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+echo "Installing/updating rust"
+
+get_rust() {
+    which rustup 2> /dev/null || true
+}
+
+export RUSTUP_HOME="$HOME/.local/lib/rustup"
+export CARGO_HOME="$HOME/.local/lib/cargo"
+
+mkdir -p "$RUSTUP_HOME"
+mkdir -p "$CARGO_HOME"
+
+if [ ! -x "`get_rust`"  ]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source "$CARGO_HOME/env"
+fi
+
+if [ ! -x "`get_rust`" ]; then
+    echo "Unable to install/execute rustup"
+    exit 1
+fi
+
+rustup update

@@ -1,4 +1,3 @@
-
 source $HOME/.shell_env
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/home/truls/.local/lib/cargo/bin:$PATH"
