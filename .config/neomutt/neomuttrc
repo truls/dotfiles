@@ -397,6 +397,9 @@ macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>' #
 #macro index M "T.*\n;WN" "Mark all messages as read"
 macro index <Esc>m "T~N<enter>;WNT~O<enter>;WO\CT~A<enter>" "mark all messages read"
 
+# Automatically mark messages as read when leaving the pager view
+macro pager q "<exit><sync-mailbox>"
+
 # Addressbook
 set alias_file=~/.mutt-alias
 #source ~/.mutt-alias
