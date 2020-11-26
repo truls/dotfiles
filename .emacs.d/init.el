@@ -570,6 +570,15 @@
   :ensure t)
 
 ;;
+;; go-mode
+;;
+(use-package go-mode
+  :ensure t
+  :interpreter
+  ("go" . go-mode))
+
+
+;;
 ;; Misc functions
 ;;
 (defun my/recompile-all-packages ()

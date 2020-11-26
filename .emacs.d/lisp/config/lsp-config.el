@@ -18,7 +18,8 @@
          (haskell-mode    . lsp-deferred)
          (c-mode-common   . lsp-deferred)
          (python-mode     . lsp-deferred)
-         (scala-mode      . lsp-deferred))
+         (scala-mode      . lsp-deferred)
+         (go-mode         . lsp-deferred))
 
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
