@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: column
+# key: col
+# --
+\begin{column}{${1:0.5}\textwidth}
+  $0
+\end{column}
