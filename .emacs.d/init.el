@@ -128,10 +128,11 @@
 (global-set-key (kbd "C-x C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c ;") 'resize-window)
 ;; An alternative is the command fixup-whitepsace
-(global-set-key (kbd "M-<backspace>") 'delete-indentation)
+
+(global-set-key (kbd "M-DEL") 'delete-indentation)
+
 ;; Dont minimize!
 (when window-system (global-unset-key "\C-z"))
-
 
 ;;
 ;; Personal info
@@ -630,8 +631,7 @@ With argument, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
-(global-set-key (read-kbd-macro "<M-DEL>") 'backward-delete-word)
-(global-set-key (read-kbd-macro "<C-Backspace>") 'backward-delete-word)
+(global-set-key (read-kbd-macro "C-<Backspace>") 'backward-delete-word)
 
 ;;
 ;; Check if we are currently inside a comment (probably a hack)
