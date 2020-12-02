@@ -243,12 +243,7 @@
   :config
   (defun my/swiper-symbol-at-point ()
     (interactive)
-    (let ((bounds (find-tag-default-bounds)))
-      (cond
-       (bounds
-        (swiper (buffer-substring-no-properties
-                 (car bounds) (cdr bounds))))
-       (t (user-error "No symbol at point"))))))
+    (my/call-with-symbol-at-point #'swiper)))
 
 ;; Install smex to show the most used commands first in M-x list
 (use-package smex
@@ -405,6 +400,8 @@
   :ensure t)
 
 (use-package helm-projectile
+  :bind (("C-\"" . helm-projectile-ag)
+         ("C-'" . my/helm-projectile-ag-thing-at-point))
   :ensure t)
 
 (use-package helm-rg
@@ -642,6 +639,26 @@ With argument, do this that many times."
     (save-excursion
       (comment-only-p (comment-search-backward) p))))
 
+
+(defun my/call-with-symbol-at-point (f)
+  "Call F with symbol at point as an argument."
+  (unless (functionp f)
+    (error "Argument must be a function"))
+  ;; Maybe cleaner to just use thing-at-point here
+  (let ((bounds (find-tag-default-bounds)))
+    (cond
+     (bounds
+      (apply f `(,(buffer-substring-no-properties
+                   (car bounds) (cdr bounds)))))
+     (t (user-error "No symbol at point")))))
+
+
+(defun my/helm-projectile-ag-thing-at-point ()
+  "Call `helm-projectile-ag' using symbol at point as default
+input."
+  (interactive)
+  (let ((helm-ag-insert-at-point 'symbol))
+    (helm-projectile-ag)))
 
 ;;
 ;; Config includes
