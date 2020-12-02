@@ -13,6 +13,7 @@ session.*
 bookmarks
 tramp
 .dap-breakpoints
+projectile.cache
 
 # Folders
 backups/
