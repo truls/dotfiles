@@ -1,0 +1,18 @@
+#!/bin/bash
+
+fail () {
+    echo "Both .git and .git.disabled cannot co-exist"
+    exit 1
+}
+
+if [ -e "$HOME/.git" ]; then
+    if [ -e "$HOME/.git.disabled" ]; then
+        fail
+    fi
+    mv "$HOME/.git" "$HOME/.git.disabled"
+elif [ -e "$HOME/.git.disabled" ]; then
+    if [ -e "$HOME/.git" ]; then
+        fail
+    fi
+    mv "$HOME/.git.disabled" "$HOME/.git"
+fi
