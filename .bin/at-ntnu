@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Script intended for use with the Match exec construct in an OpenSSH
+# client config file. The script takes a hostname as argument and if
+# the domain part of that hostname is ntnu.no, it will check if an
+# internal NTNU host is reachable. This is useful for conditionally
+# connecting through a ProxyCommand is needed.
+#
+# Example openssh config integration:
+#
+# Match exec "at-ntnu %h"
+#      ProxyCommand ssh %r@<proxy-host> nc %h 22
+#
+#
+
+
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+   echo "Usage: at-ntnu <hostname>"
+   exit 1
+fi
+
+hostname="$1"
+
+case "$hostname" in
+    *login.ansatt.ntnu.no)
+        exit 1
+        ;;
+    *ntnu.no)
+    # Check if an internal host is reachable
+        ping -c1 -w1 -q orkanger.idi.ntnu.no || exit 0
+        ;;
+    *)
+        exit 1
+        ;;
+esac

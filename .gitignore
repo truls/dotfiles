@@ -27,9 +27,12 @@
 !.local/share/texmf
 !.local/share/applications
 
-
 !.stack
 !.config
 .config/*
 !.config/config-deps
 !.config/neomutt
+
+!.ssh
+.ssh/*
+!.ssh/config
