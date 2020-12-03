@@ -30,6 +30,7 @@ case "$hostname" in
     *ntnu.no)
     # Check if an internal host is reachable
         ping -c1 -w1 -q orkanger.idi.ntnu.no || exit 0
+        exit 1
         ;;
     *)
         exit 1
