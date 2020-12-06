@@ -2,9 +2,6 @@
 
 set -euo pipefail
 
-# This is not currently used
-exit 0
-
 pushd ~/.config/config-deps/emacs > /dev/null
 
 if `git pull | grep -q "is up to date"`; then
