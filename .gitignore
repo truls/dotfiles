@@ -28,6 +28,8 @@
 !.local/share/applications
 
 !.stack
+.stack/*
+!.stack/config.yaml
 !.config
 .config/*
 !.config/config-deps
