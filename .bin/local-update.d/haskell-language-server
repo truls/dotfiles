@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+prev_version="$1"
+cur_version="`git-most-recent-tag https://github.com/haskell/haskell-language-server`"
+
+if [ "$cur_version" != "$prev_version" ]; then
+    echo "Updating haskell-language-server from $prev_version to $cur_version" > /dev/stderr
+
+    dl_dest="`mktemp`"
+    wget "https://github.com/haskell/haskell-language-server/releases/download/$cur_version/haskell-language-server-Linux-$cur_version.tar.gz" -O "$dl_dest"
+    tar xzf "$dl_dest" -C "$UPDATE_BIN_TARGET"
+    chmod +x "$UPDATE_BIN_TARGET"/haskell-language-server-*
+    rm "$dl_dest"
+else
+    echo "Most recent version $cur_version of haskell-langaue_server isntalled" > /dev/stderr
+fi
+
+echo "$cur_version"
