@@ -4,40 +4,20 @@
 
 set -euo pipefail
 
-TARGET=/home/truls/.bin
+BIN=${UPDATE_BIN_TARGET}/duplicacy
 
-BIN=${TARGET}/duplicacy
+cur_ver="$1"
+new_ver="`git-most-recent-tag https://github.com/gilbertchen/duplicacy`"
 
-cur=""
-    if [ -e "$BIN" ]; then
-        cur="`readlink $BIN`"
-    fi
+new_bin="duplicacy_linux_x64_$new_ver"
 
-
-most_recent="`git ls-remote https://github.com/gilbertchen/duplicacy | grep tags | awk '{print $2}' | awk -F'/' '{print $3}' | sort --version-sort | tail -1 | tr -d 'v'`"
-
-new_bin="duplicacy_linux_x64_$most_recent"
-
-cur_bin="`basename "$cur"`"
-
-if [ "$cur_bin" != "$new_bin" ]; then
-    if [ -n "$cur" ]; then
-        cur_ver="`echo $cur_bin | awk -F'_' '{print $4}'`"
-        echo "New version available. Upgrading from $cur_ver to $most_recent"
-    else
-        echo "Duplicacy not installed. Installing"
-    fi
-    wget "https://github.com/gilbertchen/duplicacy/releases/download/v$most_recent/$new_bin" -O "$TARGET/$new_bin"
+if [ "$cur_ver" != "$new_ver" ]; then
+    echo "New version available. Upgrading from $cur_ver to $new_ver" > /dev/null
+    wget "https://github.com/gilbertchen/duplicacy/releases/download/v$new_ver/$new_bin" -O "$BIN"
+    chmod +x "$BIN"
 else
-    echo "Most recent version $most_recent installed. Not updating"
-    exit 0
+    echo "Most recent version $new_ver installed. Not updating" > /dev/null
 fi
 
-chmod +x "$TARGET/$new_bin"
-
-if [ -n "$cur" ]; then
-    rm "$BIN"
-    rm "$TARGET/$cur_bin"
-fi
-
-ln -s "$TARGET/$new_bin" "$BIN"
+echo "$new_ver"
+exit 0

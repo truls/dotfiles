@@ -2,10 +2,83 @@
 
 set -euo pipefail
 
+# Update script environments
+export UPDATE_BIN_TARGET=/home/truls/.bin
+
+
+
 DIR="/home/truls/.bin/local-update.d"
+STATE_DIR="/home/truls/.bin/local-update.state"
+
+mkdir -p "$STATE_DIR"
+
+cmd=""
+verbose=0
+
+while [ $# -gt 0 ]; do
+    case $1 in
+        "-h")
+            echo "Usage: local-update <cmd> [-v] [-h]"
+            exit 0
+            ;;
+        "-v")
+            verbose=1
+            shift
+            ;;
+        *)
+            cmd="$1"
+            shift
+            ;;
+    esac
+done
+
+export UPDATE_VERBOSE="$verbose"
+
+# Utility functions
+
+get_state_file () {
+    echo "$STATE_DIR/`basename $1`"
+}
+
+get_state () {
+    s="`get_state_file $1`"
+    if [ -e "$s" ]; then
+        cat "$s" | head -n 1
+    else
+        echo "nostate"
+    fi
+}
+
+put_state () {
+    s="`get_state_file $1`"
+    echo "$2" > "$s"
+}
+
+run_cmd () {
+    cmd="$1"
+    echo "Executing $cmd"
+    state="`get_state $cmd`"
+    res="`$cmd "$state" || echo "failed"`"
+    if [ "$res" != "failed" ]; then
+       put_state "$cmd" "$res"
+    else
+        echo "Script $cmd exited with failure status"
+        exit 1
+    fi
+    #echo ""
+}
+
+if [ -n "$cmd" ]; then
+    dest="$DIR/$cmd"
+    if [ -x "$dest" ]; then
+        echo "Running $dest"
+        run_cmd "$dest"
+    else
+        echo "Requested to run $cmd, but $dest is not an executable"
+        exit 1
+    fi
+fi
 
 find "$DIR" -type f -executable -print | while read f; do
-     echo "Executing $f"
-     $f
-     echo ""
+    run_cmd "$f"
 done
