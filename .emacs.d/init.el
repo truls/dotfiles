@@ -110,7 +110,7 @@
   (add-hook 'prog-mode-hook #'fira-code-mode))
 
 (setq default-frame-alist '((font-backend . "xft")
-                            (font . "Fira code-10")
+                            (font . "Fira emacs-10")
                             (cursor-color . "white")
                             (tool-bar-lines . 0)
                             (menu-bar-lines . 0)))
