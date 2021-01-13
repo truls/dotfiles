@@ -82,6 +82,16 @@
 (use-package lsp-haskell
   :ensure t)
 
+(use-package lsp-latex
+  :ensure t
+  :init
+  (setq lsp-latex-build-on-save t
+        lsp-latex-build-output-directory "output"
+        lsp-latex-lint-on-save t
+        lsp-latex-build-args '("-pdf" "-interaction=nonstopmode"
+                               "-synctex=1" "-outdir=output"
+                               "-shell-escape" "%f")))
+
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
   ;; Posframe is a pop-up tool that must be manually installed for
