@@ -98,7 +98,32 @@
 
 (use-package ess
   :ensure t
-  :init (require 'ess-site))
+  ;; TODO: We just want lazy loading here. Add other extensions also
+  :mode ("\\.R\\'" . R-mode)
+  :init
+  (require 'ess-site)
+  (setq ess-use-flymake nil))
+
+(use-package ess-smart-equals
+  :ensure t
+  :init   (setq ess-smart-equals-extra-ops '(brace paren))
+  :after  (:any ess-r-mode inferior-ess-r-mode ess-r-transcript-mode)
+  :config (ess-smart-equals-activate))
+
+;;
+;; Polymode for R
+;;
+(use-package poly-R
+  :ensure t
+  :mode
+  ("\\.Snw\\'" . poly-noweb+r-mode)
+  ("\\.[rR]nw\\'" . poly-noweb+r-mode)
+  ("\\.[rR]md\\'" . poly-markdown+r-mode)
+  ("\\.rapport\\'" . poly-rapport-mode)
+  ("\\.[rR]html\\'" . poly-html+r-mode)
+  ("\\.[rR]brew\\'" . poly-brew+r-mode)
+  ("\\.[Rr]cpp\\'" . poly-r+c++-mode)
+  ("\\.cpp[rR]\\'" . poly-c++r-mode))
 
 (use-package yaml-mode
   :commands yaml-mode
@@ -116,11 +141,6 @@
 
 (use-package julia-mode
   :ensure t)
-
-(use-package ess
-  :disabled t
-  :config
-  (ess-toggle-underscore nil))
 
 (use-package groovy-mode
   :ensure t
