@@ -163,7 +163,8 @@
   (yas-reload-all)
   (when yas-minor-mode
     (ivy-yasnippet))
-  :hook (elisp-mode . yas-minor-mode)
+  :hook ((elisp-mode . yas-minor-mode)
+         (R-mode     . yas-minor-mode))
   :commands (yas-minior-mode yas-global-mode yas-expand-snippet)
   :diminish yas-minor-mode)
 
