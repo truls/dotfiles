@@ -147,6 +147,11 @@
 (load custom-file)
 
 ;;
+;; Don't display comp warnings
+;;
+(setq warning-suppress-types '((comp) (:warning)))
+
+;;
 ;; Fill mode config
 ;;
 (defun disable-comment-only-fill ()
