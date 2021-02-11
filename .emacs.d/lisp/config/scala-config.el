@@ -29,10 +29,7 @@
 
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals
-  :ensure t
-  :config
-  (setq lsp-metals-treeview-show-when-views-received t))
-
+  :ensure t)
 
 
 (provide 'scala-config)
