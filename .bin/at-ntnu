@@ -24,7 +24,7 @@ fi
 hostname="$1"
 
 case "$hostname" in
-    *login.ansatt.ntnu.no)
+    login.ansatt.ntnu.no)
         exit 1
         ;;
     *ntnu.no)
