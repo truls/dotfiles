@@ -255,6 +255,10 @@ Clock   In/out^
   ("q" org-agenda-clock-cancel)
   ("g" org-agenda-clock-goto))))
 
+(use-package org-pomodoro
+  :ensure t
+  :commands org-pomodoro)
+
 (defun org-config-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
   (let (should-skip-entry)
