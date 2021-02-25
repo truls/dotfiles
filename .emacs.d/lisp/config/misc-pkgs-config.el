@@ -36,10 +36,6 @@
   :config
   (toggle-theme-restore-theme))
 
-(use-package auto-fill-mode
-  :no-require t
-  :diminish)
-
 (use-package google-this
   :ensure t
   :diminish
@@ -67,6 +63,7 @@
 ;;
 (use-package ivy
   :ensure t
+  :delight
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
@@ -186,7 +183,7 @@
 (use-package seq :ensure t)
 (use-package whitespace
   :ensure t
-  :diminish
+  :delight global-whitespace-mode
   :after seq
   :preface
   ;;  (Inspired by
@@ -208,7 +205,6 @@
         whitespace-style (quote
                           (trailing space-before-tab newline empty tabs face newline)))
   (global-whitespace-mode))
-
 
 
 ;; (use-package company-bibtex
@@ -283,9 +279,6 @@
   ;; Run my-install.sh script in language-servers/languagetool to
   ;; install languagetool
   (setq langtool-language-tool-jar (expand-file-name "language-servers/languagetool/LanguageTool-4.4-stable/languagetool-commandline.jar" user-emacs-directory)))
-
-(use-package visual-fill-column
-  :ensure t)
 
 
 (use-package ace-window
@@ -424,5 +417,7 @@
 ;;
 (use-package vagrant-tramp
   :ensure t)
+
+
 
 (provide 'misc-pkgs-config)

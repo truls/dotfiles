@@ -151,24 +151,6 @@
 ;;
 (setq warning-suppress-types '((comp) (:warning)))
 
-;;
-;; Fill mode config
-;;
-(defun disable-comment-only-fill ()
-  (setq-local comment-auto-fill-only-comments nil))
-
-(defun text-auto-fill ()
-  (setq-local comment-auto-fill-only-comments nil)
-  (auto-fill-mode 1))
-
-(defun comment-auto-fill ()
-  (setq-local comment-auto-fill-only-comments t)
-  (auto-fill-mode 1))
-
-(add-hook 'text-mode-hook 'text-auto-fill)
-(add-hook 'prog-mode-hook 'comment-auto-fill)
-
-
 
 ;;
 ;; Misc functions
@@ -257,6 +239,7 @@ input."
 ;;
 ;; Config includes
 ;;
+(require 'column-filling-config)
 (require 'misc-pkgs-config)
 (require 'lsp-config)
 (require 'org-config)

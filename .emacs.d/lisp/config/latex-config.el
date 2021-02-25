@@ -25,8 +25,6 @@
   ;; (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
   ;; (defvar reftex-plug-into-AUCTeX t)
 
-  (add-hook 'LaTeX-mode-hook #'text-auto-fill)
-
   ;; Preview mode settings
   (setq preview-auto-cache-preamble t
         preview-scale-function 1.2)
