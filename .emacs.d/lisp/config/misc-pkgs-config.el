@@ -419,4 +419,10 @@
   :commands
   writeroom-mode)
 
+;;
+;; vagrant-tramp
+;;
+(use-package vagrant-tramp
+  :ensure t)
+
 (provide 'misc-pkgs-config)
