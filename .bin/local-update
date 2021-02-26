@@ -73,6 +73,7 @@ if [ -n "$cmd" ]; then
     if [ -x "$dest" ]; then
         echo "Running $dest"
         run_cmd "$dest"
+        exit 0
     else
         echo "Requested to run $cmd, but $dest is not an executable"
         exit 1
