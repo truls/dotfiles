@@ -8,7 +8,7 @@
  '(org-agenda-files
    '("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org"))
  '(package-selected-packages
-   '(poly-R org-pomodoro which-key writeroom-mode lsp-metals ess-smart-underscore ess-smart-equals latex-pretty-symbols lsp-latex go-mode julia-mode ansible-vault ansible-vailt ansible-doc ansible counsel-dash dash-docs groovy-mode sbt-mode scala-mode dap-mode posframe editorconfig ansi gitignore-templates gitignore-mode git-ignore writegood-mode auctex-latexmk lsp-pyright lsp-origami origami yasnippet-snippets helm-ag excorporate treemacs lsp-ivy lsp-treemacs company-capf projectile lsp-mode yasnippet counsel swiper ivy undo-tree immaterial-theme diff-hl hl-mode nix-mode nlinum magit gcmh easy-escape company-solidity expand-region expand-region\.el company-bibtex gnu-elpa-keyring-update lsp-python-ms json-navigator package-lint aio ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref hydra znc yaml-mode web-mode visual-regexp-steroids visual-fill-column use-package-hydra typescript-mode solidity-mode solidity-flycheck smex smart-shift org-gcal org-bullets mutt-mode magic-latex-buffer lsp-ui lsp-haskell langtool js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile google-this flyspell-correct-popup ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
+   '(delight window-margin-mode window-margin vagrant-tramp poly-R org-pomodoro which-key writeroom-mode lsp-metals ess-smart-underscore ess-smart-equals latex-pretty-symbols lsp-latex go-mode julia-mode ansible-vault ansible-vailt ansible-doc ansible counsel-dash dash-docs groovy-mode sbt-mode scala-mode dap-mode posframe editorconfig ansi gitignore-templates gitignore-mode git-ignore auctex-latexmk lsp-pyright lsp-origami origami yasnippet-snippets treemacs lsp-ivy lsp-treemacs company-capf projectile lsp-mode counsel swiper ivy undo-tree diff-hl hl-mode nix-mode nlinum magit gcmh easy-escape company-solidity expand-region\.el company-bibtex gnu-elpa-keyring-update lsp-python-ms package-lint aio ace-window switch-window dockerfile-mode dockerfile ssass-mode forge org-ref znc smart-shift org-gcal mutt-mode magic-latex-buffer lsp-ui lsp-haskell js2-mode ivy-yasnippet ivy-xref highlight-indentation helm-rg helm-projectile ess diminish counsel-projectile color-theme-modern ccls auto-package-update auto-compile auctex))
  '(safe-local-variable-values
    '((blacken-skip-string-normalization . t)
      (blacken-allow-py36 . t)
@@ -44,11 +44,6 @@
            (set
             (make-local-variable 'package-build-recipes-dir)
             default-directory))
-     (eval progn
-           (visual-line-mode 1)
-           (visual-fill-column-mode 1)
-           (auto-fill-mode -1)
-           (nlinum-mode -1))
      (lsp-python-ms-extra-paths "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths vector "/home/truls/uni/teaching/algdat-tdt4120/inginious-installed")
      (lsp-python-ms-extra-paths quote
