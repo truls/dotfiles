@@ -1,4 +1,4 @@
-duplicacy*
-texlab*
-haskell-language-server-*
-local-update.state/
+/duplicacy*
+/texlab
+/haskell-language-server-*
+/local-update.state/
