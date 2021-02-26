@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-pushd ~/.config/config-deps/digestif
-git pull
-popd
-
