@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+project_name="texlab"
+github_url="latex-lsp/texlab"
+
+prev_version="$1"
+cur_version="`git-most-recent-tag https://github.com/$github_url`"
+
+if [ "$cur_version" != "$prev_version" ]; then
+    echo "Updating $project_name from $prev_version to $cur_version" > /dev/stderr
+
+    dl_dest="`mktemp`"
+    wget "https://github.com/$github_url/releases/download/v$cur_version/texlab-x86_64-linux.tar.gz" -O "$dl_dest"
+    tar xzf "$dl_dest" -C "$UPDATE_BIN_TARGET"
+    chmod +x "$UPDATE_BIN_TARGET/$project_name"
+    rm "$dl_dest"
+else
+    echo "Most recent version $cur_version of $project_name isntalled" > /dev/stderr
+fi
+
+echo "$cur_version"
