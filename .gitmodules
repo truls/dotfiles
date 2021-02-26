@@ -1,6 +1,3 @@
-[submodule ".emacs.d/language-servers/haskell-ide-engine"]
-	path = .emacs.d/language-servers/haskell-ide-engine
-	url = https://github.com/haskell/haskell-ide-engine
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
