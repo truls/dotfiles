@@ -418,6 +418,12 @@
 (use-package vagrant-tramp
   :ensure t)
 
-
+;;
+;; toggle-font
+;;
+(use-package toggle-font
+  :load-path "~/.emacs.d/lisp/toggle-font"
+  :init
+  (setq toggle-font-alternative-family "DejaVu Sans"))
 
 (provide 'misc-pkgs-config)

@@ -30,7 +30,8 @@
         preview-scale-function 1.2)
 
   ;; Use yasnippet
-  (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on))
+  (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on)
+  (add-hook 'LaTeX-mode-hook #'toggle-font-turn-on))
 
 
 (use-package magic-latex-buffer
