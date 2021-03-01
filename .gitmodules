@@ -34,3 +34,6 @@
 [submodule "toggle-theme"]
 	path = .emacs.d/lisp/toggle-theme
 	url = git@github.com:truls/toggle-theme
+[submodule ".emacs.d/lisp/toggle-font"]
+	path = .emacs.d/lisp/toggle-font
+	url = git@github.com:truls/toggle-font.git
