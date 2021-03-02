@@ -426,4 +426,12 @@
   :init
   (setq toggle-font-alternative-family "DejaVu Sans"))
 
+;;
+;; writegood-mode
+;;
+(use-package writegood-mode
+  :ensure t
+  :commands
+  writegood-mode)
+
 (provide 'misc-pkgs-config)
