@@ -15,6 +15,7 @@
 /.dap-breakpoints
 /projectile.cache
 /projects
+/.org-generic-id-locations
 
 # Folders
 /backups/
