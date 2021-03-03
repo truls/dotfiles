@@ -91,9 +91,8 @@
 (use-package markdown-mode
   :ensure t
   :mode ("\\.md\\'" "\\.mrk\\'")
-  :config
-  (setq markdown-command "pandoc")
-  (add-hook 'markdown-mode-hook 'text-auto-fill))
+  :init
+  (setq markdown-command "pandoc"))
 
 
 (use-package ess

@@ -16,7 +16,7 @@
 
 (use-package visual-fill-column
   :ensure t
-  :hook (TeX-mode . visual-fill-column-mode)
+  :hook ((TeX-mode markdown-mode) . visual-fill-column-mode)
   :init
   (setq visual-fill-column-width 80)
   :config
@@ -25,7 +25,9 @@
 (use-package visual-line-mode
   :no-require t
   :delight
-  :hook TeX-mode)
+  :hook
+  TeX-mode
+  markdown-mode)
 
 
 (provide 'column-filling-config)
