@@ -28,8 +28,8 @@ case "$hostname" in
         exit 1
         ;;
     *ntnu.no)
-    # Check if an internal host is reachable
-        ping -c1 -w1 -q orkanger.idi.ntnu.no || exit 0
+        # Check if the target host is reachable
+        ping -c1 -w1 -q "$hostname" || exit 0
         exit 1
         ;;
     *)
