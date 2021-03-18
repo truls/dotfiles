@@ -26,6 +26,9 @@
 .local/share/*
 !.local/share/texmf
 !.local/share/applications
+!.local/lib
+.local/lib/*
+!.local/lib/asdf
 
 !.stack
 .stack/*

@@ -37,3 +37,6 @@
 [submodule ".emacs.d/lisp/toggle-font"]
 	path = .emacs.d/lisp/toggle-font
 	url = git@github.com:truls/toggle-font.git
+[submodule ".local/lib/asdf"]
+	path = .local/lib/asdf
+	url = https://github.com/asdf-vm/asdf.git
