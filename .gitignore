@@ -37,6 +37,7 @@
 .config/*
 !.config/config-deps
 !.config/neomutt
+!.config/asdf
 
 !.ssh
 .ssh/*
