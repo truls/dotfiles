@@ -101,7 +101,10 @@
   :mode ("\\.R\\'" . R-mode)
   :init
   (require 'ess-site)
-  (setq ess-use-flymake nil))
+  (setq ess-use-flymake nil
+        ;; Disable lsp-ui sideline diagnostics with R as the R
+        ;; language server is a bit quirky
+        lsp-ui-sideline-show-diagnostics nil))
 
 (use-package ess-smart-equals
   :ensure t
