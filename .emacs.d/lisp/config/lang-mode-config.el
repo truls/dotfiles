@@ -105,7 +105,7 @@
 
 (use-package ess-smart-equals
   :ensure t
-  :init   (setq ess-smart-equals-extra-ops '(brace paren))
+  :init   (setq ess-smart-equals-extra-ops '())
   :after  (:any ess-r-mode inferior-ess-r-mode ess-r-transcript-mode)
   :config (ess-smart-equals-activate))
 
