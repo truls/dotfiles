@@ -127,9 +127,12 @@
 ;;
 (global-set-key (kbd "C-x C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c ;") 'resize-window)
-;; An alternative is the command fixup-whitepsace
 
+;; An alternative is the command fixup-whitepsace
 (global-set-key (kbd "M-DEL") 'delete-indentation)
+
+;; Bind `find-file-other-window' to something more user-firendly
+(global-set-key (kbd "C-x C-g") 'find-file-other-window)
 
 ;; Dont minimize!
 (when window-system (global-unset-key "\C-z"))
