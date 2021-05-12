@@ -40,3 +40,6 @@
 [submodule ".local/lib/asdf"]
 	path = .local/lib/asdf
 	url = https://github.com/asdf-vm/asdf.git
+[submodule ".config/config-deps/pyenv"]
+	path = .config/config-deps/pyenv
+	url = https://github.com/pyenv/pyenv.git
