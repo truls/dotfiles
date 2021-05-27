@@ -1,4 +1,5 @@
 #!/bin/sh
+# meta: nostate
 
 set -euo pipefail
 

@@ -56,14 +56,22 @@ put_state () {
 
 run_cmd () {
     cmd="$1"
+    if [ ! -x "$cmd" ]; then
+        return
+    fi
     echo "Executing $cmd"
-    state="`get_state $cmd`"
-    res="`$cmd "$state" || echo "failed"`"
-    if [ "$res" != "failed" ]; then
-       put_state "$cmd" "$res"
+    if grep -q "meta: nostate" "$1"; then
+        # Don't use state for this script
+        $cmd || (echo "Script $cmd exited with failure status"; exit 1)
     else
-        echo "Script $cmd exited with failure status"
-        exit 1
+        state="`get_state $cmd`"
+        res="`$cmd "$state" || echo "failed"`"
+        if [ "$res" != "failed" ]; then
+            put_state "$cmd" "$res"
+        else
+            echo "Script $cmd exited with failure status"
+            exit 1
+        fi
     fi
     #echo ""
 }

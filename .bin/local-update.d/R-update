@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
+# meta: nostate
 
 update.packages(
     oldPkgs = as.data.frame(installed.packages(.libPaths()[1]))$Package,

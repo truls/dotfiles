@@ -1,4 +1,5 @@
 #!/bin/sh
+# meta: nostate
 
 count="`pip3 list --user --outdated --format=freeze | wc -l`"
 
