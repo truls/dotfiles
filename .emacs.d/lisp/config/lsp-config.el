@@ -12,6 +12,7 @@
   :after yasnippet
   :hook ((lsp-mode        . lsp-enable-which-key-integration)
          (lsp-mode        . lsp-lens-mode)
+         (lsp-mode        . yas-minor-mode-on)
          (LaTeX-mode      . lsp-deferred)
          (js2-mode        . lsp-deferred)
          (typescript-mode . lsp-deferred)
@@ -30,6 +31,10 @@
   (setq lsp-file-watch-threshold 40000)
   ;; Recommended by lsp performance guidelines
   (setq read-process-output-max (* 1024 1024))
+
+  ;; Look and feel configuration
+  (setq lsp-enable-on-type-formatting nil)
+
   (add-hook 'lsp-mode-hook
             (lambda ()
               (if (member major-mode '("c++-mode" "c-mode"))
