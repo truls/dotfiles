@@ -94,6 +94,7 @@
   (org-level-5        ((t (:inherit outline-5 :height 1.1))))
   (org-todo           ((t (:foreground "Pink" :weight bold))))
   (org-tag            ((t (:weight bold :height 0.5)))))
+  ;;(org-default        ((t (:family ")
 
 (use-package org-agenda
   :config

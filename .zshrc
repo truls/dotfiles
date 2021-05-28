@@ -47,12 +47,6 @@ ZSH_THEME="gentoo"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Custom ASDF dir
-export ASDF_DIR=~/.local/lib/asdf
-export ASDF_CONFIG_FILE=~/.config/asdf/config
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=~/.config/asdf/tool-versions
-export ASDF_DATA_DIR=~/.cache/asdf
-
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
