@@ -243,8 +243,8 @@ input."
 ;; Config includes
 ;;
 (require 'column-filling-config)
-(require 'misc-pkgs-config)
 (require 'lsp-config)
+(require 'misc-pkgs-config)
 (require 'org-config)
 (require 'org-ref-config)
 (require 'erc-config)
