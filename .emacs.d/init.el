@@ -102,7 +102,7 @@
 (pending-delete-mode 1)
 
 ;; Set default font
-(unless (file-exists-p "~/.fonts/FiraEmacs-Regular.otf")
+(unless (file-exists-p "~/.fonts/FiraEmacs-Regular.ttf")
  (user-error "Modified Fira fonts not found. Run make in the fira-code folder"))
 (use-package fira-code
   :load-path "~/.emacs.d/lisp/fira-code"
@@ -110,7 +110,7 @@
   (add-hook 'prog-mode-hook #'fira-code-mode))
 
 (setq default-frame-alist '((font-backend . "xft")
-                            (font . "Fira emacs-10")
+                            (font . "Fira Emacs-10")
                             (cursor-color . "white")
                             (tool-bar-lines . 0)
                             (menu-bar-lines . 0)))
