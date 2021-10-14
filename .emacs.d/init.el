@@ -12,6 +12,9 @@
 ;;
 ;(setq gc-cons-threshold 20000000)
 
+;; Enable debug-on-error during init
+(setq debug-on-error t)
+
 (defvar file-name-handler-alist-old file-name-handler-alist)
 
 (setq package-enable-at-startup nil
@@ -256,6 +259,9 @@ input."
 (require 'flyspell-config)
 (require 'lang-mode-config)
 (require 'scala-config)
+
+;; Disable debug-on-error after init
+(setq debug-on-error nil)
 
 (provide 'init)
 ;;; init.el ends here
