@@ -59,7 +59,7 @@
              (erc-completion-mode 1))))
 
 (use-package znc
-  :ensure t
+  :straight t
   :after erc
   :commands (znc-all znc-erc)
   :init

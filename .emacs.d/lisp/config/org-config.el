@@ -4,7 +4,7 @@
 ;; Org configuration
 ;;
 (use-package org
-  :ensure t
+  :straight t
   :defer t
   :preface
   (defun my-org-prefix (file)
@@ -144,13 +144,13 @@
   :after org)
 
 (use-package org-bullets
-  :ensure t
+  :straight t
   :commands org-bullets-mode
   :hook (org-mode . org-bullets-mode)
   :after org)
 
 (use-package org-gcal
-  :ensure t
+  :straight t
   :commands (org-gcal-sync org-gcal-fetch)
   :config
   (require 'my-secrets)
@@ -257,7 +257,7 @@ Clock   In/out^
   ("g" org-agenda-clock-goto))))
 
 (use-package org-pomodoro
-  :ensure t
+  :straight t
   :commands org-pomodoro)
 
 (defun org-config-agenda-skip-all-siblings-but-first ()
@@ -280,7 +280,7 @@ Clock   In/out^
    (string= "WAITING" (org-get-todo-state))))
 
 (use-package org-roam
-  :ensure t
+  :straight t
   :custom
   (org-roam-directory (file-truename "~/Nextcloud/org/roam"))
   :bind (("C-c n l" . org-roam-buffer-toggle)

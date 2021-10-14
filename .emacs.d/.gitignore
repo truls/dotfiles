@@ -16,6 +16,9 @@
 /projectile.cache
 /projects
 /.org-generic-id-locations
+/straight/build-cache.el
+.org-id-locations
+org-roam.db
 
 # Folders
 /backups/
@@ -27,3 +30,5 @@
 /.cache/
 /url/
 /transient/
+/straight/build/
+/straight/repos/

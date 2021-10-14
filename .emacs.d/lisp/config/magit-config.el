@@ -4,7 +4,7 @@
 ;;
 
 (use-package magit
-  :ensure t
+  :straight t
   ;; magit-toplevel is listed here because it is the first function
   ;; invoked by the git-fast-sync function below
   :commands (magit-status magit-toplevel)
@@ -21,11 +21,11 @@
 
 ;; TODO: Figure out why these are broken
 ;; (use-package forge
-;;   :ensure t
+;;   :straight t
 ;;   :after magit)
 
 ;; (use-package magithub
-;;   :ensure t
+;;   :straight t
 ;;   :after magit
 ;;   :config
 ;;   (magithub-feature-autoinject t)

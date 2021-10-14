@@ -8,14 +8,14 @@
 
 ;; Enable scala-mode for highlighting, indentation and motion commands
 (use-package scala-mode
-  :ensure t
+  :straight t
   :interpreter
   ("scala" . scala-mode))
 
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
-  :ensure t
+  :straight t
   :commands sbt-start sbt-command
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
@@ -29,7 +29,7 @@
 
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals
-  :ensure t)
+  :straight t)
 
 
 (provide 'scala-config)

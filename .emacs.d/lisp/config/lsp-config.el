@@ -7,7 +7,7 @@
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-mode
-  :ensure t
+  :straight t
   :commands (lsp lsp-deferred)
   :after yasnippet
   :hook ((lsp-mode        . lsp-enable-which-key-integration)
@@ -49,7 +49,7 @@
                   #'lsp-format-buffer)))))
 
 (use-package lsp-ui
-  :ensure t
+  :straight t
   :config
   (setq lsp-ui-sideline-show-code-actions nil
         ;; Pending https://github.com/emacs-lsp/lsp-ui/issues/613
@@ -62,30 +62,30 @@
   :commands lsp-ui-mode)
 
 (use-package lsp-treemacs
-  :ensure t
+  :straight t
   :commands lsp-treemacs-errors-list)
 
 (use-package lsp-ivy
-  :ensure t
+  :straight t
   :commands lsp-ivy-workspace-symbol)
 
 (use-package origami
-  :ensure t)
+  :straight t)
 
 (use-package lsp-origami
-  :ensure t
+  :straight t
   :after origami
   :config
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
 
 (use-package ccls
-  :ensure t
+  :straight t
   :config
   :after lsp-mode)
 
 (use-package lsp-pyright
   :load-path "/home/truls/foo/lsp-pyright"
-  ;;:ensure t
+  ;;:straight t
   :config
   (setq lsp-pyright-diagnostic-mode "workspace")
   :hook (python-mode . (lambda ()
@@ -93,10 +93,10 @@
                           (lsp-deferred))))
 
 (use-package lsp-haskell
-  :ensure t)
+  :straight t)
 
 (use-package lsp-latex
-  :ensure t
+  :straight t
   :init
   (setq lsp-latex-build-on-save t
         lsp-latex-build-output-directory "output"
@@ -109,17 +109,17 @@
 (use-package posframe
   ;; Posframe is a pop-up tool that must be manually installed for
   ;; dap-mode
-  :ensure t)
+  :straight t)
 
 (use-package dap-mode
-  :ensure t
+  :straight t
   :hook
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode))
 
 
 ;; (use-package lsp-latex
-;;   :ensure t
+;;   :straight t
 ;;   :config
 ;;   (add-hook 'latex-mode-hook 'lsp-deferred)
 ;;   (add-hook 'bibtex-mode-hook 'lsp-deferred)
@@ -131,7 +131,7 @@
 
 
 ;; (use-package lsp-python-ms
-;;   :ensure t
+;;   :straight t
 ;;   :init
 ;;   (setq lsp-python-ms-executable "/home/truls/.emacs.d/language-servers/python-language-server/output/bin/Release/linux-x64/publish/Microsoft.Python.LanguageServer"
 ;;         lsp-python-executable-cmd "python3")

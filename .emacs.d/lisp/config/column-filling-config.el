@@ -15,7 +15,7 @@
   :delight auto-fill-function)
 
 (use-package visual-fill-column
-  :ensure t
+  :straight t
   :hook ((TeX-mode markdown-mode) . visual-fill-column-mode)
   :init
   (setq visual-fill-column-width 80)

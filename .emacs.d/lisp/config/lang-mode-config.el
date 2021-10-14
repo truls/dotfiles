@@ -4,14 +4,14 @@
 ;;
 
 (use-package mutt-mode
-  :ensure t
+  :straight t
   :mode ("\\.muttrc\\'"
          "\\.neomuttrc\\'"
          "\\neomuttrc\\'")
   :commands mutt-mode)
 
 (use-package dockerfile-mode
-  :ensure t
+  :straight t
   :mode ("Dockerfile"))
 
 (use-package sh-script
@@ -37,14 +37,14 @@
 ;; gitignore-mode
 ;;
 (use-package gitignore-mode
-  :ensure t
+  :straight t
   :mode "\\.gitignore\\'")
 
 ;;
 ;; solidity-mode
 ;;
 (use-package solidity-mode
-  :ensure t
+  :straight t
   :mode "\\.sol\\'"
   :init
   :config
@@ -59,21 +59,21 @@
 (use-package ssass-mode
   ;; https://github.com/AdamNiederer/ssass-mode/pull/4 was
   ;; accepted. Waiting for a new release to be tagged.
-  :ensure t
+  :straight t
   :mode ("\\.scss\\'" "\\.sass\\'"))
 
 ;;
 ;; web-mode
 ;;
 (use-package web-mode
-  :ensure t
+  :straight t
   :config
   (add-hook 'web-mode-hook #'lsp-deferred)
   :mode ("\\.tsx\\'" "\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.html?\\'"))
 
 ;; `javascript' mode
 (use-package js2-mode
-  :ensure t
+  :straight t
   :mode ("\\.js\\'" . js2-mode)
   :init
   (setq js2-strict-trailing-comma-warning nil)
@@ -83,20 +83,20 @@
               (setq js-indent-level 2))))
 
 (use-package typescript-mode
-  :ensure t
+  :straight t
   :mode ("\\.ts\\'" . typescript-mode)
   :init
   (setq typescript-indent-level 2))
 
 (use-package markdown-mode
-  :ensure t
+  :straight t
   :mode ("\\.md\\'" "\\.mrk\\'")
   :init
   (setq markdown-command "pandoc"))
 
 
 (use-package ess
-  :ensure t
+  :straight t
   ;; TODO: We just want lazy loading here. Add other extensions also
   :mode ("\\.R\\'" . R-mode)
   :init
@@ -107,7 +107,7 @@
         lsp-ui-sideline-show-diagnostics nil))
 
 (use-package ess-smart-equals
-  :ensure t
+  :straight t
   :init   (setq ess-smart-equals-extra-ops '())
   :after  (:any ess-r-mode inferior-ess-r-mode ess-r-transcript-mode)
   :config (ess-smart-equals-activate))
@@ -116,7 +116,7 @@
 ;; Polymode for R
 ;;
 (use-package poly-R
-  :ensure t
+  :straight t
   :mode
   ("\\.Snw\\'" . poly-noweb+r-mode)
   ("\\.[rR]nw\\'" . poly-noweb+r-mode)
@@ -130,10 +130,10 @@
 (use-package yaml-mode
   :commands yaml-mode
   :mode ("\\.yml\\'" "\\.yaml\\'")
-  :ensure t)
+  :straight t)
 
 (use-package haskell-mode
-  :ensure t
+  :straight t
   :bind (:map haskell-mode-map
               ("C-c h" . haskell-hoogle))
   :after lsp-haskell)
@@ -142,27 +142,27 @@
   :load-path "~/misc/projects/slurm.el")
 
 (use-package julia-mode
-  :ensure t)
+  :straight t)
 
 (use-package groovy-mode
-  :ensure t
+  :straight t
   :mode ("\\.groovy\\'" "\\.gradle\\'"))
 
 ;;
 ;; Ansible config
 ;;
 (use-package ansible
-  :ensure t
+  :straight t
   :commands ansible)
 
 (use-package ansible-doc
-  :ensure t
+  :straight t
   :commands ansible-doc ansible-doc-mode)
 
 (use-package ansible-vault
-  :ensure t)
+  :straight t)
 
 (use-package jinja2-mode
-  :ensure t)
+  :straight t)
 
 (provide 'lang-mode-config)

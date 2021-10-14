@@ -35,7 +35,7 @@
 
 
 (use-package magic-latex-buffer
-  :ensure t
+  :straight t
   :commands magic-latex-buffer
   ;; :init
   ;; (setq magic-latex-enable-block-highlight nil
@@ -48,7 +48,7 @@
   (add-hook 'LaTeX-mode-hook #'magic-latex-buffer))
 
 (use-package auctex-latexmk
-  :ensure t
+  :straight t
   :config
   (setq auctex-latexmk-inherit-TeX-PDF-mode t
         TeX-command-default "LatexMk")

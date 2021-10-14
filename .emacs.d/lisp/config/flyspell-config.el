@@ -32,7 +32,7 @@
    (erlang-mode . my/flyspell-prog-hook)))
 
 (use-package flyspell-correct-popup
-  :ensure t
+  :straight t
   :bind (:map flyspell-mode-map
               ("C-;" . flyspell-correct-wrapper))
   :commands (flyspell-correct-wrapper flyspell-correct-popup)

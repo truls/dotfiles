@@ -1,11 +1,11 @@
 (use-package gnu-elpa-keyring-update
-  :ensure t)
+  :straight t)
 
-(use-package diminish :ensure t)
-(use-package use-package-hydra :ensure t)
+(use-package diminish :straight t)
+(use-package use-package-hydra :straight t)
 
 (use-package auto-package-update
-  :ensure t
+  :straight t
   :config
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
@@ -13,7 +13,7 @@
 
 ;; Enable auto-compile package to automatically compile elisp files
 (use-package auto-compile
-  :ensure t
+  :straight t
   :config
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
@@ -30,14 +30,14 @@
 ;; Use immaterial theme
 ;;
 (use-package immaterial-theme
-  :ensure t
+  :straight t
   :after
   toggle-theme
   :config
   (toggle-theme-restore-theme))
 
 (use-package google-this
-  :ensure t
+  :straight t
   :diminish
   :init
   (setq google-this-keybind (kbd "C-x \\"))
@@ -45,7 +45,7 @@
   (google-this-mode t))
 
 (use-package visual-regexp-steroids
-  :ensure t
+  :straight t
   :bind (("C-c r" . vr/replace)
          ("C-c q" . vr/query-replace)
          ("C-c m" . vr/mc-mark)
@@ -55,14 +55,14 @@
 
 
 (use-package hydra
-  :ensure t
+  :straight t
   :commands defhydra)
 
 ;;
 ;; ivy-mode
 ;;
 (use-package ivy
-  :ensure t
+  :straight t
   :delight
   :config
   (ivy-mode 1)
@@ -70,7 +70,7 @@
         enable-recursive-minibuffers t))
 
 (use-package swiper
-  :ensure t
+  :straight t
   :defer t
   :config
   (defun my/swiper-symbol-at-point ()
@@ -79,13 +79,13 @@
 
 ;; Install smex to show the most used commands first in M-x list
 (use-package smex
-  :ensure t
+  :straight t
   :init
   (setq smex-save-file (expand-file-name "smex-items"
                                          user-emacs-directory)))
 
 (use-package counsel
-  :ensure t
+  :straight t
   :bind (("C-s" . swiper)
          ("C-S-s" . my/swiper-symbol-at-point)
          ("C-c C-r" . ivy-resume)
@@ -107,20 +107,20 @@
   :after (ivy smex))
 
 (use-package ivy-xref
-  :ensure t
+  :straight t
   :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
   :after ivy)
 
 
 (use-package solidity-flycheck
-  :ensure t
+  :straight t
   :init
   (setq solidity-flycheck-solium-checker-active t)
   (setq solidity-flycheck-solc-checker-active t)
   :after solidity-mode)
 
 (use-package company-solidity
-  :ensure t
+  :straight t
   :after solidity-mode)
 
 
@@ -128,13 +128,13 @@
 ;; flycheck-mode
 ;;
 (use-package flycheck
-  :ensure t
+  :straight t
   :config
   (add-hook 'flycheck-error-list-mode-hook
             (lambda () (toggle-truncate-lines +1))))
 
 (use-package company
-  :ensure t
+  :straight t
   ;;:defer t
   :config
   (global-company-mode)
@@ -153,10 +153,10 @@
 ;; yasnippet
 ;;
 (use-package yasnippet
-  :ensure t
+  :straight t
   :config
   (use-package yasnippet-snippets
-    :ensure t)
+    :straight t)
   (yas-reload-all)
   (when yas-minor-mode
     (ivy-yasnippet))
@@ -166,11 +166,11 @@
   :diminish yas-minor-mode)
 
 (use-package ivy-yasnippet
-  :ensure t
+  :straight t
   :commands ivy-yasnippet)
 
 (use-package which-key
-  :ensure t
+  :straight t
   :config
   (which-key-mode))
 
@@ -180,9 +180,9 @@
   :config
   (global-display-line-numbers-mode))
 
-(use-package seq :ensure t)
+(use-package seq :straight t)
 (use-package whitespace
-  :ensure t
+  :straight t
   :delight global-whitespace-mode
   :after seq
   :preface
@@ -208,14 +208,14 @@
 
 
 ;; (use-package company-bibtex
-;;   :ensure t
+;;   :straight t
 ;;   :after org-ref
 ;;   :config
 ;;   (add-to-list 'company-backends 'company-bibtex)
 ;;   (setq company-bibtex-bibliography org-ref-default-bibliography))
 
 (use-package projectile
-  :ensure t
+  :straight t
   :diminish
   :config
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
@@ -224,26 +224,26 @@
   (projectile-mode +1))
 
 (use-package counsel-projectile
-  :ensure t
+  :straight t
   :config
   (counsel-projectile-mode))
 
 (use-package helm
-  :ensure t)
+  :straight t)
 
 (use-package helm-projectile
   :bind (("C-\"" . helm-projectile-ag)
          ("C-'" . my/helm-projectile-ag-thing-at-point))
-  :ensure t)
+  :straight t)
 
 (use-package helm-rg
-  :ensure t)
+  :straight t)
 
 (use-package helm-ag
-  :ensure t)
+  :straight t)
 
 (use-package pdf-tools
-  :ensure t
+  :straight t
   :preface
   (defun my-inhibit-global-nlinum-mode ()
     "Prevent nlinum mode from being enabled."
@@ -261,7 +261,7 @@
 
 
 (use-package highlight-indentation
-  :ensure t
+  :straight t
   :hook ((yaml-mode . highlight-indentation-mode))
   :config
   (setq highlight-indentation-blank-lines t)
@@ -269,12 +269,12 @@
   (set-face-background 'highlight-indentation-current-column-face "grey30"))
 
 (use-package smart-shift
-  :ensure t
+  :straight t
   :config
   (global-smart-shift-mode 1))
 
 (use-package langtool
-  :ensure t
+  :straight t
   :config
   ;; Run my-install.sh script in language-servers/languagetool to
   ;; install languagetool
@@ -282,34 +282,35 @@
 
 
 (use-package ace-window
-  :ensure t
+  :straight t
   :bind (("C-x o" . ace-window)
          ("C-x C-o" . ace-window))
   :config
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\; ?w ?e ?r ?u ?i ?o ?q ?t ?y ?p)))
 
 (use-package avy
-  :ensure t
+  :straight t
   :bind (("C-:" . avy-goto-char)))
 
 (use-package package-lint
-  :ensure t
+  :straight t
   :commands (package-lint-buffer
              package-lint-current-buffer
              pacakge-lint-batch-and-exit
              package-lint-looks-like-a-package-p))
 
-(use-package json-navigator
-  :ensure t)
+;; Fails to compile
+;; (use-package json-navigator
+;;   :straight t)
 
-(use-package slurm-mode
-  :load-path "~/misc/projects/slurm.el"
-  :config
-  (setq slurm-remote-username "trulsas")
-  (setq slurm-remote-host "stallo.uit.no"))
+;; (use-package slurm-mode
+;;   :load-path "~/misc/projects/slurm.el"
+;;   :config
+;;   (setq slurm-remote-username "trulsas")
+;;   (setq slurm-remote-host "stallo.uit.no"))
 
 (use-package expand-region
-  :ensure t
+  :straight t
   :bind ("C-=" . er/expand-region)
   :commands er/expand-region)
 
@@ -330,7 +331,7 @@
   (setq citations-bibtex-entry-formatter #'org-ref-clean-bibtex-entry))
 
 (use-package easy-escape
-  :ensure t
+  :straight t
   :commands easy-escape-minor-mode
   :config
   (add-hook 'lisp-mode-hook 'easy-escape-minor-mode)
@@ -346,7 +347,7 @@
 ;; performance by increasing the GC threshold high threshold when Emacs
 ;; is in use and decrease it after Emacs has been idel for a while.
 (use-package gcmh
-  :ensure t
+  :straight t
   :diminish
   :config
   (setq gcmh-high-cons-threshold #x60000000
@@ -357,7 +358,7 @@
 ;; Use undo-tree
 ;;
 (use-package undo-tree
-  :ensure t
+  :straight t
   :diminish
   :init
   (global-undo-tree-mode)
@@ -369,7 +370,7 @@
 ;; gitignore-templates
 ;;
 (use-package gitignore-templates
-  :ensure t
+  :straight t
   :commands (gitignore-templates-insert
              gitignore-templates-new-file))
 
@@ -377,7 +378,7 @@
 ;; editorconfig
 ;;
 (use-package editorconfig
-  :ensure t
+  :straight t
   :diminish
   :config
   (editorconfig-mode 1))
@@ -386,7 +387,7 @@
 ;; dash-docs
 ;;
 (use-package dash-docs
-  :ensure t
+  :straight t
   :init
   (setq dash-docs-docsets-path (expand-file-name "~/.config/docsets")))
 
@@ -394,13 +395,13 @@
 ;; counsel-dash
 ;;
 (use-package counsel-dash
-  :ensure t)
+  :straight t)
 
 ;;
 ;; go-mode
 ;;
 (use-package go-mode
-  :ensure t
+  :straight t
   :interpreter
   ("go" . go-mode))
 
@@ -408,7 +409,7 @@
 ;; writeroom-mode
 ;;
 (use-package writeroom-mode
-  :ensure t
+  :straight t
   :commands
   writeroom-mode)
 
@@ -416,7 +417,7 @@
 ;; vagrant-tramp
 ;;
 (use-package vagrant-tramp
-  :ensure t)
+  :straight t)
 
 ;;
 ;; toggle-font
@@ -430,7 +431,7 @@
 ;; writegood-mode
 ;;
 (use-package writegood-mode
-  :ensure t
+  :straight t
   :commands
   writegood-mode)
 

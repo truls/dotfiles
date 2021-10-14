@@ -35,14 +35,20 @@
 (setq comp-deferred-compilation t)
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-;; Set package.el reposotories
-(setq package-archives '(("gnu"          . "https://elpa.gnu.org/packages/")
-                         ("melpa"        . "https://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/"))
-      package-archive-priorities
-      '(("melpa-stable" .  0)
-        ("gnu"          .  5)
-        ("melpa"        .  10)))
+
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 (let ((lisp-dir "/home/truls/.emacs.d/lisp")
       (normal-top-level-add-subdirs-inode-list nil))
@@ -50,11 +56,8 @@
   (let ((default-directory lisp-dir))
     (normal-top-level-add-subdirs-to-load-path)))
 
-;; Bootstrap `use-package'
-(require 'package)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; Install `use-package'
+(straight-use-package 'use-package)
 
 
 ;; This is only needed once, near the top of the file
