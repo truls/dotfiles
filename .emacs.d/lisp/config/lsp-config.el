@@ -110,16 +110,16 @@
   (lsp-mode . dap-ui-mode))
 
 
-(use-package lsp-latex
-  :ensure t
-  :config
-  (add-hook 'latex-mode-hook 'lsp-deferred)
-  (add-hook 'bibtex-mode-hook 'lsp-deferred)
-  ;; sideline conflicts with line wrapping mode since the diagnostics
-  ;; cannot use the outer margins.
-  (add-hook 'latex-mode-hook
-            (lambda ()
-              (setq-local lsp-ui-sideline-enable nil))))
+;; (use-package lsp-latex
+;;   :ensure t
+;;   :config
+;;   (add-hook 'latex-mode-hook 'lsp-deferred)
+;;   (add-hook 'bibtex-mode-hook 'lsp-deferred)
+;;   ;; sideline conflicts with line wrapping mode since the diagnostics
+;;   ;; cannot use the outer margins.
+;;   (add-hook 'latex-mode-hook
+;;             (lambda ()
+;;               (setq-local lsp-ui-sideline-enable nil))))
 
 
 ;; (use-package lsp-python-ms
