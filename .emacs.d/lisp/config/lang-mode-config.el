@@ -162,4 +162,7 @@
 (use-package ansible-vault
   :ensure t)
 
+(use-package jinja2-mode
+  :ensure t)
+
 (provide 'lang-mode-config)
