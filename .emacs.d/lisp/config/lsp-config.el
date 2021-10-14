@@ -26,11 +26,16 @@
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
   ;; (setq lsp-restart 'ignore)
+  (setq lsp-ui-doc-enable t)
   (setq lsp-prefer-flymake nil)
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-file-watch-threshold 40000)
   ;; Recommended by lsp performance guidelines
   (setq read-process-output-max (* 1024 1024))
+
+  ;; Hack to reduce lag when moving cursor, see:
+  ;; https://github.com/emacs-lsp/lsp-ui/issues/613
+  (setq pgtk-wait-for-event-timeout 0.01)
 
   ;; Look and feel configuration
   (setq lsp-enable-on-type-formatting nil)
@@ -46,7 +51,10 @@
 (use-package lsp-ui
   :ensure t
   :config
-  (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-ui-sideline-show-code-actions nil
+        ;; Pending https://github.com/emacs-lsp/lsp-ui/issues/613
+        ;; lsp-ui-doc-enable nil)
+        )
   (setq lsp-ui-doc-position 'top)
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
