@@ -291,6 +291,7 @@ Clock   In/out^
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
+  (setq org-roam-v2-ack t)
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
