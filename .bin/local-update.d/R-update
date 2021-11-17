@@ -3,4 +3,4 @@
 
 update.packages(
     oldPkgs = as.data.frame(installed.packages(.libPaths()[1]))$Package,
-    ask = FALSE, repos = "https://cloud.r-project.org/")
+    ask = FALSE, checkBuilt = TRUE, repos = "https://cloud.r-project.org/")
