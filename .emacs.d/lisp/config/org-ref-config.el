@@ -10,9 +10,9 @@
   :straight t
   :init
   ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/Nextcloud/bibliography/notes.org"
-        org-ref-default-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
-        org-ref-pdf-directory "~/Nextcloud/bibliography/bibtex-pdfs/"
+  (setq bibtex-completion-notes-path "~/Nextcloud/bibliography/notes.org"
+        bibtex-completion-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
+        bibtex-completion-library-path "~/Nextcloud/bibliography/bibtex-pdfs/"
         bibtex-dialect 'biblatex
         org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
         bibtex-completion-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
