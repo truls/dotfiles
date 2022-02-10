@@ -99,7 +99,7 @@
 (use-package org-agenda
   :config
   (setq org-agenda-window-setup (quote current-window))
-  (setq org-agenda-files (mapcar #'my-org-prefix (list "tickler.org" "gtd.org" "inbox.org")))
+  (setq org-agenda-files (mapcar #'my-org-prefix (list "tickler.org" "gtd.org" "inbox.org" "roam")))
 
   (setq org-agenda-custom-commands
         '(("f" "All first TODOs" todo "TODO|STARTED|WAITING"
@@ -281,6 +281,8 @@ Clock   In/out^
 
 (use-package org-roam
   :straight t
+  :init
+  (setq org-roam-v2-ack t)
   :custom
   (org-roam-directory (file-truename "~/Nextcloud/org/roam"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
@@ -291,7 +293,6 @@ Clock   In/out^
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
-  (setq org-roam-v2-ack t)
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
