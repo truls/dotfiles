@@ -34,11 +34,13 @@
                             (c-set-offset 'innamespace 0))))
 
 ;;
-;; gitignore-mode
+;; git-modes
 ;;
-(use-package gitignore-mode
+(use-package git-modes
   :straight t
-  :mode "\\.gitignore\\'")
+  :config
+  (add-to-list 'auto-mode-alist
+               (cons "/.dockerignore\\'" 'gitignore-mode)))
 
 ;;
 ;; solidity-mode

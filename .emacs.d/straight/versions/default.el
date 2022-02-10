@@ -49,6 +49,7 @@
  ("flycheck" . "784f184cdd9f9cb4e3dbb997c09d93e954142842")
  ("flyspell-correct" . "e9fde6f93af991b0528d6ed47d44bed470dc70af")
  ("gcmh" . "0089f9c3a6d4e9a310d0791cf6fa8f35642ecfd9")
+ ("git-modes" . "62fbf2e5b84ca789e7bc2f87939386023b5ba3df")
  ("gitignore-templates.el" . "d28cd1cec00242b688861648d36d086818b06099")
  ("gntp.el" . "767571135e2c0985944017dc59b0be79af222ef5")
  ("gnu-elpa-keyring-update" . "b744ce303d7d8c7da9992e78c92fe028ee8ef59a")
