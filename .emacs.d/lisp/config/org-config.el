@@ -311,5 +311,8 @@ Clock   In/out^
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
+(use-package org-download
+  :straight t)
+
 (provide 'org-config)
 ;;; org-config ends here
