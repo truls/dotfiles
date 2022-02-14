@@ -82,7 +82,7 @@
  ("magic-latex-buffer" . "903ec91872760e47c0e5715795f8465173615098")
  ("magit" . "16b313ba47872613c735863e9ece4193d4fc0ec4")
  ("markdown-mode" . "e591c16c2ff9bbad0af725c27712cf3ec728d0c6")
- ("melpa" . "d68bb5cb21fdc7d91ba5548354a8214a6b603b3d")
+ ("melpa" . "f623c44a97048249e88401d9d75378ca0cce4ef2")
  ("mutt-mode" . "1d495de49e6f536459b00d5396a2f5ce5ad4757b")
  ("org" . "98588ebfe1c5e80329aa8720116c6b548ddcacfe")
  ("org-bullets" . "767f55feb58b840a5a04eabfc3fbbf0d257c4792")
