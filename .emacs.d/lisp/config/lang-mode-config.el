@@ -167,4 +167,12 @@
 (use-package jinja2-mode
   :straight t)
 
+;;
+;; Python config
+;;
+(use-package python-mode
+  :straight t
+  :bind (:map python-mode-map
+              ("C-<backspace>" . backward-kill-word)))
+
 (provide 'lang-mode-config)

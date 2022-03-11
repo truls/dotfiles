@@ -107,6 +107,7 @@
  ("popup-el" . "37a04117ac83b3ed24a2cba894443a32795c2f1a")
  ("posframe" . "c91d4d53fa479ceb604071008ce0a901770eff57")
  ("projectile" . "2c948f3a8ed378ae5fd800d2c66aece06ba058b8")
+ ("python-mode" . "b26546ff9d5d112baf822563beffe6f7fdd3c327")
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("s.el" . "08661efb075d1c6b4fa812184c1e5e90c08795a9")
  ("smart-shift" . "a26ab2b240137e62ec4bce1698ed9c5f7b6d13ae")
