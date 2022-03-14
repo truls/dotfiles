@@ -141,7 +141,10 @@
 (global-set-key (kbd "C-x C-g") 'find-file-other-window)
 
 ;; Dont minimize!
-(when window-system (global-unset-key "\C-z"))
+(when window-system (global-unset-key (kbd "C-z")))
+
+;; We never want overwrite mode
+(global-unset-key (kbd "<insert>"))
 
 ;;
 ;; Personal info
