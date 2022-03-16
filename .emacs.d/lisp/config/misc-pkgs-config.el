@@ -355,18 +355,6 @@
   (gcmh-mode +1))
 
 ;;
-;; Use undo-tree
-;;
-(use-package undo-tree
-  :straight t
-  :diminish
-  :init
-  (global-undo-tree-mode)
-  :config
-  (define-key undo-tree-map (kbd "C-+") #'undo-tree-redo))
-
-
-;;
 ;; gitignore-templates
 ;;
 (use-package gitignore-templates
