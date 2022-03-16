@@ -175,4 +175,11 @@
   :bind (:map python-mode-map
               ("C-<backspace>" . backward-kill-word)))
 
+;;
+;; Protocol buffers
+;;
+(use-package protobuf-mode
+  :straight t
+  :mode ("\\.proto\\'"))
+
 (provide 'lang-mode-config)
