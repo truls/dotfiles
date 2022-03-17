@@ -182,4 +182,19 @@
   :straight t
   :mode ("\\.proto\\'"))
 
+;;
+;; go-mode
+;;
+(use-package go-mode
+  :straight t
+  :interpreter
+  ("go" . go-mode)
+  :init
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq-local whitespace-style
+                          (-filter (lambda (x) (not (eq x 'tabs)))
+                                   whitespace-style)))))
+
+
 (provide 'lang-mode-config)

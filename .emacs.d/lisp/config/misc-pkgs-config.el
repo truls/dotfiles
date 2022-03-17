@@ -386,14 +386,6 @@
   :straight t)
 
 ;;
-;; go-mode
-;;
-(use-package go-mode
-  :straight t
-  :interpreter
-  ("go" . go-mode))
-
-;;
 ;; writeroom-mode
 ;;
 (use-package writeroom-mode
