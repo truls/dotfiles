@@ -3,7 +3,7 @@
 set -euo pipefail
 
 prev_version="$1"
-cur_version="`git-most-recent-tag https://github.com/haskell/haskell-language-server`"
+cur_version="`git-most-recent-tag https://github.com/haskell/haskell-language-server 1.6.1.1`"
 
 if [ "$cur_version" != "$prev_version" ]; then
     echo "Updating haskell-language-server from $prev_version to $cur_version" > /dev/stderr
