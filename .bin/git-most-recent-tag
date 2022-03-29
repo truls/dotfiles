@@ -10,7 +10,7 @@
 set -euo pipefail
 
 if [ $# -lt 1 ]; then
-    echo "usage: git-most-recent-tag <github url>"
+    echo "usage: git-most-recent-tag <github url> [exclude pattern]"
     exit 1
 fi
 
@@ -21,6 +21,11 @@ fail () {
 
 
 url="$1"
+if [ $# -gt 1 ]; then
+    exclude_pattern="$2"
+else
+    exclude_pattern="^\$"
+fi
 
 git ls-remote "$url" |\
     grep tags |\
@@ -28,6 +33,7 @@ git ls-remote "$url" |\
     awk -F'/' '{print $3}' |\
     grep -E '^v?[0-9.]*$' |\
     tr -d 'v' |\
+    grep -Ev "$exclude_pattern" |\
     sort --version-sort |\
     tail -1 || fail
 
