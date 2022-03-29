@@ -53,7 +53,8 @@
      (lexical-scoping . t)
      (nameless-current-name . "biblio")
      (haskell-stylish-on-save)
-     (eval bibtex-set-dialect 'biblatex))))
+     (eval bibtex-set-dialect 'biblatex)))
+ '(warning-suppress-log-types '((lsp-mode) (comp) (:warning))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
