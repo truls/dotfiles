@@ -47,13 +47,23 @@
   :config
   (add-hook 'LaTeX-mode-hook #'magic-latex-buffer))
 
+;; From
+;; https://github.com/tom-tan/auctex-latexmk/issues/39#issuecomment-1104743060
+;; TODO: remove when auctex-latexmk supports new auctex version
 (use-package auctex-latexmk
   :straight t
-  :config
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t
-        TeX-command-default "LatexMk")
-  (auctex-latexmk-setup)
-  :after tex)
+  :after latex
+  :functions auctex-latexmk-setup
+  :preface
+  (defun my-auctex-latexmk-advice (req feature &rest args)
+    "Call REQ with FEATURE and ARGS, unless FEATURE is `tex-buf'."
+    (unless (eq feature 'tex-buf)
+      (apply req feature args)))
+  :init
+  (unwind-protect
+      (progn (advice-add 'require :around #'my-auctex-latexmk-advice)
+             (auctex-latexmk-setup))
+    (advice-remove 'require #'my-auctex-latexmk-advice)))
 
 (provide 'latex-config)
 ;;; latex-config ends here
