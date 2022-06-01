@@ -415,4 +415,13 @@
   :commands
   writegood-mode)
 
+;;
+;; Github copilot
+;;
+(use-package copilot
+  :straight (copilot :type git
+                     :host github
+                     :repo "zerolfx/copilot.el"
+                     :files ("*.el" "dist")))
+
 (provide 'misc-pkgs-config)
