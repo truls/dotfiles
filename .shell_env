@@ -26,3 +26,7 @@ export PATH="/home/truls/.cask/bin:$PATH"
 export PYENV_ROOT="$HOME/.config/config-deps/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+
+export EDITOR=vim
+
+export PIN_ROOT=$HOME/.local/lib/pin
