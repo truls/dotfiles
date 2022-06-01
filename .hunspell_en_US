@@ -253,3 +253,4 @@ initializations
 daemonization
 daemonized
 invoker
+serializable
