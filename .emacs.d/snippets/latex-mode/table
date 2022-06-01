@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: table
+# key: tab
+# --
+
+\begin{table}
+  \centering
+  \begin{tabular}{${1:ll}}
+    \toprule
+    $2
+    \bottomrule
+    \caption{\label{tab:${3:label}} $4}
+  \end{tabular}
+\end{table}
+$0

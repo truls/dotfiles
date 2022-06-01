@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tdt4102_en_text
+# key: en
+# --
+\en{$1}\nbmissing\nnmissing
+$0
