@@ -254,3 +254,6 @@ daemonization
 daemonized
 invoker
 serializable
+reusability
+deallocate
+deallocated
