@@ -43,3 +43,6 @@
 [submodule ".config/config-deps/pyenv"]
 	path = .config/config-deps/pyenv
 	url = https://github.com/pyenv/pyenv.git
+[submodule ".config/config-deps/gdb-dashboard"]
+	path = .config/config-deps/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard
