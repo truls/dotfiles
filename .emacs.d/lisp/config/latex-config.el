@@ -17,8 +17,10 @@
   (setq-default TeX-master nil)
 
   ;; Make AUCTeX build bibtex
-  (setq TeX-parse-self t) ; Enable parse on load.
-  (setq TeX-auto-save t) ; Enable parse on save.)
+  (setq TeX-parse-self t ; Enable parse on load.
+        TeX-auto-save t ; Enable parse on save.
+        TeX-global-PDF-mode t
+        )
 
   ;; Turn on RefTeX
   ;; (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
@@ -63,7 +65,10 @@
   (unwind-protect
       (progn (advice-add 'require :around #'my-auctex-latexmk-advice)
              (auctex-latexmk-setup))
-    (advice-remove 'require #'my-auctex-latexmk-advice)))
+    (advice-remove 'require #'my-auctex-latexmk-advice))
+  (setq TeX-command-default "LatexMk"
+        auctex-latexmk-inherit-TeX-PDF-mode t)
+  )
 
 (provide 'latex-config)
 ;;; latex-config ends here
