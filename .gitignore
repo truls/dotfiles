@@ -18,6 +18,7 @@
 !.emacs.d
 !.bin
 !.oh-my-zsh
+!.mplayer
 
 # Include .local/share/texmf
 !.local
