@@ -23,7 +23,8 @@
          (go-mode         . lsp-deferred)
          (ess-r-mode      . lsp-deferred)
          (yaml-mode       . lsp-deferred)
-         (json-mode       . lsp-deferred))
+         (json-mode       . lsp-deferred)
+         (markdown-mode   . lsp-deferred))
 
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
