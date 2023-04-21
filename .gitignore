@@ -27,6 +27,13 @@
 .local/share/*
 !.local/share/texmf
 !.local/share/applications
+.local/share/applications/*
+!.local/share/applications/clickup.desktop
+!.local/share/icons
+.local/share/icons/*
+!.local/share/icons/hicolor
+.local/share/icons/hicolor/*
+!.local/share/icons/hicolor/370x370
 !.local/lib
 .local/lib/*
 !.local/lib/asdf
