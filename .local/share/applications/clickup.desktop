@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Clickup
+Comment=Task manager
+Icon=clickup-app
+Exec=/home/truls/.bin/clickup
+Terminal=false
+Categories=Productivity
