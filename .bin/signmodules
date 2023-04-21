@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -exuo pipefail
+
+readonly hash_algo="sha256"
+readonly key="/root/MOK.priv"
+readonly x509="/root/MOK.der"
+
+readonly name="$(basename $0)"
+readonly esc='\e'
+readonly reset="${esc}[0m"
+
+green() { local string="${1}"; echo “${esc}[32m${string}${reset}”; }
+blue() { local string="${1}"; echo “${esc}[34m${string}${reset}”; }
+log() { local string="${1}"; echo “[$(blue $name)] ${string}”; }
+
+sign_file="/usr/src/kernels/$(uname -r)/scripts/sign-file"
+
+[ -z "${KBUILD_SIGN_PIN+x}" ] && read -p "Passphrase for ${key}: " KBUILD_SIGN_PIN
+export KBUILD_SIGN_PIN
+
+modules="/lib/modules/$(uname -r)/extra/VirtualBox/vboxdrv.ko
+/lib/modules/$(uname -r)/extra/VirtualBox/vboxnetflt.ko
+/lib/modules/$(uname -r)/extra/VirtualBox/vboxnetadp.ko"
+
+for m in $modules; do
+    was_xz=0
+    if [ -e "$m".xz ]; then
+        unxz "$m".xz
+        was_xz=1
+    fi
+
+    $sign_file "${hash_algo}" "${key}" "${x509}" "$m"
+
+    if [ $was_xz -eq 1 ]; then
+        xz "$m"
+    fi
+done
+
+
+modprobe vboxdrv
+modprobe vboxnetflt
+modprobe vboxnetadp
