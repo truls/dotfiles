@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# exec ~/.config/config-deps/emacs/src/emacs $@
-exec /usr/bin/emacs $@

@@ -11,5 +11,16 @@ if `git pull | grep -q "is up to date"`; then
     popd
 fi
 
-make -j8 NATIVE_FAST_BOOT=1
+if [ -x config.status ] && ./config.status -q ; then
+	make -j NATIVE_FAST_BOOT=1
+	make install
+else
+	./configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg \
+            --with-tiff --with-xft --with-xpm --with-gpm=no \
+            --with-xwidgets --with-modules --with-harfbuzz --with-cairo --with-json \
+            --with-pgtk --with-native-compilation --enable-link-time-optimization --with-tree-sitter --prefix=$HOME/.local
+	make -j NATIVE_FAST_BOOT=1
+	make install
+fi
+
 popd

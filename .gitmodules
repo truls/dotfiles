@@ -46,3 +46,6 @@
 [submodule ".config/config-deps/gdb-dashboard"]
 	path = .config/config-deps/gdb-dashboard
 	url = https://github.com/cyrus-and/gdb-dashboard
+[submodule ".config/config-deps/emacs"]
+	path = .config/config-deps/emacs
+	url = git://git.savannah.gnu.org/emacs.git
