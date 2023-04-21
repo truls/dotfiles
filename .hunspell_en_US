@@ -257,3 +257,6 @@ serializable
 reusability
 deallocate
 deallocated
+boundedness
+fixpoint
+noncontiguous
