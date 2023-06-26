@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # meta: nostate
 
 set -euo pipefail
@@ -12,7 +12,7 @@ if `git pull | grep -q "is up to date"`; then
 fi
 
 if [ -x config.status ] && ./config.status -q ; then
-	make -j NATIVE_FAST_BOOT=1
+	make -j bootstrap NATIVE_FAST_BOOT=1
 	make install
 else
 	./configure --with-dbus --with-gif --with-jpeg --with-png --with-rsvg \
