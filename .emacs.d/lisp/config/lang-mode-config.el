@@ -195,6 +195,11 @@
               (setq-local whitespace-style
                           (-filter (lambda (x) (not (eq x 'tabs)))
                                    whitespace-style)))))
+;;
+;; rustic
+;;
+(use-package rustic
+  :straight t)
 
 
 (provide 'lang-mode-config)
