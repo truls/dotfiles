@@ -63,6 +63,8 @@
 ;; Install `use-package'
 (straight-use-package 'use-package)
 
+;; Make sure we load our org before built-in org
+(straight-use-package 'org)
 
 ;; This is only needed once, near the top of the file
 (eval-when-compile
