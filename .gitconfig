@@ -46,3 +46,5 @@
 	helper = libsecret
 [rebase]
 	autoStash = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
