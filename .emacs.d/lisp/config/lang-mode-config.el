@@ -190,11 +190,14 @@
   :interpreter
   ("go" . go-mode)
   :init
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (setq-local whitespace-style
-                          (-filter (lambda (x) (not (eq x 'tabs)))
-                                   whitespace-style)))))
+  (let ((my/go-hook-fun
+         (lambda () (setq-local whitespace-style
+                           (-filter (lambda (x) (not (eq x 'tabs)))
+                                    whitespace-style)
+                           tab-width 4))))
+    (add-hook 'go-mode-hook my/go-hook-fun)
+    (add-hook 'go-dot-mod-mode-hook my/go-hook-fun)))
+
 ;;
 ;; rustic
 ;;
