@@ -19,19 +19,21 @@
   :config
   (add-hook 'sh-mode-hook #'flycheck-mode))
 
-(use-package c-mode
-  :no-require t
-  :config
+;; (use-package c-ts-mode
+;;   :no-require t
+  ;; :config
   ;; C-mode hook to avoid indenting after extern "C"
-  (add-hook 'c-mode-common-hook
-            (lambda()
-              (c-set-offset 'inextern-lang 0))))
+  ;; (add-hook c-mode-common-hook
+  ;;           (lambda()
+  ;;             (c-set-offset 'inextern-lang 0)))
+  ;; )
 
-(use-package cc-mode
-  :no-require t
-  :config
-  (add-hook 'c++-mode-hook (lambda ()
-                            (c-set-offset 'innamespace 0))))
+;; (use-package cc-ts-mode
+;;   :no-require t
+  ;; :config
+  ;; (add-hook 'c++-ts-mode-hook (lambda ()
+  ;;                               (c-set-offset 'innamespace 0)))
+  ;; )
 
 ;;
 ;; git-modes
@@ -79,14 +81,14 @@
   :mode ("\\.js\\'" . js2-mode)
   :init
   (setq js2-strict-trailing-comma-warning nil)
-  (add-hook 'js2-mode-hook
+  (add-hook 'js2-ts-mode-hook
             (lambda ()
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2))))
 
-(use-package typescript-mode
+(use-package typescript-ts-mode
   :straight t
-  :mode ("\\.ts\\'" . typescript-mode)
+  :mode ("\\.ts\\'" . typescript-ts-mode)
   :init
   (setq typescript-indent-level 2))
 
@@ -129,8 +131,8 @@
   ("\\.[Rr]cpp\\'" . poly-r+c++-mode)
   ("\\.cpp[rR]\\'" . poly-c++r-mode))
 
-(use-package yaml-mode
-  :commands yaml-mode
+(use-package yaml-ts-mode
+  :commands yaml-ts-mode
   :mode ("\\.yml\\'" "\\.yaml\\'")
   :straight t)
 
@@ -185,18 +187,24 @@
 ;;
 ;; go-mode
 ;;
-(use-package go-mode
+(use-package go-ts-mode
   :straight t
   :interpreter
-  ("go" . go-mode)
+  ("go" . go-ts-mode)
   :init
+  (setq go-ts-mode-indent-offset 4)
   (let ((my/go-hook-fun
          (lambda () (setq-local whitespace-style
                            (-filter (lambda (x) (not (eq x 'tabs)))
                                     whitespace-style)
                            tab-width 4))))
-    (add-hook 'go-mode-hook my/go-hook-fun)
-    (add-hook 'go-dot-mod-mode-hook my/go-hook-fun)))
+    (add-hook 'go-ts-mode-hook my/go-hook-fun)
+    (add-hook 'go-ts-dot-mod-mode-hook my/go-hook-fun)))
+
+(use-package go-mode
+  :straight t
+  :config
+  (setq godoc-at-point-function 'godoc-gogetdoc))
 
 ;;
 ;; rustic
@@ -204,5 +212,46 @@
 (use-package rustic
   :straight t)
 
+;;
+;; Tree sitter
+;;
+(use-package tree-sitter
+  :no-require t
+  :config
+  (setq major-mode-remap-alist
+        '((yaml-mode . yaml-ts-mode)
+          (bash-mode . bash-ts-mode)
+          (js2-mode . js-ts-mode)
+          (typescript-mode . typescript-ts-mode)
+          (json-mode . json-ts-mode)
+          (css-mode . css-ts-mode)
+          (python-mode . python-ts-mode)
+          (rust-mode . rust-ts-mode)
+          (go-mode . go-ts-mode)
+          (c-mode . c-ts-mode)
+          (c++-mode . c++-ts-mode))
+        )
+  (setq treesit-language-source-alist
+        '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (cmake "https://github.com/uyha/tree-sitter-cmake")
+          (css "https://github.com/tree-sitter/tree-sitter-css")
+          (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+          (go "https://github.com/tree-sitter/tree-sitter-go")
+          (html "https://github.com/tree-sitter/tree-sitter-html")
+          (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+          (json "https://github.com/tree-sitter/tree-sitter-json")
+          (make "https://github.com/alemuller/tree-sitter-make")
+          (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+          (python "https://github.com/tree-sitter/tree-sitter-python")
+          (toml "https://github.com/tree-sitter/tree-sitter-toml")
+          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+          (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+          (yaml "https://github.com/ikatyang/tree-sitter-yaml"))))
+
+;;
+;; combobulate
+;;
+(use-package combobulate
+  :straight t)
 
 (provide 'lang-mode-config)
