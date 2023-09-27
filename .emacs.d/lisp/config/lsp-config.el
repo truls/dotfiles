@@ -50,7 +50,19 @@
                   (define-key lsp-mode-map (kbd "M-q")
                     (lambda () (if (inside-comment-p) lsp-format-region)))
                 (define-key lsp-mode-map (kbd "M-S-q")
-                  #'lsp-format-buffer)))))
+                            #'lsp-format-buffer))))
+  (setq lsp-go-analyses '((fieldalignment . t)
+                          (nilness . t)
+                          ;; This gives annoying err variable
+                          ;; shadowing warnings
+                          ;; (shadow . t)
+                          (unusedparams . t)
+                          (unusedwrite . t)
+                          (useany . t)
+                          (unusedvariable . t)))
+        (lsp-register-custom-settings
+         '(("gopls.completeUnimported" t t)
+           ("gopls.staticcheck" t t))))
 
 (use-package lsp-ui
   :straight t
