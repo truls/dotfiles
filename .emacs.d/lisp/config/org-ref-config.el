@@ -1,7 +1,10 @@
 ;; org-ref-config.el -*- lexical-binding:t -*-
 
 (use-package helm-bibtex
-  :straight t)
+  :straight t
+  :init
+  (setq bibtex-completion-notes-template-one-file
+  "\n* ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :END:\n\n"))
 
 (use-package bibtex-completion
   :straight t)
@@ -16,7 +19,7 @@
         bibtex-dialect 'biblatex
         org-latex-pdf-process '("latexmk -shell-escape -bibtex -pdf %f")
         bibtex-completion-bibliography '("~/Nextcloud/bibliography/bibliography.bib")
-        bibtex-completion-pdf-open-function 'org-open-file-with-system)
+        bibtex-completion-pdf-open-function 'helm-open-file-with-default-tool)
 
    :config
    ;; Insert the citation into the notes PDF as a \fullcite inside a blockquote
