@@ -153,47 +153,47 @@
   :straight t
   :commands (org-gcal-sync org-gcal-fetch)
   :config
-  (require 'my-secrets)
-  (setq org-gcal-client-id my/org-gcal-client-id
-        org-gcal-client-secret my/org-gcal-client-secret
-        org-gcal-file-alist `(("trulsa@gmail.com" .  ,(my-org-prefix "gcal.org"))))
-  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+  ;; keys/org-gcal-app-credentials
+  (setq org-gcal-client-id (shell-command-to-string "secret-tool lookup org-gcal client-id")
+        org-gcal-client-secret (shell-command-to-string "secret-tool lookup org-gcal client-secret")
+        org-gcal-file-alist `(("trulsa@gmail.com" .  ,(my-org-prefix "gtd.org"))))
+  ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+  ;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
   :after org)
 
 ;; Mutt <-> org integration
 ;; Configuration and scripts based on https://upsilon.cc/~zack/blog/posts/2010/02/integrating_Mutt_with_Org-mode/
 ;; standard org <-> remember stuff, RTFM
 
-(use-package org-protocol
-  :config
-  ;; ensure that emacsclient will show just the note to be edited when invoked
-  ;; from Mutt, and that it will shut down emacsclient once finished;
-  ;; fallback to legacy behavior when not invoked via org-protocol.
-  (add-hook 'org-capture-mode-hook 'delete-other-windows)
-  (defvar my-org-protocol-flag nil)
-  (defadvice org-capture-finalize (after delete-frame-at-end activate)
-    "Delete frame at remember finalization."
-    (progn (if my-org-protocol-flag (delete-frame))
-           (setq my-org-protocol-flag nil)))
-  (defadvice org-capture-kill (after delete-frame-at-end activate)
-    "Delete frame at remember abort."
-    (progn (if my-org-protocol-flag (delete-frame))
-           (setq my-org-protocol-flag nil)))
-  (defadvice org-protocol-capture (before set-org-protocol-flag activate)
-    (setq my-org-protocol-flag t))
+;; (use-package org-protocol
+;;   :config
+;;   ;; ensure that emacsclient will show just the note to be edited when invoked
+;;   ;; from mutt, and that it will shut down emacsclient once finished;
+;;   ;; fallback to legacy behavior when not invoked via org-protocol.
+;;   (add-hook 'org-capture-mode-hook 'delete-other-windows)
+;;   (defvar my-org-protocol-flag nil)
+;;   (defadvice org-capture-finalize (after delete-frame-at-end activate)
+;;     "delete frame at remember finalization."
+;;     (progn (if my-org-protocol-flag (delete-frame))
+;;            (setq my-org-protocol-flag nil)))
+;;   (defadvice org-capture-kill (after delete-frame-at-end activate)
+;;     "delete frame at remember abort."
+;;     (progn (if my-org-protocol-flag (delete-frame))
+;;            (setq my-org-protocol-flag nil)))
+;;   (defadvice org-protocol-capture (before set-org-protocol-flag activate)
+;;     (setq my-org-protocol-flag t))
 
-  (defun open-mail-in-mutt (message)
-    "Open a mail MESSAGE in Mutt, using an external terminal.
+;;   (defun open-mail-in-mutt (message)
+;;     "open a mail message in mutt, using an external terminal.
 
-Message can be specified either by a path pointing inside a
-Maildir, or by Message-ID."
-    (interactive "MPath or Message-ID: ")
-    (start-process "mutt-client" nil "gnome-terminal" "--"
-                   (substitute-in-file-name "$HOME/.bin/mutt-open") message))
+;; message can be specified either by a path pointing inside a
+;; maildir, or by message-id."
+;;     (interactive "mpath or message-id: ")
+;;     (start-process "mutt-client" nil "gnome-terminal" "--"
+;;                    (substitute-in-file-name "$home/.bin/mutt-open") message))
 
-  ;; add support for "mutt:ID" links
-  (org-link-set-parameters "mutt" :follow 'open-mail-in-mutt))
+;;   ;; add support for "mutt:id" links
+;;   (org-link-set-parameters "mutt" :follow 'open-mail-in-mutt))
 
 ;;
 ;; Configuration for org clock
