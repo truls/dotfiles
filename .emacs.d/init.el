@@ -268,7 +268,7 @@ input."
 (require 'erc-config)
 (require 'latex-config)
 (require 'magit-config)
-(require 'flyspell-config)
+(require 'spellcheck-config)
 (require 'lang-mode-config)
 (require 'scala-config)
 
