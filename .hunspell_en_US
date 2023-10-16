@@ -261,3 +261,9 @@ boundedness
 fixpoint
 noncontiguous
 runtimes
+CoFaaS
+WebAssembly
+WASM
+GC
+POSIX
+SSD
