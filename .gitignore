@@ -16,6 +16,10 @@
 
 !.github
 !.emacs.d
+.emacs.d/tree-sitter
+.emacs.d/request
+.emacs.d/straight/modified
+.emacs.d/tutorial
 !.bin
 !.oh-my-zsh
 !.mplayer
