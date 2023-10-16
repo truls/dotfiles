@@ -261,7 +261,6 @@ input."
 ;; Config includes
 ;;
 (require 'column-filling-config)
-(require 'lsp-config)
 (require 'misc-pkgs-config)
 (require 'org-config)
 (require 'org-ref-config)
@@ -270,7 +269,8 @@ input."
 (require 'magit-config)
 (require 'spellcheck-config)
 (require 'lang-mode-config)
-(require 'scala-config)
+(require 'lsp-config)
+;;(require 'scala-config)
 
 ;; Disable debug-on-error after init
 (setq debug-on-error nil)
