@@ -267,3 +267,16 @@ WASM
 GC
 POSIX
 SSD
+unmanaged
+WASI
+Podman
+Protobuf
+protobuf
+IDL
+Wasmtime
+FaastLane
+intra
+unmodifiable
+testability
+benchmarked
+Wasm
