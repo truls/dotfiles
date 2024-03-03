@@ -13,7 +13,6 @@
   :hook ((lsp-mode        . lsp-enable-which-key-integration)
          (lsp-mode        . lsp-lens-mode)
          (lsp-mode        . yas-minor-mode-on)
-         (LaTeX-mode      . lsp-deferred)
          (js2-ts-mode        . lsp-deferred)
          (typescript-ts-mode . lsp-deferred)
          (haskell-mode    . lsp-deferred)
@@ -111,16 +110,6 @@
 (use-package lsp-haskell
   :straight t)
 
-(use-package lsp-latex
-  :straight t
-  :init
-  (setq lsp-latex-build-on-save t
-        lsp-latex-build-output-directory "output"
-        lsp-latex-lint-on-save t
-        lsp-latex-build-args '("-pdf" "-interaction=nonstopmode"
-                               "-synctex=1" "-outdir=output"
-                               "-shell-escape" "%f")))
-
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
   ;; Posframe is a pop-up tool that must be manually installed for
@@ -132,17 +121,5 @@
   :hook
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode))
-
-
-;; (use-package lsp-latex
-;;   :straight t
-;;   :config
-;;   (add-hook 'latex-mode-hook 'lsp-deferred)
-;;   (add-hook 'bibtex-mode-hook 'lsp-deferred)
-;;   ;; sideline conflicts with line wrapping mode since the diagnostics
-;;   ;; cannot use the outer margins.
-;;   (add-hook 'latex-mode-hook
-;;             (lambda ()
-;;               (setq-local lsp-ui-sideline-enable nil))))
 
 (provide 'lsp-config)
