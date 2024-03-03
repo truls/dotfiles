@@ -22,6 +22,8 @@
         TeX-global-PDF-mode t
         )
 
+  ;; From https://github.com/tom-tan/auctex-latexmk/issues/47
+
   ;; Turn on RefTeX
   ;; (setq reftex-default-bibliography '("~/Nextcloud/bibliography/references.bib"))
   ;; (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
@@ -33,7 +35,25 @@
 
   ;; Use yasnippet
   (add-hook 'LaTeX-mode-hook #'yas-minor-mode-on)
-  (add-hook 'LaTeX-mode-hook #'toggle-font-turn-on))
+  (add-hook 'LaTeX-mode-hook #'toggle-font-turn-on)
+
+
+  (add-to-list 'TeX-expand-list
+               '("%(-PDF)"
+                 (lambda ()
+                   (if TeX-PDF-mode
+                       (cond
+                        ((eq TeX-engine 'default) "-pdf")
+                        ((eq TeX-engine 'xetex) "-pdfxe")
+                        ((eq TeX-engine 'luatex) "-pdflua")) ""))))
+  (add-to-list 'TeX-command-list
+               '("LaTeXmk" "latexmk %(-PDF) -%(PDF)%(latex)='%`%l%(mode)%'' %(output-dir) %t"
+                 TeX-run-format nil (latex-mode doctex-mode) :help "Run Latexmk"))
+  (with-eval-after-load 'latex
+    (setq LaTeX-clean-intermediate-suffixes
+          (append LaTeX-clean-intermediate-suffixes '("\\.fdb_latexmk" "\\.fls"))))
+
+  (add-hook 'LaTeX-mode-hook (lambda () (setq TeX-command-default "LaTeXmk"))))
 
 
 (use-package magic-latex-buffer
@@ -48,27 +68,6 @@
   ;;       magic-latex-enable-minibuffer-echo nil)
   :config
   (add-hook 'LaTeX-mode-hook #'magic-latex-buffer))
-
-;; From
-;; https://github.com/tom-tan/auctex-latexmk/issues/39#issuecomment-1104743060
-;; TODO: remove when auctex-latexmk supports new auctex version
-(use-package auctex-latexmk
-  :straight t
-  :after latex
-  :functions auctex-latexmk-setup
-  :preface
-  (defun my-auctex-latexmk-advice (req feature &rest args)
-    "Call REQ with FEATURE and ARGS, unless FEATURE is `tex-buf'."
-    (unless (eq feature 'tex-buf)
-      (apply req feature args)))
-  :init
-  (unwind-protect
-      (progn (advice-add 'require :around #'my-auctex-latexmk-advice)
-             (auctex-latexmk-setup))
-    (advice-remove 'require #'my-auctex-latexmk-advice))
-  (setq TeX-command-default "LatexMk"
-        auctex-latexmk-inherit-TeX-PDF-mode t)
-  )
 
 (provide 'latex-config)
 ;;; latex-config ends here
