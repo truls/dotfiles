@@ -83,7 +83,9 @@
  '(org-agenda-files
    '("~/Nextcloud/bibliography/notes.org" "~/Nextcloud/org/todo.org" "~/Nextcloud/org/gcal.org"))
  '(safe-local-variable-values
-   '((eval add-hook 'yaml-mode-hook
+   '((TeX-master . "main")
+     (TeX-master . t)
+     (eval add-hook 'yaml-mode-hook
            '(lambda nil
               (ansible 1)
               nil t))
