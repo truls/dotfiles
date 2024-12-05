@@ -291,3 +291,7 @@ mispredicts
 discontiguous
 TIFS
 integratable
+synthesizable
+precomputed
+undirected
+nonnegative
