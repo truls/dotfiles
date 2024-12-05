@@ -41,7 +41,7 @@
 [pull]
 	rebase = true
 [credential "https://git.overleaf.com"]
-	username = truls.asheim@ntnu.no
+	username = truls@asheim.dk
 [credential]
 	helper = libsecret
 [rebase]
