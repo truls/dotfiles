@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# pdf-optimize
+#
+# Script for running gs on a pdf file in order to optimize it's size
+# and compress and downscale any heavy-duty raster images
+
+set -euo pipefail
+
+
+if [ $# -lt 2 ]; then
+    echo "usage: pdf_optimize <input_file> <output_file>"
+    exit 1
+fi
+
+pdf_file="$1"
+output_file="$2"
+
+pdf_version="$(pdfinfo "$pdf_file" | awk '/PDF version:/ {print $3}')"
+
+gs -sDEVICE=pdfwrite \
+   -dCompatibilityLevel="$pdf_version" \
+   -dPDFSETTINGS=/ebook \
+   -dNOPAUSE \
+   -dQUIET \
+   -dBATCH \
+   -sOutputFile="$output_file" \
+   "$pdf_file"
