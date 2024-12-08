@@ -4,13 +4,6 @@
 (use-package diminish :straight t)
 (use-package use-package-hydra :straight t)
 
-(use-package auto-package-update
-  :straight t
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-
 ;; Enable auto-compile package to automatically compile elisp files
 (use-package auto-compile
   :straight t
