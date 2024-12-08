@@ -5,8 +5,8 @@
 ;;
 
 (use-package tex
-  :ensure auctex
-  :mode ("\\.tex\\'" . latex-mode)
+  :straight auctex
+  :mode ("\\.tex\\'" . LaTeX-mode)
   :bind (:map TeX-mode-map
               ("M-s M-s" . git-fast-sync))
   :config
