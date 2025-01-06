@@ -16,7 +16,7 @@
          (js2-ts-mode        . lsp-deferred)
          (typescript-ts-mode . lsp-deferred)
          (haskell-mode       . lsp-deferred)
-         ;(python-ts-mode     . lsp-deferred)
+         (python-ts-mode     . lsp-deferred)
          (scala-mode         . lsp-deferred)
          (go-ts-mode         . lsp-deferred)
          (ess-r-mode         . lsp-deferred)
