@@ -256,4 +256,15 @@
 (use-package combobulate
   :straight t)
 
+(use-package terraform-mode
+  :straight t
+
+  :custom (terraform-indent-level 2)
+  :config
+  (defun my-terraform-mode-init ()
+    (outline-minor-mode 1)
+    )
+
+  (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
+
 (provide 'lang-mode-config)

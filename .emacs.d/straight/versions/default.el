@@ -137,6 +137,7 @@
  ("string-inflection" . "617df25e91351feffe6aff4d9e4724733449d608")
  ("swiper" . "8dc02d5b725f78d1f80904807b46f5406f129674")
  ("tablist" . "fcd37147121fabdf003a70279cf86fbe08cfac6f")
+ ("terraform-mode" . "5bdd734a87f67f6574664f63eb4d02a0bc74c0d0")
  ("transient" . "dbe18e3f5e0812b8d086f92ca776935e41fafc75")
  ("treemacs" . "4364a660447fa5f322c172f6b310115bbc091d12")
  ("use-package" . "fc8449bb593de8fce0a8bdd4ee2cb78219cf8c76")
