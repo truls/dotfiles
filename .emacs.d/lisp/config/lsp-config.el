@@ -47,11 +47,15 @@
 
   (add-hook 'lsp-mode-hook
             (lambda ()
-              (if (member major-mode '("c++-mode" "c-mode"))
-                  (define-key lsp-mode-map (kbd "M-q")
-                    (lambda () (if (inside-comment-p) lsp-format-region)))
-                (define-key lsp-mode-map (kbd "M-S-q")
-                            #'lsp-format-buffer))))
+              (if (lsp-feature? "textDocument/formatting")
+                  (define-key lsp-mode-map (kbd "M-S-q")
+                              #'lsp-format-buffer))
+              ;; (if (lsp-feature? "textDocument/rangeFormatting")
+              ;;     (define-key lsp-mode-map (kbd "M-q")
+              ;;                 (lambda () (if (inside-comment-p) lsp-format-region)))
+              ;;   )
+              ))
+
   (setq lsp-go-analyses '((fieldalignment . t)
                           (nilness . t)
                           ;; This gives annoying err variable
