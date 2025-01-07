@@ -100,12 +100,7 @@
   :config
   :after lsp-mode)
 
-;; (use-package pet
-;;   :straight t
-;;   (add-hook 'python-base-mode-hook 'pet-mode -10))
-
 ;; Python config
-
 (use-package python-pytest
   :straight t)
 
