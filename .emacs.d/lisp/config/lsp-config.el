@@ -61,9 +61,9 @@
                           (unusedwrite . t)
                           (useany . t)
                           (unusedvariable . t)))
-        (lsp-register-custom-settings
-         '(("gopls.completeUnimported" t t)
-           ("gopls.staticcheck" t t))))
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t))))
 
 (use-package lsp-ui
   :straight t

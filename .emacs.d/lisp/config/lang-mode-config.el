@@ -199,7 +199,8 @@
                                     whitespace-style)
                            tab-width 4))))
     (add-hook 'go-ts-mode-hook my/go-hook-fun)
-    (add-hook 'go-ts-dot-mod-mode-hook my/go-hook-fun)))
+    (add-hook 'go-ts-dot-mod-mode-hook my/go-hook-fun))
+  (add-hook 'before-save-hook 'gofmt-before-save))
 
 (use-package go-mode
   :straight t
