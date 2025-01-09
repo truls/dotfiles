@@ -260,7 +260,10 @@
 (use-package terraform-mode
   :straight t
 
-  :custom (terraform-indent-level 2)
+  :custom
+  (terraform-indent-level 2)
+  (terraform-format-on-save t)
+
   :config
   (defun my-terraform-mode-init ()
     (outline-minor-mode 1))
