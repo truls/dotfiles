@@ -26,7 +26,8 @@
          (ansible-mode       . lsp-deferred)
          (c-ts-mode          . lsp-deferred)
          (c++-ts-mode        . lsp-deferred)
-         (terraform-mode     . lsp-deferred))
+         (terraform-mode     . lsp-deferred)
+         (bitbake-mode       . lsp-deferred))
 
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
