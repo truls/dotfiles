@@ -1,8 +1,11 @@
 To use:
 
 git clone --bare -- git@github.com:truls/dotfiles ~/.config/dotfiles
-git --git-dir=~/.config/dotfiles --work-tree=~ checkout master
-git --git-dir=/home/truls/.config/dotfiles --work-tree=/home/truls submodule  update --init --recursive
+git --git-dir=/home/truls/.config/dotfiles --work-tree=/home/truls checkout master
+echo "gitdir: /home/truls/.config/dotfiles" > .git
+git config core.bare false
+
+git submodule  update --init --recursive
 
 For no URL found for submodule path error use:
 
