@@ -102,7 +102,12 @@ alias urldecode='python3 -c "import sys, urllib.parse as p; print(p.unquote_plus
 alias urlencode='python3 -c "import sys, urllib.parse as p; print(p.quote_plus(\"\n\".join(sys.stdin.readlines()).rstrip() if len(sys.argv) < 2 else \" \".join(sys.argv[1:])))"'
 
 # add syntax highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh_syntax_script=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "$zsh_syntax_script" ]; then
+    source "$zsh_syntax_script"
+else
+    echo "ZSH syntax highlighting package not found at $zsh_syntax_script. Insatll package zsh-syntax-highlighting"
+fi
 
 alias localssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no localhost -p "
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -118,4 +123,4 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
-source /home/truls/.gvm/scripts/gvm
+source $HOME/.gvm/scripts/gvm
