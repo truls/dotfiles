@@ -124,3 +124,6 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
 source $HOME/.gvm/scripts/gvm
+
+## Set aliases to always enable colors
+alias rg="rg --color=always"
