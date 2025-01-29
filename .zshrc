@@ -52,7 +52,16 @@ ZSH_THEME="gentoo"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose asdf zsh-interactive-cd dnf pass pipenv nvm cargo)
+plugins=(git docker docker-compose asdf zsh-interactive-cd dnf pass pipenv nvm rust)
+
+# Distro specific plugins
+if cat /etc/lsb-release | grep -qi ubuntu; then
+    plugins+=(ubuntu)
+fi
+
+if which dnf > /dev/null; then
+    plugins+=(dnf)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
