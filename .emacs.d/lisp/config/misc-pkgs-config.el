@@ -225,8 +225,8 @@
   :straight t)
 
 (use-package helm-projectile
-  :bind (("C-\"" . helm-projectile-ag)
-         ("C-'" . my/helm-projectile-ag-thing-at-point))
+  :bind (("C-'" . helm-projectile-rg)
+         ("C-\"" . my/helm-projectile-ag-thing-at-point))
   :straight t)
 
 (use-package helm-rg
