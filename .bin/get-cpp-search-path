@@ -1,0 +1,3 @@
+#!/bin/bash
+
+c++ -xc++ /dev/null -E -Wp,-v 2>&1 | sed -n 's,^ ,-I,p' | tr '\n' ' ' | sed 's/ $/\n/'
