@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/truls/.oh-my-zsh
+export ZSH=/home/truls/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -75,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
 #export PATH=$PATH:/home/truls/bin
 
 
-#ddsource $HOME/.shell_env
+source $HOME/.shell_env
 
 
 # You may need to manually set your language environment

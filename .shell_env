@@ -1,4 +1,3 @@
-
 GOPATH=$HOME/.local/go
 export GOPATH
 
@@ -30,3 +29,7 @@ eval "$(pyenv init --path)"
 export EDITOR=vim
 
 export PIN_ROOT=$HOME/.local/lib/pin
+
+## Use rg as underlying command for fzf as it correctly handles
+## .gitingore
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob \"!.git/*\""
