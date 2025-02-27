@@ -274,14 +274,6 @@
 ;; BitBake-mode
 (use-package bitbake
   :straight t
-  :hook (bitbake-mode . mmm-mode)
-
-  :config
-  (lsp-register-client
-   (make-lsp-client :new-connection
-                    (lsp-stdio-connection
-                     `(,(executable-find "bitbake-language-server")))
-                    :activation-fn (lsp-activate-on "bitbake" "*.bb" "*.bbappend" "*.bbclass" "*.inc" "conf/*.conf")
-                    :server-id "bitbake")))
+  :hook (bitbake-mode . mmm-mode))
 
 (provide 'lang-mode-config)
