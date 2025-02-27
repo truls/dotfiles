@@ -269,6 +269,7 @@ input."
 (require 'magit-config)
 (require 'spellcheck-config)
 (require 'lang-mode-config)
+(require 'yocto-config)
 (require 'lsp-config)
 ;;(require 'scala-config)
 

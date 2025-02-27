@@ -270,10 +270,4 @@
 
   (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
 
-
-;; BitBake-mode
-(use-package bitbake
-  :straight t
-  :hook (bitbake-mode . mmm-mode))
-
 (provide 'lang-mode-config)
