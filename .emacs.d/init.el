@@ -257,6 +257,15 @@ input."
   (let ((helm-ag-insert-at-point 'symbol))
     (helm-projectile-ag)))
 
+(defun delete-line ()
+  "Delete the rest of the current line or the whole line if cursor is at
+the beginning of the line without adding to the kill ring."
+  (interactive)
+  (delete-region (point) (line-end-position))
+  (if (eq (line-beginning-position) (line-end-position))
+      (delete-char 1)))
+(global-set-key (kbd "C-k") 'delete-line)
+
 ;;
 ;; Config includes
 ;;
