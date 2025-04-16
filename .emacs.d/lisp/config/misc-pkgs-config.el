@@ -227,6 +227,8 @@
 (use-package helm-projectile
   :bind (("C-'" . helm-projectile-rg)
          ("C-\"" . my/helm-projectile-ag-thing-at-point))
+  :config
+  (setq helm-projectile-ignore-strategy 'search-tool)
   :straight t)
 
 (use-package helm-rg
