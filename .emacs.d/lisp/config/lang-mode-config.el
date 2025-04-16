@@ -276,4 +276,11 @@
 (use-package kubernetes-helm
   :straight t)
 
+;;
+;; bpftrace-mode
+;;
+(use-package bpftrace-mode
+  :straight t
+  :mode "\\.bpf\\'")
+
 (provide 'lang-mode-config)
