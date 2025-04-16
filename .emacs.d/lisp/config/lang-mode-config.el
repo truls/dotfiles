@@ -270,4 +270,10 @@
 
   (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
 
+;;
+;; kubernetes-helm
+;;
+(use-package kubernetes-helm
+  :straight t)
+
 (provide 'lang-mode-config)
