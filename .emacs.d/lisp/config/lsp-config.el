@@ -39,6 +39,9 @@
   ;; Recommended by lsp performance guidelines
   (setq read-process-output-max (* 1024 1024))
 
+  ;; Make clangd query the driver for system environment variables
+  (setq lsp-clients-clangd-args '("--query-driver=/usr/bin/*"))
+
   ;; Hack to reduce lag when moving cursor, see:
   ;; https://github.com/emacs-lsp/lsp-ui/issues/613
   (setq pgtk-wait-for-event-timeout 0.01)
