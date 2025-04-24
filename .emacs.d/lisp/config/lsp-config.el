@@ -126,6 +126,7 @@
 
 (use-package pet
   :ensure-system-package (dasel sqlite3)
+  :straight t
   :config
   (add-hook 'python-base-mode-hook
             (lambda ()
@@ -159,7 +160,6 @@
               (when-let ((isort-executable (pet-executable-find "isort")))
                 (setq-local python-isort-command isort-executable)
                 (python-isort-on-save-mode)))))
-
 
 (use-package lsp-haskell
   :straight t)
