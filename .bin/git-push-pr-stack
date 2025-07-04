@@ -1,0 +1,52 @@
+#!/bin/bash
+# This is a script to push and update a github pr stack
+
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $0 <base-branch>"
+    exit 1
+fi
+
+base_branch="$1"
+
+branches="$(extract_branches_in_range.sh "$base_branch" | tac | tr '\n' ' ')"
+branches_no_head="$(extract_branches_in_range.sh "$base_branch" | tac | head -n -1 | tr '\n' ' ')"
+
+# Update the remotes of all branches in update-ref range
+# shellcheck disable=SC2086
+git push --force-with-lease origin $branches
+
+# Get a list of all pull requests
+declare -A prs
+
+update_branches() {
+    match_head=
+    if [[ $# -gt 0 ]]; then
+        match_head="--head $1"
+    fi
+    eval "$(gh pr list "$match_head" --json number,headRefName --template '{{range .}}{{printf "prs[\"%s\"]=\"%v\"\n" .headRefName .number}}{{end}}')"
+}
+
+update_branches
+
+pr_base="$base_branch"
+
+for b in $branches_no_head; do
+    if [[ -z "${prs[$b]:-}" ]]; then
+        echo "No pull request for branch $b. Create?"
+        gh pr create --base "$pr_base" --head "$b" || true
+        update_branches "$b"
+        if [[ -x "${prs[$b]:-}" ]]; then
+            echo "No PR created"
+            continue
+        fi
+    fi
+    pr=${prs[$b]}
+    curbase="$(gh pr view "$pr" --json baseRefName --jq '.baseRefName')"
+    if [[ "$curbase" != "$pr_base" ]]; then
+        echo "Updating base of $pr from $curbase to $pr_base"
+        gh pr edit "${pr}" -B "$pr_base"
+    fi
+    pr_base="$b"
+done
