@@ -49,3 +49,6 @@
 [submodule ".config/config-deps/emacs"]
 	path = .config/config-deps/emacs
 	url = git://git.savannah.gnu.org/emacs.git
+[submodule ".emacs.d/lisp/poly-helm-mode"]
+	path = .emacs.d/lisp/poly-helm-mode
+	url = https://github.com/necaris/poly-helm-mode

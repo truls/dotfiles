@@ -131,8 +131,8 @@
   ("\\.[Rr]cpp\\'" . poly-r+c++-mode)
   ("\\.cpp[rR]\\'" . poly-c++r-mode))
 
-(use-package yaml-ts-mode
-  :commands yaml-ts-mode
+(use-package yaml-mode
+  :commands yaml-mode
   :mode ("\\.yml\\'" "\\.yaml\\'")
   :straight t)
 
@@ -220,7 +220,7 @@
   :no-require t
   :config
   (setq major-mode-remap-alist
-        '((yaml-mode . yaml-ts-mode)
+        '((yaml-mode . yaml-mode)
           (bash-mode . bash-ts-mode)
           (js2-mode . js-ts-mode)
           (typescript-mode . typescript-ts-mode)
