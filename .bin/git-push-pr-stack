@@ -25,7 +25,8 @@ update_branches() {
     if [[ $# -gt 0 ]]; then
         match_head="--head $1"
     fi
-    eval "$(gh pr list "$match_head" --json number,headRefName --template '{{range .}}{{printf "prs[\"%s\"]=\"%v\"\n" .headRefName .number}}{{end}}')"
+    # shellcheck disable=SC2086
+    eval "$(gh pr list $match_head --json number,headRefName --template '{{range .}}{{printf "prs[\"%s\"]=\"%v\"\n" .headRefName .number}}{{end}}')"
 }
 
 update_branches
