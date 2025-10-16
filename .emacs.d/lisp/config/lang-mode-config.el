@@ -177,6 +177,9 @@
   :bind (:map python-mode-map
               ("C-<backspace>" . backward-kill-word)))
 
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
+(add-hook 'python-ts-mode-hook 'flyspell-prog-mode)
+
 ;;
 ;; Protocol buffers
 ;;
