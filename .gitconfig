@@ -46,6 +46,8 @@
 	helper = libsecret
 [rebase]
 	autoStash = true
+	interactive = true
+	updateRefs = true
 [diff]
 	submodule = log
 [filter "lfs"]
