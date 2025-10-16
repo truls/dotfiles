@@ -19,7 +19,8 @@
                                     (visual-line-mode 1)))
   (add-hook 'magit-status-mode-hook (lambda ()
                                       (toggle-truncate-lines -1)
-                                      (visual-line-mode 1))))
+                                      (visual-line-mode 1)))
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
 
 ;; TODO: Figure out why these are broken
 ;; (use-package forge
