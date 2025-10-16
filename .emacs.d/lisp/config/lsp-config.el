@@ -21,6 +21,7 @@
          (go-ts-mode         . lsp-deferred)
          (ess-r-mode         . lsp-deferred)
          (yaml-ts-mode       . lsp-deferred)
+         (yaml-mode          . lsp-deferred)
          (json-ts-mode       . lsp-deferred)
          (markdown-mode      . lsp-deferred)
          (ansible-mode       . lsp-deferred)
