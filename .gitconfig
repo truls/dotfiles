@@ -46,8 +46,6 @@
 	helper = libsecret
 [rebase]
 	autoStash = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [diff]
 	submodule = log
 [filter "lfs"]
