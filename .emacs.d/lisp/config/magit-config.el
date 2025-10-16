@@ -9,6 +9,8 @@
   ;; invoked by the git-fast-sync function below
   :commands (magit-status magit-toplevel)
   :bind ("C-x g" . magit-status)
+  :init
+  (setq magit-rebase-arguments '("--interactive" "--update-refs"))
   :config
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq magit-diff-refine-hunk 'all)
