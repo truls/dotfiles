@@ -7,7 +7,7 @@
 
 (flycheck-define-checker oelint-adv
   "A linter for BitBake recipes using oelint-adv."
-  :command ("oelint-adv" "--quiet" "--noinfo" source)
+  :command ("oelint-adv" "--quiet" "--noinfo --release scarthgap" source)
   :error-patterns
   ((warning line-start (file-name) ":" line ":"
             "warning:" (message) line-end)
