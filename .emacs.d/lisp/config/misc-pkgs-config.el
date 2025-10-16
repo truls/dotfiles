@@ -142,6 +142,11 @@
   ;;       company-idle-delay 0.1))
   :diminish company-mode)
 
+;; Enable icons in company mode
+(use-package company-box
+  :straight t
+  :hook (company-mode . company-box-mode))
+
 ;;
 ;; yasnippet
 ;;
