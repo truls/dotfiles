@@ -177,4 +177,14 @@
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode))
 
+
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection (lambda () '("uv" "run" "pyrefly" "lsp")))
+                  :activation-fn (lsp-activate-on "python")
+                  :priority -1
+                  :add-on? t
+                  :server-id 'py-refly))
+
+(lsp-consistency-check lsp-python-refly)
+
 (provide 'lsp-config)
