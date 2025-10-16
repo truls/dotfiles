@@ -56,3 +56,5 @@
 [pager]
 	diff = false
 	branch = false
+[url "https://github.com/"]
+	insteadOf = git://github.com/
