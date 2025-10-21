@@ -25,6 +25,7 @@
          (markdown-mode      . lsp-deferred)
          (python-ts-mode     . lsp-deferred)
          (scala-mode         . lsp-deferred)
+         (sh-mode            . lsp-deferred)
          (terraform-mode     . lsp-deferred)
          (typescript-ts-mode . lsp-deferred)
          (yaml-mode          . lsp-deferred)
