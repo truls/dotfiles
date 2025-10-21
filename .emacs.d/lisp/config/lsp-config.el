@@ -10,25 +10,25 @@
   :straight t
   :commands (lsp lsp-deferred)
   :after yasnippet
-  :hook ((lsp-mode           . lsp-enable-which-key-integration)
+  :hook ((ansible-mode       . lsp-deferred)
+         (bitbake-mode       . lsp-deferred)
+         (c++-ts-mode        . lsp-deferred)
+         (c-ts-mode          . lsp-deferred)
+         (ess-r-mode         . lsp-deferred)
+         (go-ts-mode         . lsp-deferred)
+         (haskell-mode       . lsp-deferred)
+         (js2-ts-mode        . lsp-deferred)
+         (json-ts-mode       . lsp-deferred)
+         (lsp-mode           . lsp-enable-which-key-integration)
          (lsp-mode           . lsp-lens-mode)
          (lsp-mode           . yas-minor-mode-on)
-         (js2-ts-mode        . lsp-deferred)
-         (typescript-ts-mode . lsp-deferred)
-         (haskell-mode       . lsp-deferred)
+         (markdown-mode      . lsp-deferred)
          (python-ts-mode     . lsp-deferred)
          (scala-mode         . lsp-deferred)
-         (go-ts-mode         . lsp-deferred)
-         (ess-r-mode         . lsp-deferred)
-         (yaml-ts-mode       . lsp-deferred)
-         (yaml-mode          . lsp-deferred)
-         (json-ts-mode       . lsp-deferred)
-         (markdown-mode      . lsp-deferred)
-         (ansible-mode       . lsp-deferred)
-         (c-ts-mode          . lsp-deferred)
-         (c++-ts-mode        . lsp-deferred)
          (terraform-mode     . lsp-deferred)
-         (bitbake-mode       . lsp-deferred))
+         (typescript-ts-mode . lsp-deferred)
+         (yaml-mode          . lsp-deferred)
+         (yaml-ts-mode       . lsp-deferred))
 
   :config
   ;; Should be fixed in https://github.com/emacs-lsp/lsp-mode/issues/641
@@ -117,9 +117,6 @@
   :straight t)
 
 (use-package python-isort
-  :straight t)
-
-(use-package ruff-format
   :straight t)
 
 (use-package lsp-haskell
