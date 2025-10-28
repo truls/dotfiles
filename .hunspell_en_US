@@ -315,3 +315,8 @@ parseable
 toolchain
 oelint
 scarthgap
+Jetson
+initrd
+rootfs
+zstd
+backported
