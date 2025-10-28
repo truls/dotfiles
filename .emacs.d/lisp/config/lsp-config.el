@@ -11,7 +11,6 @@
   :commands (lsp lsp-deferred)
   :after yasnippet
   :hook ((ansible-mode       . lsp-deferred)
-         (bitbake-mode       . lsp-deferred)
          (c++-ts-mode        . lsp-deferred)
          (c-ts-mode          . lsp-deferred)
          (ess-r-mode         . lsp-deferred)
