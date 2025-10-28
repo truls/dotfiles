@@ -66,15 +66,21 @@ point reaches the beginning or end of the buffer, stop there."
 (defun move-line-up ()
   "Move move current line up."
   (interactive)
-  (transpose-lines 1)
-  (forward-line -2))
+  (cond ((eq major-mode 'git-rebase-mode)
+         (git-rebase-move-line-up 1))
+        (t
+         (transpose-lines 1)
+         (forward-line -2))))
 
 (defun move-line-down ()
   "Move current line down."
   (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1))
+  (cond ((eq major-mode 'git-rebase-mode)
+         (git-rebase-move-line-down 1))
+        (t
+         (forward-line 1)
+         (transpose-lines 1)
+         (forward-line -1))))
 
 
 (provide 'line-manip)
