@@ -10,8 +10,9 @@ fi
 
 base_branch="$1"
 
-branches="$(extract_branches_in_range.sh "$base_branch" | tac | tr '\n' ' ')"
-branches_no_head="$(extract_branches_in_range.sh "$base_branch" | tac | head -n -1 | tr '\n' ' ')"
+branches="$(extract_branches_in_range.sh "$base_branch" | tac )"
+branches_no_head="$(echo "$branches" | head -n -1 | tr '\n' ' ')"
+branches="$(echo "$branches" | tr '\n' ' ')"
 
 # Update the remotes of all branches in update-ref range
 # shellcheck disable=SC2086
