@@ -320,3 +320,9 @@ initrd
 rootfs
 zstd
 backported
+Uncomment
+squaremind
+userspace
+UEFI
+symlink
+keystore
