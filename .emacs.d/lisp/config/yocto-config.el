@@ -109,8 +109,6 @@
                   poly-bitbake-python-def-innermode
                   poly-bitbake-shell-innermode))
 
-  (setq auto-mode-alist
-        (delete `(,bitbake-mode-file-regex . bitbake-mode) auto-mode-alist))
   (add-to-list 'auto-mode-alist `(,bitbake-mode-file-regex . poly-bitbake-mode)))
 
 (provide 'yocto-config)
