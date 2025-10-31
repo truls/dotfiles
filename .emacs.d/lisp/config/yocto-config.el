@@ -97,7 +97,7 @@
   (define-innermode poly-bitbake-python-def-innermode
     :mode #'my-bitbake-python-ts-mode-wrapper
     :head-matcher bitbake-python-def-regex
-    :tail-matcher "^$"
+    :tail-matcher "^[^ \t\n#].*"
     :head-mode 'host
     :tail-mode 'host
     :protect-font-lock t)
