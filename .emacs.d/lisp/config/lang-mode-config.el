@@ -183,17 +183,20 @@
 ;;
 ;; Python config
 ;;
-(use-package reformatter
-  :straight t
-  :diminish t
-  :config
-  (reformatter-define ruff-format
-    :program "uv"
-    :args (list "run" "ruff" "format" "--stdin-filename" (or (buffer-file-name) input-file))
-    :lighter " RuffFmt"
-    :group 'ruff-format)
-  (add-hook 'python-mode-hook 'ruff-format-on-save-mode)
-  (add-hook 'python-ts-mode-hook 'ruff-format-on-save-mode))
+;; (use-package reformatter
+;;   :straight t
+;;   :diminish t
+;;   :hook ((python-mode . ruff-format-on-save-mode)
+;;          (python-ts-mode . ruff-format-on-save-mode))
+;;   :config
+;;   (reformatter-define ruff-format
+;;     :program "uv"
+;;     :args (list "run" "ruff" "format" "--stdin-filename" (or (buffer-file-name) input-file))
+;;     :lighter " RuffFmt"
+;;     :group 'ruff-format)
+;;   ;; (add-hook 'python-mode-hook 'ruff-format-on-save-mode)
+;;   ;; (add-hook 'python-ts-mode-hook 'ruff-format-on-save-mode)
+;;   )
 
 ;;
 ;; Protocol buffers
