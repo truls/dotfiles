@@ -279,7 +279,7 @@ the beginning of the line without adding to the kill ring."
 (require 'spellcheck-config)
 (require 'lang-mode-config)
 (require 'yocto-config)
-(require 'lsp-config)
+(require 'lsp-bridge-config)
 ;;(require 'scala-config)
 
 ;; Disable debug-on-error after init

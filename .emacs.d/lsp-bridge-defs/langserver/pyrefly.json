@@ -1,0 +1,24 @@
+{
+  "name": "pyrefly",
+  "languageId": "python",
+    "command": ["uv", "run", "pyrefly", "lsp"],
+    "projectFiles": ["pyproject.toml"],
+
+  "initializationOptions": {
+    "logLevel": "info"
+  },
+  "support-single-file": false,
+  "settings": {
+    "pyrefly": {
+      "disableLanguageServices": false,
+      "diagnosticMode": "openFilesOnly",
+      "inlayHints": {
+        "variableTypes": true,
+        "callArgumentNames": true
+      },
+      "completions": {
+        "autoImport": true
+      }
+    }
+  }
+}
