@@ -1,8 +1,0 @@
-#!/bin/bash
-# meta: nostate
-
-set -euo pipefail
-
-pushd ~/.config/config-deps/pyenv > /dev/null
-git pull
-popd > /dev/null
