@@ -31,30 +31,31 @@
 
 (defun my-bitbake-python-ts-mode-wrapper ()
   "A wrapper around `python-ts-mode` that disables certain hooks when used inside poly-bitbake-mode."
-  (let ((python-ts-mode-hook
+  (message "In python wrapper function")
+  (setq-local python-ts-mode-hook
          (remove 'ruff-format-on-save-mode
                  (remove 'lsp-deferred python-ts-mode-hook)))
-        (python-mode-hook
+  (setq-local python-mode-hook
          (remove 'ruff-format-on-save-mode
                  (remove 'lsp-deferred python-mode-hook)))
         ;; Prevent after-change-major-mode-hook triggers from enabling LSP globally
-        (after-change-major-mode-hook
+  (setq-local after-change-major-mode-hook
          (cl-remove-if (lambda (fn)
                          (or (eq fn #'lsp)
                              (eq fn #'lsp-deferred)))
-                       after-change-major-mode-hook)))
-    (python-ts-mode)))
+                       after-change-major-mode-hook))
+  (python-ts-mode))
 
 (defun my-bitbake-sh-mode-wrapper ()
   "A wrapper around `python-ts-mode` that disables certain hooks when used inside poly-bitbake-mode."
-  (let ((sh-mode-hook (remove 'lsp-deferred sh-mode-hook))
-        ;; Prevent after-change-major-mode-hook triggers from enabling LSP globally
-        (after-change-major-mode-hook
-         (cl-remove-if (lambda (fn)
-                         (or (eq fn #'lsp)
-                             (eq fn #'lsp-deferred)))
-                       after-change-major-mode-hook)))
-    (sh-mode)))
+  (setq-local sh-mode-hook (remove 'lsp-deferred sh-mode-hook))
+  ;; Prevent after-change-major-mode-hook triggers from enabling LSP globally
+  (setq-local after-change-major-mode-hook
+              (cl-remove-if (lambda (fn)
+                              (or (eq fn #'lsp)
+                                  (eq fn #'lsp-deferred)))
+                            after-change-major-mode-hook))
+  (sh-mode))
 
 
 (define-derived-mode bash-script-mode sh-mode "Bash"
