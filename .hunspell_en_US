@@ -326,3 +326,9 @@ userspace
 UEFI
 symlink
 keystore
+EFI
+microcontroller
+subproject
+subprojects
+arping
+iputils
