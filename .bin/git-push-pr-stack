@@ -36,19 +36,37 @@ pr_base="$base_branch"
 
 for b in $branches_no_head; do
     if [[ -z "${prs[$b]:-}" ]]; then
-        echo "No pull request for branch $b. Create?"
-        gh pr create --base "$pr_base" --head "$b" || true
-        update_branches "$b"
-        if [[ -x "${prs[$b]:-}" ]]; then
-            echo "No PR created"
-            continue
+        while true; do
+            read -rp "No pull request for branch $b. Create? (y/n/q) " r
+            case "$r" in
+                q)
+                    exit 0;
+                    ;;
+                n)
+                    break
+                    ;;
+                y)
+                    gh pr create --base "$pr_base" --head "$b" || true
+                    update_branches "$b"
+                    if [[ -z "${prs[$b]:-}" ]]; then
+                        echo "No PR created"
+                        continue
+                    fi
+                    break
+                    ;;
+                *)
+                    echo "Invalid response $r"
+                    ;;
+            esac
+        done
+    fi
+    pr=${prs[$b]:-}
+    if [[ -n "$pr" ]]; then
+        curbase="$(gh pr view "$pr" --json baseRefName --jq '.baseRefName')"
+        if [[ "$curbase" != "$pr_base" ]]; then
+            echo "Updating base of $pr from $curbase to $pr_base"
+            gh pr edit "${pr}" -B "$pr_base"
         fi
+        pr_base="$b"
     fi
-    pr=${prs[$b]}
-    curbase="$(gh pr view "$pr" --json baseRefName --jq '.baseRefName')"
-    if [[ "$curbase" != "$pr_base" ]]; then
-        echo "Updating base of $pr from $curbase to $pr_base"
-        gh pr edit "${pr}" -B "$pr_base"
-    fi
-    pr_base="$b"
 done
