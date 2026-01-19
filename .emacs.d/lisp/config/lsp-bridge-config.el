@@ -5,7 +5,7 @@
   :init
   (global-lsp-bridge-mode)
   :config
-  (setq lsp-bridge-python-multi-lsp-server "pyrefly_ruff")
+  (setq lsp-bridge-python-multi-lsp-server "ty_ruff")
   (setq lsp-bridge-user-langserver-dir "~/.emacs.d/lsp-bridge-defs/langserver")
   (setq lsp-bridge-user-multiserver-dir "~/.emacs.d/lsp-bridge-defs/multiserver")
 
@@ -22,9 +22,9 @@
    ("C-c l p" . lsp-bridge-diagnostic-jump-prev)
    ("C-c l a" . lsp-bridge-code-action)
    ("C-c l f" . lsp-bridge-code-format)
+   ("C-c l r" . lsp-bridge-rename)
    ("M-." . lsp-bridge-peek)
    ("M-," . lsp-bridge-peek-jump-back)
    ("C-\\" . lsp-bridge-popup-documentation)))
 
 (provide 'lsp-bridge-config)
-
